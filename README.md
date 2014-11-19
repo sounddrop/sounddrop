@@ -18,4 +18,5 @@
 * `ssh root@178.62.207.114`
 * `cd /home/rails`
 * `git pull`
+* `chown -R rails:www-data .`
 * `service unicorn restart`
