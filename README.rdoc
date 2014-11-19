@@ -1,28 +1,21 @@
-== README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+## System Setup
+
+* Follow these instruction only for creating the droplet https://www.digitalocean.com/community/tutorials/how-to-use-the-1-click-ruby-on-rails-on-ubuntu-14-04-image
+
+* Added ssh keys
+* login and install git: `apt-get install git`
+* Remove the sample app `rm -Rf /home/rails`
+* Clone `cd /home; git clone git@github.com:cloudyMBC/soundanchor.git rails`
+* `chown -R rails:www-data .`
+* Restart server `/etc/nginx restart`
+
+
+## Deployment
+
+* `git push`
+* `ssh root@178.62.207.114`
+* `cd /home/rails`
+* `git pull`
+* `/etc/nginx restart`
