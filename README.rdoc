@@ -9,7 +9,7 @@
 * Remove the sample app `rm -Rf /home/rails`
 * Clone `cd /home; git clone git@github.com:cloudyMBC/soundanchor.git rails`
 * `chown -R rails:www-data .`
-* Restart server `/etc/nginx restart`
+* Restart server `service unicorn restart`
 
 
 ## Deployment
@@ -18,4 +18,4 @@
 * `ssh root@178.62.207.114`
 * `cd /home/rails`
 * `git pull`
-* `/etc/nginx restart`
+* `service unicorn restart`
