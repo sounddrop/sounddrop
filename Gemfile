@@ -8,6 +8,10 @@ gem 'sqlite3'
 gem 'turbolinks'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'rspec'
+gem 'rspec-rails'
+gem 'capybara'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
