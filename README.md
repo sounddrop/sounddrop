@@ -15,6 +15,7 @@
 ## Deployment
 
 * `git push`
+* `ssh-add`
 * `ssh root@178.62.207.114`
 * `cd /home/rails`
 * `git pull`
