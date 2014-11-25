@@ -19,6 +19,7 @@
 * `ssh -A root@178.62.207.114`
 * `cd /home/rails`
 * `git pull`
+* `bundle`
 * TODO: run asset pipeline to generate public/images and stuff
 * `chown -R rails:www-data .`
 * `service unicorn restart`
