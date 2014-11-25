@@ -19,6 +19,24 @@
 * `ssh -A root@178.62.207.114`
 * `cd /home/rails`
 * `git pull`
+* `bundle`
 * TODO: run asset pipeline to generate public/images and stuff
 * `chown -R rails:www-data .`
 * `service unicorn restart`
+*
+
+## Debugging server problems
+
+Look at the Rails logs 
+```
+cd /home/rails
+tail -100 log/production.log
+```
+
+or look at the unicorn logs for startup problems or bundle errors
+
+```
+tail -100 /home/unicorn/log/unicorn.log
+```
+
+
