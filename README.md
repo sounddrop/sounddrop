@@ -16,7 +16,7 @@
 
 * `git push`
 * `ssh-add`
-* `ssh root@178.62.207.114`
+* `ssh -A root@178.62.207.114`
 * `cd /home/rails`
 * `git pull`
 * TODO: run asset pipeline to generate public/images and stuff
