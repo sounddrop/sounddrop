@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
   #get 'welcome/index'
-  get 'welcome/index' => 'welcome#show'
+ 
   root 'welcome#index'
 
+  #get '/:id' => 'welcome#show'
   get 'tracks/:id' => 'tracks#show'
   get 'playlists/:id' => 'playlists#show'
+  get '/playlists' => 'playlists#show'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
