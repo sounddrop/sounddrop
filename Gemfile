@@ -5,7 +5,6 @@ ruby "2.1.3"
 gem 'rails', '4.1.6'
 
 gem 'sqlite3'
-gem 'turbolinks'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'rspec'
