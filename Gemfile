@@ -13,7 +13,7 @@ gem 'capybara'
 
 gem "pry"
 
-gem "pry-byebug"
+gem "pry-byebug" , group: :development
 
 
 # Use ActiveModel has_secure_password
