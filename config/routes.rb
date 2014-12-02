@@ -2,9 +2,7 @@ Rails.application.routes.draw do
   #get 'welcome/index'
  
   root 'welcome#index'
-
-  get '/tracks/:id' => 'tracks#show'
-  get '/playlists/:id' => 'playlists#show'
+  get '/stories/:id' => 'welcome#show'
 
   
   # The priority is based upon order of creation: first created -> highest priority.
