@@ -3,7 +3,7 @@ Rails.application.routes.draw do
  
   root 'stories#index'
   get '/stories/:id' => 'stories#show'
-
+  get '/playlists/:playlist_id/:current_track_id' => 'stories#playlists'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
