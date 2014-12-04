@@ -10,7 +10,7 @@
 <p><b>More stories:</b></p>
 
 <% @playlist.tracks.each do |track| %>
-  <% if track.id != @story_with_playlist.id %>
+  <% if track.id != @story.id %>
     <a href="/playlists/<%=@playlist.id%>/<%=track.id%>"><%= track.title %></a>
     </br>
   <% end %>
