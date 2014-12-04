@@ -1,0 +1,18 @@
+
+<% @playlist.tracks.each do |track| %>
+  <%if track.id == @story.id %>
+      <iframe width="100%" height="20" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/<%=track.id %>&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=false&amp;show_user=false&amp;show_reposts=false"></iframe>
+  <% end %>
+<% end %>
+
+<br>
+<br>
+<p><b>More stories:</b></p>
+
+<% @playlist.tracks.each do |track| %>
+  <% if track.id != @story_with_playlist.id %>
+    <a href="/playlists/<%=@playlist.id%>/<%=track.id%>"><%= track.title %></a>
+    </br>
+  <% end %>
+<% end %>
+<br>

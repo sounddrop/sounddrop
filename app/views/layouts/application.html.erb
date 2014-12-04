@@ -10,7 +10,26 @@
 </head>
 <body>
 
+<div class="container-fluid">
+
+  <% if @story.artwork_url == nil %>
+    <%= image_tag(@story.user.avatar_url.sub("large", "crop"), width: "100%") %>
+    <h1 class="story-title"><%= @story.title %></h1>
+    <h3 class="story-place">@SoundCloud HQ</h3>
+  <% else %>
+    <%= image_tag(@story.artwork_url.sub("large", "crop"), width: "100%") %>
+    <h1 class="story-title"><%= @story.title %></h1>
+    <h3 class="story-place">@SoundCloud HQ</h3>
+  <% end %>
+
 <%= yield %>
+
+<form>
+    <label>What do you think about this app?</label>
+    <textarea class="form-control" rows="2"></textarea>
+    <button type="submit" class="btn btn-default">Submit</button>
+</form>
+</div>
 
 </body>
 </html>
