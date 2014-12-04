@@ -6,8 +6,10 @@ class StoriesController < ApplicationController
   end	
 
   def show
-    # client = SoundCloud.new(:client_id => '69e93cf2209402f6f3137a6452cf498f')
-    # @story  = client.get("/tracks/#{params[:id]}")
+    client = SoundCloud.new(:client_id => '69e93cf2209402f6f3137a6452cf498f')
+    @story  = client.get("/tracks/#{params[:current_track_id]}")
+    user_id = @story.user_id
+    @playlist = client.get("/users/#{user_id.to_s}/playlists/").first
   end
 
   def playlists

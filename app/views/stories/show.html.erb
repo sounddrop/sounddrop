@@ -2,6 +2,8 @@
 <div class="container-fluid">
   <% if @story.artwork_url == nil %>
     <%= image_tag(@story.user.avatar_url, width: "100%") %>
+    <h1 class="story-title"><%= @story.title %></h1>
+    <h3 class="story-place">@SoundCloud HQ</h3>
   <% else %>
     <%= image_tag(@story.artwork_url, width: "100%") %>
     <h1 class="story-title"><%= @story.title %></h1>
@@ -34,4 +36,4 @@
   
 </div> <!-- /.container -->
 
-
+<hr>
