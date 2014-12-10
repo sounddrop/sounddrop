@@ -2,34 +2,13 @@
 <html>
 <head>
   <title>Anchor</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="/assets/bootstrap.css">
-  <link rel="stylesheet" type="text/css" href="/assets/bootstrap-theme.css">
-  <link rel="stylesheet" type="text/css" href="/assets/story.css">
 </head>
 <body>
 
-<div class="container-fluid">
-
-  <% if @story.artwork_url == nil %>
-    <%= image_tag(@story.user.avatar_url.sub("large", "crop"), width: "100%") %>
-    <h1 class="story-title"><%= @story.title %></h1>
-    <h3 class="story-place">@SoundCloud HQ</h3>
-  <% else %>
-    <%= image_tag(@story.artwork_url.sub("large", "crop"), width: "100%") %>
-    <h1 class="story-title"><%= @story.title %></h1>
-    <h3 class="story-place">@SoundCloud HQ</h3>
-  <% end %>
-
 <%= yield %>
-
-<form>
-    <label>What do you think about this app?</label>
-    <textarea class="form-control" rows="2"></textarea>
-    <button type="submit" class="btn btn-default">Submit</button>
-</form>
-</div>
 
 </body>
 </html>

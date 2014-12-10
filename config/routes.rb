@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
   #get 'welcome/index'
  
-  root 'stories#index'
+  root 'welcome#index'
+  get 'welcome/index'
+  get 'comments/index'
   get '/stories/:current_track_id' => 'stories#show'
   get '/playlists/:playlist_id/:current_track_id' => 'stories#playlists'
-  
+
+  post'comments' => 'comments#create'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
