@@ -1,7 +1,33 @@
+
+
+body {
+  background-color: #1A0923;
+  color: white;
+  font-family: "Helvetica Neue";
+}
+
+h1 {
+  font-weight: 100;
+  letter-spacing: 1px;
+  color: white;
+}
+
+h4 {
+  margin-top: 0;
+  font-weight: 100;
+  letter-spacing: 1px;
+  color: white;
+  font-size: 23px
+}
+
+a {
+  color: #f50;
+}
+
 .story-image {
 	width: 100%;
-  height: 100%
-}
+/*  height: 100%
+*/}
 
 .story-title {
 }
