@@ -3,11 +3,10 @@ require 'rails_helper'
 require 'pry'
 
 
-# describe "Homepage" , type: :feature do
-#    it "displays " do
-#        visit ""
-#        # binding.pry
-#        expect(find_link("")).to be_visible
-#    end
+describe "Home page" , type: :feature do
+   it "says welcome " do
+      visit "/"
+      expect(page).to have_content "Welcome"
+   end
 
-# end
+end

@@ -42,13 +42,11 @@ textarea {
   letter-spacing: 1px;
   color: white;
   font-size: 23px;
-/*  font-family: inherit;
+/* font-family: inherit;
 */font-size: inherit;
   line-height: inherit;
   color: black;
   font-weight: 300;
-  
-
 }
 
 input, button, select {
@@ -59,14 +57,7 @@ input, button, select {
   font-weight: 300;
 }
 
-table
-{
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
 
-}
 
 #commentForm {
   padding-right: 15px;
