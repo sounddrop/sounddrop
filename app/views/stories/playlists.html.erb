@@ -1,40 +1,33 @@
-
-<% @playlist.tracks.each do |track| %>
-  <%if track.id == @story.id %>
-      <iframe width="100%" height="110" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/<%=track.id %>&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=false&amp;show_artwork=false"></iframe>
-  <% end %>
-<% end %>
-
-<br>
-<br>
-<p><b>More stories:</b></p>
-
-<% @playlist.tracks.each do |track| %>
-  <% if track.id != @story.id %>
-    <a href="/playlists/<%=@playlist.id%>/<%=track.id%>"><%= track.title %></a>
-    </br>
-  <% end %>
-<% end %>
-<br>
-
-
-<div class='comments'>
-    <%= form_for :comment, :html => {:id => "commentForm"}, url: comments_path do |f| %>
-      <p>
-        <%= f.label :text, "How do you like this app?" %><br>
-        <%= f.text_area :text, :size=>"90%", :id => "new_comment"%>
-      </p>
-      <p>
-        <%= f.submit "Save Comment", :id =>"save_comment" %>
-      </p>
+<div class="container-image"> 
+  <% @playlist.tracks.each do |track| %>
+    <%if track.id == @story.id %>
+        <iframe width="100%" height="300" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/<%=@story.id %>&amp;auto_play=false&amp;hide_related=true&amp;show_user=false&amp;show_comments=false&amp;show_reposts=false&amp;show_bpm=false&amp;sharing=false&amp;liking=false&amp;show_playcount=false&amp;download=false&amp;buying=false&amp;show_artwork=false&amp;visual=true"></iframe>
     <% end %>
-  </div>  
-
-  <div id="hide_comments" class='list_comments'>
-  </div>
+  <% end %>
 </div>
 
-<!--TODO refactoring to the new js file, assets/javascript-->
+<div class="story-place">@SoundCloud HQ</div>
+
+<div class="container-fluid">
+  <h4>Hear more stories:</h4> 
+    <% @playlist.tracks.each do |track| %>
+      <% if track.id != @story.id %>
+        <a href="/playlists/<%=@playlist.id%>/<%=track.id%>"><%= track.title %></a></br>
+      <% end %>
+    <% end %><br>
+</div>
+
+<div class='comments'>
+  <%= form_for :comment, :html => {:id => "commentForm"}, url: comments_path do |f| %><p>
+    <%= f.label :text, "What do you think about this app?" %><br>
+    <%= f.text_area :text, :size=>"90%", :id => "new_comment"%></p><p>
+    <%= f.submit "Send Comment", :id =>"save_comment" %></p>
+    <% end %>
+</div>  
+
+<div id="hide_comments" class='list_comments'>
+</div>
+
 <script type="text/javascript">
   $("#hide_comments").hide();
   $("#commentForm").submit(function(event) {
