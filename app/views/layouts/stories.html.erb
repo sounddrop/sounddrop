@@ -9,29 +9,19 @@
   <link rel="stylesheet" type="text/css" href="/assets/story.css">
   <script type="text/javascript" src="/assets/jquery-2.1.1.js"></script>
 </head>
+
 <body>
 
-<div class="container-fluid">
+  <%= yield %>
+  
+  <div class="container-fluid">
+    <form>
+        <label><h4>What do you think about this app?</h4></label>
+        <textarea class="form-control" rows="2"></textarea>
+        </br>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+  </div>
 
-<% if false %>
-  <% if @story.artwork_url == nil %>
-
-    <%= image_tag(@story.user.avatar_url.sub("large", "crop"), :class => "story-image") %>
-    <h1 class="story-title"><%= @story.title %></h1>
-    <h3 class="story-place">@SoundCloud HQ</h3>
-  <% else %>
-    <%= image_tag(@story.artwork_url.sub("large", "crop"), :class => "story-image") %>
-    <h1 class="story-title"><%= @story.title %></h1>
-    <h3 class="story-place">@SoundCloud HQ</h3>
-  <% end %>
-<% end %>
-<%= yield %>
-
-<form>
-    <label><h4>What do you think about this app?</h4></label>
-    <textarea class="form-control" rows="2"></textarea>
-    <button type="submit" class="btn btn-default">Submit</button>
-</form>
-</div>
 </body>
 </html>
