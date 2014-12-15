@@ -1,5 +1,3 @@
-
-
 body {
   background-color: #1A0923;
   color: white;
@@ -17,11 +15,72 @@ h4 {
   font-weight: 100;
   letter-spacing: 1px;
   color: white;
-  font-size: 23px
+  font-size: 23px;
 }
 
 a {
   color: #f50;
+}
+ 
+label {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  margin-top: 0;
+  font-weight: 100;
+  letter-spacing: 1px;
+  color: white;
+  font-size: 23px;
+}
+
+textarea {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  margin-top: 0;
+  font-weight: 100;
+  letter-spacing: 1px;
+  color: white;
+  font-size: 23px;
+/*  font-family: inherit;
+*/font-size: inherit;
+  line-height: inherit;
+  color: black;
+  font-weight: 300;
+  
+
+}
+
+input, button, select {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: black;
+  font-weight: 300;
+}
+
+table
+{
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+
+}
+
+#commentForm {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+
+}
+
+.list_comments {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto; 
 }
 
 .container-image {
@@ -56,3 +115,7 @@ a {
   font-size: 25px;
   color: #999;
 }
+
+
+
+
