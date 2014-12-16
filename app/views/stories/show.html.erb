@@ -5,32 +5,4 @@
 <div class="story-place">@SoundCloud HQ
 </div>
 
-<div class='comments'>
-  <%= form_for :comment, :html => {:id => "commentForm"}, url: comments_path do |f| %><p>
-  <%= f.label :text, "What do you think about this app?" %><br>
-  <%= f.text_area :text, size: "70%", :id => "new_comment"%><p>
-  <%= f.submit "Send Comment", :id =>"save_comment" %>
-  <% end %>
-</div>  
-
-<div id="hide_comments" class='list_comments'>
-</div>
-
-
-
-<script type="text/javascript">
-    $("#hide_comments").hide();
-    $("#commentForm").submit(function(event) {
-      event.preventDefault();
-      $.ajax({
-        url: "/comments/",
-        type: "POST",
-        data: $("#commentForm").serialize(),
-      }).done(function() {
-        $.ajax('/comments/index').done(function(comments) {
-          $("#hide_comments").html(comments).show();
-          $('#new_comment').val('');
-          });     
-          });
-        });
-</script>
+<%= render partial: "create_comments" %>
