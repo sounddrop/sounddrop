@@ -25,4 +25,5 @@ production:
   adapter:  mysql
   database: comments
   username: root
+  password: rubymasteroftheuniverse
   socket: /tmp/mysql.sock
