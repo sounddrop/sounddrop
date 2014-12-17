@@ -23,7 +23,6 @@ test:
 
 production:
   adapter:  mysql
-  database: comments
-  username: root
-  password: rubymasteroftheuniverse
+  database: rails
+  username: rails
   socket: /tmp/mysql.sock
