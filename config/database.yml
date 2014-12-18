@@ -24,6 +24,5 @@ test:
 production:
   adapter:  mysql
   database: rails
-  username: root
+  username: rails
   password: <%= ENV['DB_PASSWORD'] %>
-  socket: /run/mysqld/mysqld.sock
