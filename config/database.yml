@@ -26,4 +26,4 @@ production:
   database: rails
   username: root
   password: <%= ENV['DB_PASSWORD'] %>
-  socket: /var/run/mysqld/mysqld.sock
+  socket: /run/mysqld/mysqld.sock
