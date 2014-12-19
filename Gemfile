@@ -4,7 +4,7 @@ ruby "2.1.3"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
 gem 'soundcloud'
-gem 'sqlite3'
+gem 'sqlite3', :plataform =>[:ruby]
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'rspec'
