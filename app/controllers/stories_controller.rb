@@ -6,7 +6,11 @@ class StoriesController < ApplicationController
   end	
 
   def show
-    client = SoundCloud.new(:client_id => '69e93cf2209402f6f3137a6452cf498f')
+    client = SoundCloud.new(:client_id => '69e93cf2209402f6f3137a6452cf498f', 
+                            :client_secret => '8ca711ab13836dc62482164d3a952eda',
+                            :redirect_uri => 'http://goo.gl/2oUYvd')  
+    # redirect_to client.authorize_url()
+  
     @story  = client.get("/tracks/#{params[:current_track_id]}")
     # user_id = @story.user_id
     # @user_playlists = client.get("/users/#{user_id.to_s}/playlists/")
