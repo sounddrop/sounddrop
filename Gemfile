@@ -10,6 +10,7 @@ gem 'jquery-rails'
 gem 'rspec'
 gem 'rspec-rails'
 gem 'capybara'
+gem 'selenium-webdriver', group: :test
 
 gem "pry"
 
