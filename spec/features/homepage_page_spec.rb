@@ -6,7 +6,7 @@ require 'pry'
 describe "Home page" , type: :feature do
    it "says welcome " do
       visit "/"
-      expect(page).to have_content "Welcome"
+      expect(page).to have_content "Welcome to SoundDrop"
    end
 
 end
