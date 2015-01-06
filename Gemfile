@@ -7,14 +7,17 @@ gem 'soundcloud'
 gem 'sqlite3', :platform =>[:ruby]
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-gem 'rspec'
-gem 'rspec-rails'
-gem 'capybara'
-gem 'selenium-webdriver', group: :test
 
-gem "pry"
+group :development, :test do
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'pry'
+  gem 'pry-byebug'
+end
 
-gem "pry-byebug" , group: :development
+
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
