@@ -1,6 +1,13 @@
+<div class="artwork">
+  <img class="container-image" src="<%=
+    artwork = @story.artwork_url
+    if artwork == nil
+      artwork = @story.user.avatar_url
+    end 
+    artwork.sub! "large", "crop" %>"> 
 
-<div class="container-image">
-  <%= widget(@story.id) %>
+  <div class = "play-button">
+  </div>
 </div>
 
 <div class="story-place">@SoundCloud HQ
