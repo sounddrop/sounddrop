@@ -11,7 +11,7 @@ class StoriesController < ApplicationController
                             :redirect_uri => 'http://goo.gl/2oUYvd')  
     # redirect_to client.authorize_url()
   
-    @story  = client.get("/tracks/#{params[:current_track_id]}")
+    @story  = client.get("/tracks/#{params[:sc_track]}")
     # user_id = @story.user_id
     # @user_playlists = client.get("/users/#{user_id.to_s}/playlists/")
   end
@@ -19,9 +19,9 @@ class StoriesController < ApplicationController
   def playlists
     client = SoundCloud.new(:client_id => '69e93cf2209402f6f3137a6452cf498f')
     @playlist = client.get("/playlists/#{params[:playlist_id]}") 
-    @current_track_id = params[:current_track_id].to_i 
+    @current_track_id = params[:sc_track].to_i 
     @story = @playlist.tracks.find do |track|
-              track[:id] == params[:current_track_id].to_i
+              track[:id] == params[:sc_track].to_i
             end
   end
 
