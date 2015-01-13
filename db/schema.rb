@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150112124913) do
+ActiveRecord::Schema.define(version: 20150113161641) do
 
   create_table "comments", force: true do |t|
     t.text     "text"
@@ -35,8 +35,7 @@ ActiveRecord::Schema.define(version: 20150112124913) do
   end
 
   create_table "users", force: true do |t|
-    t.text    "name"
-    t.integer "story_id"
+    t.text "name"
   end
 
   create_table "votes", force: true do |t|
