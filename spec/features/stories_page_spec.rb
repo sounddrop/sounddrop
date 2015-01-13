@@ -30,12 +30,11 @@ describe "Story page" , type: :feature do
     expect(page).to have_selector("input")
   end
 
-  feature "comment" do
+  feature "comment", js: true do
     scenario "write a comment and send it" do
       visit "/stories/178594979"
       fill_in "new_comment", with: "Test comment"
       click_button "Send Comment"
-      expect(current_path).to eq("/stories/178594979")
       expect(page).to have_content("Test comment")
     end
   end
