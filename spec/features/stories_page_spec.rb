@@ -3,9 +3,11 @@ require 'rails_helper'
 require 'pry'
 
 describe "Story page" , type: :feature do
-  it "displays story title ", :js => true, :skip => 'Do not know yet how to test title in widget' do
+  it "displays story title ", :js => true do 
     visit "/stories/180707541"
-    expect(page).to have_content("Vinyl Sculpture")    
+    within_frame(find("iframe")) do
+      expect(page).to have_content("Vinyl Sculpture")
+    end 
   end
 
   it "displays the place" do
@@ -26,5 +28,15 @@ describe "Story page" , type: :feature do
   it "has a button to save the comments" do
     visit "stories/178594490"
     expect(page).to have_selector("input")
+  end
+
+  feature "comment" do
+    scenario "write a comment and send it" do
+      visit "/stories/178594979"
+      fill_in "new_comment", with: "Test comment"
+      click_button "Send Comment"
+      expect(current_path).to eq("/stories/178594979")
+      expect(page).to have_content("Test comment")
+    end
   end
 end
