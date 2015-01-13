@@ -1,5 +1,6 @@
 class Users < ActiveRecord::Base
   has_many :stories
+  has_many :places
 
   def up
     change_table :users do |u|

@@ -1,14 +1,13 @@
-
-<div class="container-image">
-  <%= widget(@story.id) %>
-</div>
-
-<tr>
-  <td><%= button_to 'like', upvote_story_path(@story), method: :post %></td>
-  <td><%= pluralize(@story.count, "like") %></td>
-</tr>
-
-<div class="story-place">@SoundCloud HQ
-</div>
-
-<%= render partial: "create_comments" %>
+<%if @story %>
+    <div class="container-image">
+        <%=widget(@story.id)%> 
+    </div>
+    <tr>
+      <td><%= button_to 'like', upvote_story_path(@story), method: :post %></td>
+      <td><%= pluralize(@story.count, "like") %></td>
+    </tr>
+    <div class="story-place">  <%=@place.name%></div>
+    <%= render partial: "create_comments" %>
+<%else%>
+    <h1>Ups! We couldn't find this story, try again!! </h1>
+<%end%>
