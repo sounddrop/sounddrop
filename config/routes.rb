@@ -8,6 +8,13 @@ Rails.application.routes.draw do
   get '/playlists/:playlist_id/:sc_track' => 'stories#playlists'
 
   post'comments' => 'comments#create'
+
+  resources :stories do
+    member do
+      post 'upvote'
+    end
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -16,13 +16,20 @@ class StoriesController < ApplicationController
     # @user_playlists = client.get("/users/#{user_id.to_s}/playlists/")
   end
 
+  def upvote
+    @story = Story.find(params[:id])
+    @story.votes.create
+    redirect_to upvote_story_path(@story.id)
+    #@story  = client.post("/stories/#{params[:sc_track]}/upvote")
+  end
+
   def playlists
     client = SoundCloud.new(:client_id => '69e93cf2209402f6f3137a6452cf498f')
     @playlist = client.get("/playlists/#{params[:playlist_id]}") 
     @current_track_id = params[:sc_track].to_i 
     @story = @playlist.tracks.find do |track|
-              track[:id] == params[:sc_track].to_i
-            end
+      track[:id] == params[:sc_track].to_i
+    end
   end
 
    
