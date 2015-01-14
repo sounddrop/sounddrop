@@ -1,12 +1,12 @@
 <%if @story %>
     <div class="container-image">
-        <%=widget(@story.id)%> 
+        <%=widget(@story_at_sc.id)%> 
     </div>
     <tr>
-      <td><%= button_to 'like', upvote_story_path(@story), method: :post %></td>
-      <td><%= pluralize(@story.count, "like") %></td>
+      <td><%= button_to 'like', like_story_path(@story), method: :post %></td>
+      <td><%= pluralize(@story.votes.count, "like") %></td>
     </tr>
-    <div class="story-place">  <%=@place.name%></div>
+
     <%= render partial: "create_comments" %>
 <%else%>
     <h1>Ups! We couldn't find this story, try again!! </h1>

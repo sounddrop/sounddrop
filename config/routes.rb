@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   resources :stories do
     member do
-      post 'upvote'
+      post 'upvote', :as => "like"
     end
   end
 
