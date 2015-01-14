@@ -4,10 +4,17 @@ Rails.application.routes.draw do
   root 'welcome#index'
   get 'welcome/index'
   get 'comments/index'
-  get '/stories/:current_track_id' => 'stories#show'
-  get '/playlists/:playlist_id/:current_track_id' => 'stories#playlists'
+  get '/stories/:sc_track' => 'stories#show'
+  get '/playlists/:playlist_id/:sc_track' => 'stories#playlists'
 
   post'comments' => 'comments#create'
+
+  resources :stories do
+    member do
+      post 'upvote', :as => "like"
+    end
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
