@@ -1,13 +1,32 @@
 <%if @story %>
-    <div class="container-image">
-        <%=widget(@story_at_sc.id)%> 
-    </div>
-    <tr>
-      <td><%= button_to 'like', like_story_path(@story), method: :post %></td>
-      <td><%= pluralize(@story.votes.count, "like") %></td>
-    </tr>
+  <div class="container-image">
+    <%=widget(@story_at_sc.id)%> 
+  </div>
 
-    <%= render partial: "create_comments" %>
+  <div class="container-like-button">
+    <div id="votes" style="display-inline">
+      <%= @story.votes.count %>
+    </div>
+    <div id="likebutton"></br>
+      <%= button_to 'like', upvote_story_path(@story), :id => "like_button", method: :post %>
+    </div>
+  </div>
+
+
+<div class="story-place">  <!--%=@place.name%--></div>
+<%= render partial: "create_comments" %>
 <%else%>
     <h1>Ups! We couldn't find this story, try again!! </h1>
 <%end%>
+
+<script>
+  $("#like_button").click(function(event) {
+    event.preventDefault();
+      $.ajax ({
+        url: '/stories/<%=@story.id %>/upvote',
+        method: 'POST'
+        }).success(function(result) {
+          $("#votes").html(result.count_votes);
+        });
+    });
+</script>
