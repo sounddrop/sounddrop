@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150112124913) do
+ActiveRecord::Schema.define(version: 20150115155405) do
 
   create_table "comments", force: true do |t|
     t.text     "text"
@@ -21,9 +21,9 @@ ActiveRecord::Schema.define(version: 20150112124913) do
 
   create_table "places", force: true do |t|
     t.string   "name"
-    t.integer  "sc_playlist"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "story_id"
   end
 
   create_table "stories", force: true do |t|
