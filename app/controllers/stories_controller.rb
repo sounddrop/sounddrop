@@ -15,9 +15,8 @@ class StoriesController < ApplicationController
     @story = Story.find_by_sc_track(params[:sc_track])
       if @story != nil
         @story_at_sc = client.get("/tracks/#{params[:sc_track]}")
-      end    
-    @place = Place.find_by_story_id(params[:sc_track])
-
+      end 
+    @place = Place.find_by_story_id(@story.id) 
 
   end
 
