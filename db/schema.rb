@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 20150119135050) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "story_id"
   end
 
   create_table "stories", force: true do |t|
