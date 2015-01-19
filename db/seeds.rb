@@ -5,6 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-    Place.create(name: "@SoundCloud HQ")
+    Place.create(name: "@SoundCloud HQ", story_id:"2")
     Story.create(sc_track:"178594490")
+
+
+ 
     
