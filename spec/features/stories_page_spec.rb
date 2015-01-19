@@ -4,14 +4,14 @@ require 'pry'
 
 describe "Story page" , type: :feature do
   it "displays story title ", :js => true do 
-    visit "/stories/180707541"
+    visit "/stories/178594490"
     within_frame(find("iframe")) do
-      expect(page).to have_content("Vinyl Sculpture")
+      expect(page).to have_content("Tuesday evening")
     end 
   end
 
   it "displays the place" do
-    visit "/stories/178594979"
+    visit "/stories/178594490"
     expect(page).to have_content("@SoundCloud HQ")
   end
 
@@ -32,10 +32,17 @@ describe "Story page" , type: :feature do
 
   feature "comment", js: true do
     scenario "write a comment and send it" do
-      visit "/stories/178594979"
+      visit "/stories/178594490"
       fill_in "new_comment", with: "Test comment"
       click_button "Send Comment"
       expect(page).to have_content("Test comment")
+    end
+  end
+
+  feature "like button", js: true, :skip => "Database locked, there seems to be some concurrency problem due to ajax, not fixed yet." do
+    scenario "increases the likes of a story" do
+      visit "/stories/178594490"
+      expect {click_button "like"}.to change{Vote.count}.by(1)
     end
   end
 end
