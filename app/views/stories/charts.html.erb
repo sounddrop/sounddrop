@@ -1,10 +1,52 @@
-<h1>Charts</h1>
+<h1>Stories chart</h1>
+</br>
 
+<script>
 
+  // var series_data = {
+  //   '2015-01-19': 5,
+  //   '2015-01-20': 2
+  // }
+
+  // series_data['dayOne'] = 5
+
+</script>
+
+<script type="text/javascript" charset="utf-8">
+    $(function() {
+      new Highcharts.Chart({
+        chart: {
+          renderTo: "stories_chart"
+        },
+        title: {
+          text: "Votes by day"
+        },
+        xAxis: {
+          type: "datetime"
+        },
+        yAxis: {
+          title: {
+            text: "Likes"
+          }
+        },
+        series: [{
+          // pointInterval: <%= 1.day * 100 %>,
+          ponintStart: <%= 1.weeks.ago.to_i * 1000 %>,
+          data: <%= (1.weeks.ago.to_date..Date.today).map { |date| Vote.total_on(date).to_f}.inspect %>
+          // data: [3, 1, 9]
+
+        }]
+      });    
+    });
+</script>
+<p>
 <div id="stories_chart"></div>
-<table class="charts", width="600px">
+</br>
+</br>
+  <table class="stories_chart", width="600px">
   <tr>
     <th> Id</th>
+    <th> Soundcloud id </th>
     <th> Title</th>
     <th> Created at </th> 
     <th> Votes </th>
@@ -13,6 +55,7 @@
   <% for story in @stories %>
     <tr>
       <td><%= story.id %></td>
+      <td><%= story.sc_track %></td>
       <td><%= story.title %></td>
       <td><%= story.created_at.to_s(:long) %></td>
       <td><%= story.votes.count.to_s %></td>
@@ -21,3 +64,31 @@
   <% end %>
 </table>
 </div>
+
+<!-- $(function () {
+    $('#container').highcharts({
+        chart: {
+            type: 'bar'
+        },
+        xAxis: {
+            categories: ['Jan 19', 'Jan 20', 'Jan 21'],
+            title: {
+                text: null
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Votes',
+                align: 'high'
+            },
+            labels: {
+                overflow: 'justify'
+            }
+        },       
+        series: [{
+            name: 'Votes',
+            data: [10, 20, 3]
+        }]
+    });
+}); -->

@@ -15,4 +15,5 @@
 //= require turbolinks
 //= require_tree .
 //= require analytics
+//= require highcharts
 

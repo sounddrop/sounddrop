@@ -38,5 +38,8 @@ class StoriesController < ApplicationController
 
   def charts
     @stories = Story.all
+    @story_in_chart = Story.find_by_id(12)
+    @votes = @story_in_chart.votes
+
   end
 end
