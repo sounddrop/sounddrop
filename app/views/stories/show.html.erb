@@ -19,18 +19,10 @@
     <% end %>
   </div>
 
-
-
 <script>
-  $("#like_button").click(function(event) {
-    event.preventDefault();
-      $.ajax ({
-        url: '/stories/<%=@story.id %>/upvote',
-        method: 'POST'
-        }).success(function(result) {
-          $("#votes").html(result.count_votes);
-        });
-    });
+  var story = {
+    id: <%= @story.id %>
+  }
 </script>
 
 <%= render partial: "create_comments" %>
