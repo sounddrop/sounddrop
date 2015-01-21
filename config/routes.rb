@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "charts" => "stories#charts", :as => "charts"
+
   #get 'welcome/index'
  
   root 'welcome#index'

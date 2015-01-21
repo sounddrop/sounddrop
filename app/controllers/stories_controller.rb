@@ -35,4 +35,8 @@ class StoriesController < ApplicationController
       track[:id] == params[:sc_track].to_i
     end
   end
+
+  def charts
+    @stories = Story.all
+  end
 end
