@@ -3,6 +3,7 @@ Rails.application.routes.draw do
  
   root 'welcome#index'
   get 'welcome/index'
+  get 'welcome/scan'
   get 'comments/index'
   get '/stories/:sc_track' => 'stories#show'
   get '/playlists/:playlist_id/:sc_track' => 'stories#playlists'

@@ -12,9 +12,29 @@
     </div>
   </div>
 
+  <div class="story-place"> 
+    <% @place = Place.find_by_story_id(@story.id) %>
+    <% if @place != nil %>
+    <%= @place.name %>
+    <% end %>
+  </div>
 
-<div class="story-place">  <!--%=@place.name%--></div>
+
+<script>
+  $("#like_button").click(function(event) {
+    event.preventDefault();
+      $.ajax ({
+        url: '/stories/<%=@story.id %>/upvote',
+        method: 'POST'
+        }).success(function(result) {
+          $("#votes").html(result.count_votes);
+        });
+    });
+</script>
+
+
 <%= render partial: "create_comments" %>
 <%else%>
     <h1>Ups! We couldn't find this story, try again!! </h1>
 <%end%>
+
