@@ -9,15 +9,10 @@ class StoriesController < ApplicationController
    client = SoundCloud.new(:client_id => '69e93cf2209402f6f3137a6452cf498f', 
                             :client_secret => '8ca711ab13836dc62482164d3a952eda',
                             :redirect_uri => 'http://goo.gl/2oUYvd')  
-
-
-  
     @story = Story.find_by_sc_track(params[:sc_track])
       if @story != nil
         @story_at_sc = client.get("/tracks/#{params[:sc_track]}")
-      end 
-     
-
+      end     
   end
 
   def upvote

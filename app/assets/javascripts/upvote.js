@@ -8,7 +8,8 @@ $(document).ready(function(){
           $("#votes").html(result.count_votes);
         });
   });
- });
+});
+
 
 
 
