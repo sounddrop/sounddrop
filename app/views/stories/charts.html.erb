@@ -1,0 +1,23 @@
+<h1>Charts</h1>
+
+
+<div id="stories_chart"></div>
+<table class="charts", width="600px">
+  <tr>
+    <th> Id</th>
+    <th> Title</th>
+    <th> Created at </th> 
+    <th> Votes </th>
+  </tr>
+
+  <% for story in @stories %>
+    <tr>
+      <td><%= story.id %></td>
+      <td><%= story.title %></td>
+      <td><%= story.created_at.to_s(:long) %></td>
+      <td><%= story.votes.count.to_s %></td>
+
+    </tr>
+  <% end %>
+</table>
+</div>
