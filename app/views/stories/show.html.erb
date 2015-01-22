@@ -19,15 +19,18 @@
     <% end %>
   </div>
 
-  <div> 
-    <h4> Session:   
-    <%= @session %> 
-    </h4>
-  </div>
+  <h4> 
+    <div id= "session"> 
+      Session: <%= @session %> 
+    </div>
+  </h4>
 
 <script>
   var story = {
     id: <%= @story.id %>
+  }
+  var session = {   
+    count: <%= @session %>
   }
 </script>
 

@@ -1,11 +1,12 @@
 $(document).ready(function(){
   $("#like_button").click(function(event) {
-      event.preventDefault();
-        $.ajax ({
-        url: '/stories/'+ story.id +'/upvote',
-        method: 'POST'
-          }).success(function(result) {
-          $("#votes").html(result.count_votes);
-        });
+    event.preventDefault();
+    $.ajax ({
+      url: '/stories/'+ story.id +'/upvote',
+      method: 'POST'
+    }).success(function(result) {
+      $("#votes").html(result.count_votes);
+      $("#session").html('Session: ' + result.session_count)
+    });
   });
 });

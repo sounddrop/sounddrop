@@ -6,6 +6,9 @@ class StoriesController < ApplicationController
   end
 
   def show
+    if session[:count].nil?
+      session[:count] = 0
+    end
     @session = session[:count]
     client = SoundCloud.new(:client_id => '69e93cf2209402f6f3137a6452cf498f', 
                             :client_secret => '8ca711ab13836dc62482164d3a952eda',
@@ -17,15 +20,12 @@ class StoriesController < ApplicationController
   end
 
   def upvote
-    if session[:count].nil?
-      session[:count] = 0
-    end
     session[:count] += 1
     @session_count = session[:count]
     @story = Story.find(params[:id])
     @create_votes = @story.votes.create
     @count_votes = @story.votes.count
-    render json: {count_votes: @count_votes}
+    render json: {count_votes: @count_votes, session_count: @session_count}
   end
 
   def playlists
