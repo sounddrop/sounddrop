@@ -9,7 +9,7 @@ class StoriesController < ApplicationController
     if session[:count].nil?
       session[:count] = 0
     end
-    @session = session[:count]
+    @session_count = session[:count]
     client = SoundCloud.new(:client_id => '69e93cf2209402f6f3137a6452cf498f', 
                             :client_secret => '8ca711ab13836dc62482164d3a952eda',
                             :redirect_uri => 'http://goo.gl/2oUYvd')  
