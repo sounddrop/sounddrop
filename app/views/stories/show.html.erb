@@ -4,14 +4,15 @@
     if artwork == nil
       artwork = @story.user.avatar_url
     end 
-    artwork.sub! "large", "crop" %>"> 
-
-  <div class = "play-button">
+    artwork.sub! "large", "crop"
+     %>">
+  <div class="play-button">
+    <span class="glyphicon glyphicon-play-circle"></span>
   </div>
 </div>
-
-<div class="story-place">@SoundCloud HQ
-</div>
+</br>
+</br>
+<div class="story-place">@SoundCloud HQ</div>
 
 <%= render partial: "create_comments" %>
 
@@ -31,11 +32,11 @@
     playPauseButton.on('click', function(event) {
       if (state.isPlaying) {
         sound.pause();
-        playPauseButton.text('Play');
+        playPauseButton.html('<span class="glyphicon glyphicon-play-circle"></span>');
         state.isPlaying = false;
       } else {
         sound.play();
-        playPauseButton.text('Pause');
+        playPauseButton.html('<span class="glyphicon glyphicon-pause"></span>');
         state.isPlaying = true;
       }
     });
