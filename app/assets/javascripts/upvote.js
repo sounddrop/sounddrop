@@ -6,7 +6,7 @@ $(document).ready(function(){
       method: 'POST'
     }).success(function(result) {
       $("#votes").html(result.count_votes);
-      $("#session").html('Session: ' + result.session_count)
+      $("#session").html('List: ' + result.user_session)
     });
   });
 });
