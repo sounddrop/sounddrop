@@ -32,7 +32,7 @@
   <div class="container-fluid">
     <h4>Hear more stories:</h4> 
       <% @playlist.tracks.each do |track| %>
-        <% if track.id != @story.id %>
+        <% if track.id != @story_at_sc.id %>
           <a href="/playlists/<%=@playlist.id%>/<%=track.id%>"><%= track.title %></a></br>
         <% end %>
       <% end %><br>
