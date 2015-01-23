@@ -41,8 +41,9 @@ class StoriesController < ApplicationController
     client = SoundCloud.new(:client_id => '69e93cf2209402f6f3137a6452cf498f')
     @playlist = client.get("/playlists/#{params[:playlist_id]}") 
     @current_track_id = params[:sc_track].to_i 
-    @story = @playlist.tracks.find do |track|
+    @story_at_sc = @playlist.tracks.find do |track|
       track[:id] == params[:sc_track].to_i
     end
+    @story = Story.find_by_sc_track(params[:sc_track])
   end
 end
