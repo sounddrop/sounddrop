@@ -22,6 +22,7 @@
           text: "Votes by day"
         },
         xAxis: {
+          categories: ['Jan 19', 'Jan 20', 'Jan 21'],
           type: "datetime"
         },
         yAxis: {
@@ -32,7 +33,7 @@
         series: [{
           // pointInterval: <%= 1.day * 100 %>,
           ponintStart: <%= 1.weeks.ago.to_i * 1000 %>,
-          data: <%= (1.weeks.ago.to_date..Date.today).map { |date| Vote.total_on(date).to_f}.inspect %>
+          data: <%= (3.days.ago.to_date..Date.today).map { |date| Vote.total_on(date).to_f}.inspect %>
           // data: [3, 1, 9]
 
         }]
