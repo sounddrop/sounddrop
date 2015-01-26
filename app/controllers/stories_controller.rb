@@ -18,8 +18,7 @@ class StoriesController < ApplicationController
     if @story != nil
       @story_at_sc = client.get("/tracks/#{params[:sc_track]}")
     end
-    @session = { @story[:sc_track] => session[:count] }
-    @try = @story[:sc_track]
+    @session = { @story[:story_id] => session[:count] }
   end
 
   def upvote
