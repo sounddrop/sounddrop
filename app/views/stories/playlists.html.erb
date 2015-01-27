@@ -1,20 +1,45 @@
-<div class="container-image"> 
-  <% @playlist.tracks.each do |track| %>
-    <%if track.id == @story.id %>
-      <%= widget(@story.id) %>
-    <% end %>
-  <% end %>
-</div>
-
-<div class="story-place"><%=@place.name%></div>
-
-<div class="container-fluid">
-  <h4>Hear more stories:</h4> 
+<%if @story %>
+  <div class="container-image"> 
     <% @playlist.tracks.each do |track| %>
-      <% if track.id != @story.id %>
-        <a href="/playlists/<%=@playlist.id%>/<%=track.id%>"><%= track.title %></a></br>
+      <%if track.id == @story_at_sc.id %>
+        <%= widget(@story_at_sc.id) %>
       <% end %>
-    <% end %><br>
-</div>
+    <% end %>
+  </div>
+
+   <div class="container-like-button">
+    <div id="votes" style="display-inline">
+      <%= @story.votes.count %>
+    </div>
+    <div id="likebutton"></br>
+      <%= button_to 'like', upvote_story_path(@story), {form_class: "button-like", :id => "like_button", method: :post} %>
+    </div>
+  </div>
+
+   <div class="story-place"> 
+      <% @place = Place.find_by_story_id(@story.id) %>
+      <% if @place != nil %>
+      <%= @place.name %>
+      <% end %>
+  </div>
+
+  <div class="container-fluid">
+    <h4>Hear more stories:</h4> 
+      <% @playlist.tracks.each do |track| %>
+        <% if track.id != @story_at_sc.id %>
+          <a href="/playlists/<%=@playlist.id%>/<%=track.id%>"><%= track.title %></a></br>
+        <% end %>
+      <% end %><br>
+  </div>
+
+<script>
+  var story = {
+    id: <%= @story.id %>   
+  }
+ 
+</script>
 
 <%= render partial: "create_comments" %>
+<%else%>
+    <h1>Oops! We couldn't find this story, try again!! </h1>
+<%end%>

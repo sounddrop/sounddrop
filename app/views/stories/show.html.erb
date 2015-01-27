@@ -8,7 +8,7 @@
       <%= @story.votes.count %>
     </div>
     <div id="likebutton"></br>
-      <%= button_to 'like', upvote_story_path(@story), :id => "like_button", method: :post %>
+      <%= button_to 'like', upvote_story_path(@story), {form_class: "button-like", :id => "like_button", method: :post} %>
     </div>
   </div>
 
@@ -18,23 +18,16 @@
     <%= @place.name %>
     <% end %>
   </div>
-
-
-<script>
-  $("#like_button").click(function(event) {
-    event.preventDefault();
-      $.ajax ({
-        url: '/stories/<%=@story.id %>/upvote',
-        method: 'POST'
-        }).success(function(result) {
-          $("#votes").html(result.count_votes);
-        });
-    });
-</script>
+  
+  <script>
+    var story = {
+      id: <%= @story.id %>   
+    } 
+  </script>
 
 
 <%= render partial: "create_comments" %>
 <%else%>
-    <h1>Ups! We couldn't find this story, try again!! </h1>
+    <h1>Oops! We couldn't find this story, try again!! </h1>
 <%end%>
 
