@@ -1,95 +1,35 @@
-<h1>Stories chart</h1>
-</br>
-
-<script>
-
-  // var series_data = {
-  //   '2015-01-19': 5,
-  //   '2015-01-20': 2
-  // }
-
-  // series_data['dayOne'] = 5
-
-</script>
-
+<div id="stories_chart"></div>
+ 
 <script type="text/javascript" charset="utf-8">
     $(function() {
       new Highcharts.Chart({
         chart: {
-          renderTo: "stories_chart"
+          renderTo: "stories_chart",
+          // type: "bar"
         },
         title: {
-          text: "Votes by day"
+          text: "Stats"
         },
-        xAxis: {
-          categories: ['Jan 19', 'Jan 20', 'Jan 21'],
-          type: "datetime"
-        },
-        yAxis: {
-          title: {
-            text: "Likes"
-          }
-        },
-        series: [{
-          // pointInterval: <%= 1.day * 100 %>,
-          ponintStart: <%= 1.weeks.ago.to_i * 1000 %>,
-          data: <%= (3.days.ago.to_date..Date.today).map { |date| Vote.total_on(date).to_f}.inspect %>
-          // data: [3, 1, 9]
 
+        subtitle: {
+          text: "Check how popular your story is on SoundDrop"
+        },
+
+        xAxis: {
+          categories: 
+            <%= (Date.today-4.. Date.today).map{ |day| day.strftime("%b %e").squeeze("") }.to_json.html_safe %> 
+        },
+      
+        series: [{
+          data: 
+            <%= (Date.today-4.. Date.today).map{ |date| Story.find_by_id(1).votes.total_on(date).to_i }.to_json.html_safe %>
+        }, {
+          data: 
+            <%= (Date.today-4.. Date.today).map{ |date| Story.find_by_id(2).votes.total_on(date).to_i }.to_json.html_safe %>
+        }, {
+          data: 
+            <%= (Date.today-4.. Date.today).map{ |date| Story.find_by_id(3).votes.total_on(date).to_i }.to_json.html_safe %>
         }]
       });    
     });
 </script>
-<p>
-<div id="stories_chart"></div>
-</br>
-</br>
-  <table class="stories_chart", width="600px">
-  <tr>
-    <th> Id</th>
-    <th> Soundcloud id </th>
-    <th> Title</th>
-    <th> Created at </th> 
-    <th> Votes </th>
-  </tr>
-
-  <% for story in @stories %>
-    <tr>
-      <td><%= story.id %></td>
-      <td><%= story.sc_track %></td>
-      <td><%= story.title %></td>
-      <td><%= story.created_at.to_s(:long) %></td>
-      <td><%= story.votes.count.to_s %></td>
-
-    </tr>
-  <% end %>
-</table>
-</div>
-
-<!-- $(function () {
-    $('#container').highcharts({
-        chart: {
-            type: 'bar'
-        },
-        xAxis: {
-            categories: ['Jan 19', 'Jan 20', 'Jan 21'],
-            title: {
-                text: null
-            }
-        },
-        yAxis: {
-            min: 0,
-            title: {
-                text: 'Votes',
-                align: 'high'
-            },
-            labels: {
-                overflow: 'justify'
-            }
-        },       
-        series: [{
-            name: 'Votes',
-            data: [10, 20, 3]
-        }]
-    });
-}); -->
