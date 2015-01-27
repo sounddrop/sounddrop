@@ -37,7 +37,7 @@ describe "Story page" , type: :feature do
     expect(page).to have_content("Test comment")
   end
 
-  scenario "klicking the like button increases the likes of a story", js: true do
+  scenario "clicking the like button increases the likes of a story", js: true do
     visit "/stories/187472038"
     likes_before = page.find("#votes").text.to_i
     click_button "like"
