@@ -8,7 +8,7 @@ before_script:
 
 script:
   - RAILS_ENV=test bundle exec rake db:migrate --trace
-  - rake db:seed RAILS_ENV=test
+  - RAILS_ENV=test bundle exec rake db:seed 
   - bundle exec rspec
 
 #bundler_args: --binstubs=./bundler_stubs
