@@ -14,7 +14,6 @@ describe "Playlist page" , type: :feature do
     visit "/playlists/74584890/187472038"
     within_frame(find("iframe")) do
       expect(page).to have_content("Art Installation")
-      binding.pry
     end 
   end
 
