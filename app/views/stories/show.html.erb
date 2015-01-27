@@ -8,7 +8,7 @@
       <%= @story.votes.count %>
     </div>
     <div id="likebutton"></br>
-      <%= button_to 'like', upvote_story_path(@story), :id => "like_button", method: :post %>
+      <%= button_to 'like', upvote_story_path(@story), {form_class: "button-like", :id => "like_button", method: :post} %>
     </div>
   </div>
 
@@ -21,8 +21,8 @@
 
 <script>
   var story = {
-    id: <%= @story.id %>
-  }
+    id: <%= @story.id %>   
+  } 
 </script>
 
 <%= render partial: "create_comments" %>

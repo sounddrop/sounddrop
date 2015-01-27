@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).on("ready page:load", function(){
   $("#hide_comments").hide();
   $("#commentForm").submit(function(event) {
     event.preventDefault();

@@ -12,7 +12,7 @@
       <%= @story.votes.count %>
     </div>
     <div id="likebutton"></br>
-      <%= button_to 'like', upvote_story_path(@story), :id => "like_button", method: :post %>
+      <%= button_to 'like', upvote_story_path(@story), {form_class: "button-like", :id => "like_button", method: :post} %>
     </div>
   </div>
 
@@ -23,12 +23,6 @@
       <% end %>
   </div>
 
-  <script>
-  var story = {
-    id: <%= @story.id %>
-  }
-  </script>
-
   <div class="container-fluid">
     <h4>Hear more stories:</h4> 
       <% @playlist.tracks.each do |track| %>
@@ -37,6 +31,13 @@
         <% end %>
       <% end %><br>
   </div>
+
+<script>
+  var story = {
+    id: <%= @story.id %>   
+  }
+ 
+</script>
 
 <%= render partial: "create_comments" %>
 <%else%>
