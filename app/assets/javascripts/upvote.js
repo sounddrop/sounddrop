@@ -6,8 +6,7 @@ $(document).on("ready page:load", function(){
       url: '/stories/'+ story.id +'/upvote',
       method: 'POST',
     }).success(function(result) {
-      $("#votes").html(result.count_votes);
-      $("#session").html('List: ' + result.user_session)
+      $("#votes").html(result.count_votes)
     });
   });
  });
