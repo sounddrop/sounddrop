@@ -6,8 +6,9 @@
     end 
     artwork.sub! "large", "crop"
      %>">
-  <div class="play-button">
-    <span class="glyphicon glyphicon-play-circle"></span>
+ 
+  <div id="play-button">
+     <span class="glyphicon glyphicon-play-circle"></span>
   </div>
 </div>
 </br>
@@ -21,7 +22,7 @@
     isPlaying: false
   };
 
-  var playPauseButton = $('.play-button');
+  var playPauseButton = $('#play-button');
 
   SC.initialize({
     client_id: '69e93cf2209402f6f3137a6452cf498f'
