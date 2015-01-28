@@ -11,7 +11,7 @@
          %>">
       <% end %>
     <% end %>
-    <div class="play-button">
+    <div class="play-button" id = "play">
        <span class="glyphicon glyphicon-play-circle"></span>
     </div>
   </div>
@@ -24,7 +24,7 @@
   <h4>Hear more stories:</h4> 
     <% @playlist.tracks.each do |track| %>
       <% if track.id != @story.id %>
-        <a href="/playlists/<%=@playlist.id%>/<%=track.id%>"><%= track.title %></a></br>
+        <a href="/playlists/<%=@playlist.id%>/<%=track.id%>" data-no-turbolink ><%= track.title %></a></br>
       <% end %>
     <% end %><br>
 </div>
@@ -44,15 +44,15 @@
   // stream track id 123456
   SC.stream(<%= @story.id %>, function(sound){
     playPauseButton.on('click', function(event) {
-      if (state.isPlaying) {
-        sound.pause();
-        playPauseButton.html('<span class="glyphicon glyphicon-play-circle"></span>');
-        state.isPlaying = false;
-      } else {
-        sound.play();
-        playPauseButton.html('<span class="glyphicon glyphicon-pause"></span>');
-        state.isPlaying = true;
-      }
-    });
+        if (state.isPlaying) {
+          sound.pause();
+          playPauseButton.html('<span class="glyphicon glyphicon-play-circle"></span>');
+          state.isPlaying = false;
+        } else {
+          sound.play();
+          playPauseButton.html('<span class="glyphicon glyphicon-pause"></span>');
+          state.isPlaying = true;
+        }
+    }); 
   });
 </script>
