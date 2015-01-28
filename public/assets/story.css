@@ -19,6 +19,7 @@ h4 {
 }
 
 a {
+  font-size: 18px;
   color: #f50;
 }
  
@@ -78,6 +79,25 @@ input, button, select {
   margin-right: auto;
   margin-left: auto;
   padding-bottom: 0;
+}
+.container-like-button{
+  overflow: hidden;
+  position: relative;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+.like{
+  float: left;
+  position: relative;
+  margin-top: -19px;
+}
+.vote{
+  font-size: 20px;
+  float: left;
+  position: relative;
+  padding-right: 17px;
+  padding-left: 17px;
+  margin-left: -10px;
 }
 
 .container-fluid {

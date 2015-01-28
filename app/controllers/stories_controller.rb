@@ -21,7 +21,7 @@ class StoriesController < ApplicationController
     end
     unless 
       session[:liked_stories].include?(@story.id)
-    @create_votes = @story.votes.create
+      @create_votes = @story.votes.create
       session[:liked_stories] << @story.id
     end
     @count_votes = @story.votes.count

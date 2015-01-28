@@ -7,16 +7,16 @@
     <% end %>
   </div>
 
-   <div class="container-like-button">
-    <div id="votes" style="display-inline">
-      <%= @story.votes.count %>
-    </div>
-    <div id="likebutton"></br>
-      <%= button_to 'like', upvote_story_path(@story), {form_class: "button-like", :id => "like_button", method: :post} %>
-    </div>
+  <div class="container-like-button">
+      <div id="likebutton" class="like"></br>
+        <%= button_to "like", upvote_story_path(@story), {form_class: "button-like", :id => "like_button", method: :post} %>
+      </div>
+      <div id="votes" class="vote">
+        <%= @story.votes.count %>
+      </div>
   </div>
 
-   <div class="story-place"> 
+  <div class="story-place"> 
       <% @place = Place.find_by_story_id(@story.id) %>
       <% if @place != nil %>
       <%= @place.name %>
