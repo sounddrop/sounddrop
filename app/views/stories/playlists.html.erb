@@ -1,20 +1,22 @@
-<div class="container-image"> 
-  <% @playlist.tracks.each do |track| %>
-    <%if track.id == @story.id %>
-     <img class="container-image" src="<%=
-      artwork = @story.artwork_url
-      if artwork == nil
-        artwork = @story.user.avatar_url
-      end 
-      artwork.sub! "large", "crop"
-       %>">
+ <div class="artwork">
+  <div class="container-image"> 
+    <% @playlist.tracks.each do |track| %>
+      <%if track.id == @story.id %>
+       <img class="container-image" src="<%=
+        artwork = @story.artwork_url
+        if artwork == nil
+          artwork = @story.user.avatar_url
+        end 
+        artwork.sub! "large", "crop"
+         %>">
+      <% end %>
     <% end %>
-  <% end %>
+    <div class="play-button">
+       <span class="glyphicon glyphicon-play-circle"></span>
+    </div>
+  </div>
 </div>
 
-<div class="play-button">
-     <span class="glyphicon glyphicon-play-circle"></span>
-</div>
 
 <div class="story-place">@SoundCloud HQ</div>
 
