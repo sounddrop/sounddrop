@@ -37,7 +37,7 @@ describe "Playlist page" , type: :feature do
     expect(page).to have_selector("input")
   end
 
-  scenario "write a comment and send it", js: true do
+  scenario "writing a comment and sending it saves the comment and shows it on page", js: true do
     visit "/playlists/74584890/187471639"
     fill_in "new_comment", with: "Test comment"
     click_button "Send Comment"
@@ -51,5 +51,4 @@ describe "Playlist page" , type: :feature do
     likes_now = page.find("#votes").text.to_i
     expect(likes_now - likes_before).to eq(1)
   end
-
 end
