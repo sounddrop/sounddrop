@@ -1,0 +1,18 @@
+
+
+$(document).ready(function() {
+  $(document).on("ready page:load", function(){
+
+    var options = {
+        chart: {
+            renderTo: 'stories_chart',
+            type: 'spline'
+        },
+        series: [{}]
+    };
+
+    $.getJSON('data.json', function(data) {
+        options.series[0].data = data;
+        var chart = new Highcharts.Chart(options);
+    });
+  });

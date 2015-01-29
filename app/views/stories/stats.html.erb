@@ -1,0 +1,45 @@
+<div id="stories_chart"></div>
+
+ <script>
+
+  // $(document).ready(function() {
+  $(document).on("ready page:load", function(){
+    $(function() {
+
+      var options = {
+          chart: {
+            renderTo: "stories_chart",
+            // type: 'spline'
+          },
+
+          title: {
+            text: "Stats"
+          },
+
+          subtitle: {
+            text: "Check how popular your story is on SoundDrop"
+          },
+          
+          xAxis: {
+            // categories: [1, 2, 3, 4]
+          },
+          
+          series: [
+            // data:["a", "b"]
+            // }, {
+            // data: ["c", "d"]
+          ]
+      };
+      $.getJSON('/charts', function(data) { 
+        console.log(JSON.stringify(data));
+        // console.log(data);
+        options.xAxis.categories = data["stats"][0];
+        // options.xAxis.categories = data.stats[0];
+        options.series[0] = {data: data.stats[1]};
+        options.series[1] = {data: data.stats[2]};
+        var chart = new Highcharts.Chart(options);
+      });
+  });
+});
+      
+</script>

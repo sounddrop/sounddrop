@@ -49,11 +49,16 @@ class StoriesController < ApplicationController
   def charts
     @stories = Story.all
     # @story = Story.find_by_id(params[:id])
-    @story_stats =  @stories.map do |s|
+    @story_votes =  @stories.map do |s|
       (Date.today-4.. Date.today).map do
        |date| s.votes.total_on(date).to_i
-      end
-      
+      end 
     end
+    @data = @stories.map do |d| d
+    end
+    render json: {stats: @story_votes}
   end
+
+  # def stats
+  # end
 end
