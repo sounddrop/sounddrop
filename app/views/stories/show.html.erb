@@ -18,18 +18,22 @@
 <%= render partial: "create_comments" %>
 
 <script>
-  var state = {
-    isPlaying: false
-  };
-
   var playPauseButton = $('.play-button');
+  var state = {
+      isPlaying: false
+  };
+  var options = {
+    onfinish : function(){
+      playPauseButton.html('<span class="glyphicon glyphicon-play-circle"></span>');
+      console.log("finish!!");
+    }
+  }
 
   SC.initialize({
     client_id: '69e93cf2209402f6f3137a6452cf498f'
   });
 
-  // stream track id 123456
-  SC.stream(<%= @story.id %>, function(sound){
+  SC.stream(<%= @story.id %>, options ,function(sound){
     playPauseButton.on('click', function(event) {
       if (state.isPlaying) {
         sound.pause();
@@ -41,5 +45,7 @@
         state.isPlaying = true;
       }
     });
+    console.log("before load sound");
+    sound.load();
   });
 </script>
