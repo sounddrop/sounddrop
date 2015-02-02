@@ -7,9 +7,9 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
   
   
-   story1 = Story.create(sc_track:"187471639")
-   story2 = Story.create(sc_track:"187472172")
-   story3 = Story.create(sc_track:"187472038")
+   story1 = Story.create(sc_track:"187471639", title:"Coffee Machine")
+   story2 = Story.create(sc_track:"187472172", title: "Brewing Coffee for engineers" )
+   story3 = Story.create(sc_track:"187472038", title: "Art installation")
    Place.create(name: "@SoundCloud HQ", story_id: story1.id)
    Place.create(name: "@SoundCloud HQ", story_id: story2.id)
    Place.create(name: "@SoundCloud HQ", story_id: story3.id)

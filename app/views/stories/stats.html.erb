@@ -9,7 +9,8 @@
       var options = {
           chart: {
             renderTo: "stories_chart",
-            // type: 'spline'
+            // type: 'column'
+            type: 'line'
           },
 
           title: {
@@ -24,9 +25,21 @@
             // categories: [1, 2, 3, 4]
           },
           yAxis: {
-            title: {text: "Votes"}
+            title: {text: "Likes"},
+            // tickWidth: 10,
+
           },
           
+          legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+          },
+
+          tooltip: {
+            valueSuffix: ' likes'
+          },
           series: [
             // data:["a", "b"]
             // }, {
@@ -36,11 +49,14 @@
       $.getJSON('/charts', function(response) { 
         console.log(JSON.stringify(response));
         // console.log(data);
+        // optionyAxis.
         options.xAxis.categories = response.categories;
         options.series[0] = {name: response.stats[0].title,
                         data: response.stats[0].votes};
         options.series[1] = {name: response.stats[1].title,
                         data: response.stats[1].votes};
+        options.series[2] = {name: response.stats[2].title,
+                        data: response.stats[2].votes};
         var chart = new Highcharts.Chart(options);
       });
   });
