@@ -47,18 +47,32 @@ class StoriesController < ApplicationController
   end
 
   def charts
+    # @categories = (Date.today-4.. Date.today).map do 
+    #   |date| date.to_s
+    # end
+    
     @stories = Story.all
-    # @story = Story.find_by_id(params[:id])
     @story_votes =  @stories.map do |s|
-      (Date.today-4.. Date.today).map do
+      votes = (Date.today-4.. Date.today).map do
        |date| s.votes.total_on(date).to_i
       end 
+      # {votes: votes}
     end
-    @data = @stories.map do |d| d
-    end
-    render json: {stats: @story_votes}
+    #render json: {stats: @story_votes}
+    render json: { 
+      # categories: @categories,
+      categories: ["2015-01-01", "2015-01-02"], 
+      # stats: @story_votes
+      stats: [
+      { id: "1",
+        title: "Coffee machine", 
+        votes: [ 3 , 6]
+      },
+      { id: "2",
+        title: "Brewing Coffee", 
+        votes: [ 1 , 2]
+      }
+      ]
+    }
   end
-
-  # def stats
-  # end
 end

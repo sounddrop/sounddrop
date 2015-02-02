@@ -23,6 +23,9 @@
           xAxis: {
             // categories: [1, 2, 3, 4]
           },
+          yAxis: {
+            title: {text: "Votes"}
+          },
           
           series: [
             // data:["a", "b"]
@@ -30,13 +33,14 @@
             // data: ["c", "d"]
           ]
       };
-      $.getJSON('/charts', function(data) { 
-        console.log(JSON.stringify(data));
+      $.getJSON('/charts', function(response) { 
+        console.log(JSON.stringify(response));
         // console.log(data);
-        options.xAxis.categories = data["stats"][0];
-        // options.xAxis.categories = data.stats[0];
-        options.series[0] = {data: data.stats[1]};
-        options.series[1] = {data: data.stats[2]};
+        options.xAxis.categories = response.categories;
+        options.series[0] = {name: response.stats[0].title,
+                        data: response.stats[0].votes};
+        options.series[1] = {name: response.stats[1].title,
+                        data: response.stats[1].votes};
         var chart = new Highcharts.Chart(options);
       });
   });
