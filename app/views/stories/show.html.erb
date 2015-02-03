@@ -4,16 +4,16 @@
   </div>
 
   <div class="container-like-button">
-    <div id="votes" style="display-inline">
-      <%= @story.votes.count %>
+    <div id="likebutton" class="like"></br>
+      <%= button_to "like", upvote_story_path(@story), {form_class: "button-like", :id => "like_button", method: :post} %>
     </div>
-    <div id="likebutton"></br>
-      <%= button_to 'like', upvote_story_path(@story), {form_class: "button-like", :id => "like_button", method: :post} %>
+    <div id="votes" class="vote">
+      <%= @story.votes.count %>
     </div>
   </div>
 
   <div class="story-place"> 
-    <% @place = Place.find_by_story_id(@story.id) %>
+    <% @place = Place.find_by(@story.sc_track) %>
     <% if @place != nil %>
     <%= @place.name %>
     <% end %>
@@ -30,4 +30,3 @@
 <%else%>
     <h1>Oops! We couldn't find this story, try again!! </h1>
 <%end%>
-

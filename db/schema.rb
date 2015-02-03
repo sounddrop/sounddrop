@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150123095158) do
+ActiveRecord::Schema.define(version: 20150203104556) do
 
   create_table "comments", force: true do |t|
     t.text     "text"
@@ -23,8 +23,9 @@ ActiveRecord::Schema.define(version: 20150123095158) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "story_id"
   end
+
+  add_index "places", ["name"], name: "index_places_on_name", unique: true
 
   create_table "stories", force: true do |t|
     t.string   "title"
@@ -32,6 +33,7 @@ ActiveRecord::Schema.define(version: 20150123095158) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "place_id"
   end
 
   create_table "users", force: true do |t|

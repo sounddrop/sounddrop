@@ -5,11 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-  
-  
-   story1 = Story.create(sc_track:"187471639", title:"Coffee Machine")
-   story2 = Story.create(sc_track:"187472172", title: "Brewing Coffee for engineers" )
-   story3 = Story.create(sc_track:"187472038", title: "Art installation")
-   Place.create(name: "@SoundCloud HQ", story_id: story1.id)
-   Place.create(name: "@SoundCloud HQ", story_id: story2.id)
-   Place.create(name: "@SoundCloud HQ", story_id: story3.id)
+
+    sc_place = Place.create!(name: "@SoundCloud HQ")
+    story1 = Story.create!(sc_track:"187471639", place_id: sc_place.id, title:"Coffee Machine")
+    story2 = Story.create!(sc_track:"187472172", place_id: sc_place.id, title: "Brewing Coffee for engineers")
+    story3 = Story.create!(sc_track:"187472038", place_id: sc_place.id, title: "Art installation")
+   
+
