@@ -98,6 +98,22 @@ input, button, select {
   margin-top: -72px;
   top: 50%;
 }
+.rewind{ 
+  z-index: 1;
+  width: 100%; 
+  position: absolute;
+  text-align: center;
+  margin-left: -10px;
+  top: 50%;
+}
+.forward{ 
+  z-index: 1;
+  width: 100%; 
+  position: absolute;
+  text-align: center;
+  margin-right: 10px;
+  top: 50%;
+}
 
 .glyphicon{
   width: 140px; 
@@ -115,6 +131,19 @@ input, button, select {
   font-size: 140px;
   line-height: 1;
   border-radius: 4em;
+}
+
+.glyphicon-forward{
+  color: #ff7400;
+  font-size: 100px;
+  line-height: 1;
+  margin-left: 250px;
+  margin-top: -39px;
+}
+.glyphicons-rewind{
+  color: #ff7400;
+  font-size: 70px;
+  line-height: 1;
 }
 
 .story-place {
