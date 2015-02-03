@@ -17,7 +17,8 @@
   </div>
 
   <div class="story-place"> 
-      <% @place = Place.find_by_story_id(@story.id) %>
+
+      <% @place = Place.find_by(@story.sc_track) %>
       <% if @place != nil %>
       <%= @place.name %>
       <% end %>
