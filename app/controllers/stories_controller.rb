@@ -50,12 +50,14 @@ class StoriesController < ApplicationController
 
     @story_votes = @stories.map do |story|
       title = story.title
-      place = Place.find_by_story_id(story.id)
+      # place = Place.find_by_story_id(story.id)
       
       votes = (Date.today-7.. Date.today).map do
        |date| story.votes.total_on(date).to_i
       end 
-      {votes: votes, title: title, place: place.name}
+      {votes: votes, title: title
+        # , place: place.name
+      }
     end
 
     render json: { categories: @categories, stats: @story_votes }
