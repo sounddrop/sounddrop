@@ -4,6 +4,14 @@ body {
   font-family: "Helvetica Neue";
 }
 
+#stories_chart {
+  margin-right: 95px;
+  margin-left: 95px;
+  margin-top: 35px;
+  /*padding-right: 15px;
+  padding-left: 15px;*/
+
+}
 h1 {
   font-weight: 100;
   letter-spacing: 1px;
