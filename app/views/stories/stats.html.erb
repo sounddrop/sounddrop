@@ -1,0 +1,51 @@
+
+<div id="stories_chart"></div>
+<script>
+  $(document).on("ready page:load", function(){
+    $(function() {
+      var options = {
+          chart: {
+            renderTo: "stories_chart",
+            type: 'column',
+            spacingBottom: 35,
+            spacingTop: 30,
+            spacingLeft: 10,
+            spacingRight: 15,
+          },
+          title: {
+            text: "Stats"
+          },
+          subtitle: {
+            text: "Check how popular your story is on SoundDrop"
+          },
+          
+          xAxis: {
+          },
+          yAxis: {
+            title: {text: "Likes"},
+          },
+          
+          legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0,
+          },
+          tooltip: {
+            valueSuffix: ' likes'
+          },
+          series: []
+      };
+      $.getJSON('/charts', function(response) { 
+        // console.log(JSON.stringify(response));
+        options.xAxis.categories = response.categories;
+        options.series = response.stats.map(function(x) {
+          return { "name": x.title, "data": x.votes }; 
+        });
+      
+        var chart = new Highcharts.Chart(options);
+      });
+  });
+});
+      
+</script>
