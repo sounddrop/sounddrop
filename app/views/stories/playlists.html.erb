@@ -63,7 +63,7 @@
         playPauseButton.html('<span class="glyphicon glyphicon-play-circle"></span>');
         state.isBuffering = false;
       } else{
-        playPauseButton.html('<span class="glyphicons glyphicon-cloud-download"></span>');
+        playPauseButton.html('<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>');
         state.isBuffering = true;
       }
     }
@@ -80,6 +80,6 @@
         state.isPlaying = true;
         state.isBuffering = false;
       }
-  });
+    });
   }, 3000);
 </script>

@@ -64,14 +64,14 @@
   setTimeout( function (){
     SC.stream(<%= @story.id %>, options ,function(sound){
       //if we comment this line we can test the else ( if story is not true)
-     // story = sound;
-      // console.log("story ready");
-      // if (state.isBuffering) {
-      //   story.play();
-      //   playPauseButton.html('<span class="glyphicon glyphicon-pause"></span>');
-      //   state.isPlaying = true;
-      //   state.isBuffering = false;
-      // }
-  });
+      story = sound;
+      console.log("story ready");
+      if (state.isBuffering) {
+        story.play();
+        playPauseButton.html('<span class="glyphicon glyphicon-pause"></span>');
+        state.isPlaying = true;
+        state.isBuffering = false;
+      }
+    });
   }, 3000);
 </script>
