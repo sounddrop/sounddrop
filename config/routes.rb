@@ -4,9 +4,13 @@ Rails.application.routes.draw do
   root 'welcome#index'
   get 'welcome/index'
   get 'welcome/scan'
+
   get 'comments/index'
   
 
+  get '/places' => 'places#index'
+  post '/places' => 'places#create'
+  
   post'comments' => 'comments#create'
   resources :stories do
     member do

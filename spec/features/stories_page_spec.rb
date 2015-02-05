@@ -20,11 +20,11 @@ describe "Story page" , type: :feature do
   #   end 
   # end
 
-  it "gets the right source from SoundCloud API", :js => true, :skip => true do 
-    visit "/stories/187471639"
-    expect(page).to have_selector("iframe[src='https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/187471639&amp;auto_play=false&amp;hide_related=true&amp;show_user=false&amp;show_comments=false&amp;show_reposts=false&amp;show_bpm=false&amp;sharing=false&amp;liking=false&amp;show_playcount=false&amp;download=false&amp;buying=false&amp;show_artwork=false&amp;visual=true']")
-  end
-   
+  # it "gets the right source from SoundCloud API", :js => true, :skip => true do 
+  #   visit "/stories/187471639"
+  #   expect(page).to have_selector("iframe[src='https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/187471639&amp;auto_play=false&amp;hide_related=true&amp;show_user=false&amp;show_comments=false&amp;show_reposts=false&amp;show_bpm=false&amp;sharing=false&amp;liking=false&amp;show_playcount=false&amp;download=false&amp;buying=false&amp;show_artwork=false&amp;visual=true']")
+  # end
+
   it "displays the place" do
     visit "/stories/187471639"
     expect(page).to have_content("@SoundCloud HQ")
