@@ -1,0 +1,59 @@
+
+<div class="container-fluid">
+<h1>Hello, </h1>
+</br>
+<h4>Choose a Place:</h4>
+
+<table>
+  <tr>
+  </tr>
+  
+  <tr>
+    <td>
+      <%= form_for @place, url: places_path do |f| %>
+        <% @places.each do |place| %>
+          <p><%= f.radio_button(:id, place.id) %>
+          <%= f.label(:name, place.name) %></p>
+        <% end %>
+        <%= submit_tag("Choose this Place") %>
+      <% end %>
+    </td>
+  </tr>
+</table>
+
+<br></br>
+
+<h4>OR</h4>
+</div>
+
+<%= render partial: "create_places" %>
+
+  <h1>Create a new Place on a Map</h1>
+  <%= form_for @place do |f| %>
+    <%= f.label :name, 'New Place' %>
+    <%= f.text_field :name %>
+    <%= f.hidden_field :lat, id: 'map_lat' %>
+    <%= f.hidden_field :lng, id: 'map_lng' %>
+    <%= f.submit 'CREATE' %>
+    <!-- map div -->
+    <div id="map-container">
+      <div id="map-canvas"> 
+      </div>
+    </div>
+  <% end %>
+
+
+  <script type="text/javascript">
+  function initialize() {
+    var mapOptions = {
+      center: { lat: 52.536756, lng: 13.39496},
+      zoom: 15
+    };
+    var map = new google.maps.Map(document.getElementById('map-canvas'),
+        mapOptions);
+  }
+  google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
+  
+

@@ -1,0 +1,18 @@
+<h1>Edit place</h1>
+<%= form_for @place do |f| %>
+  <%= f.label :name, 'Place name' %>
+  <%= f.text_field :name %>
+  <!-- map div -->
+  <div id="map" style="width: 550px; height: 350px;"></div>
+  <%= f.hidden_field :lat, id: 'map_lat' %>
+  <%= f.hidden_field :lng, id: 'map_lng' %>
+  <%= f.submit 'UPDATE' %>
+<% end %>
+<script>
+
+  $(document).on("ready page:load", function(){
+    var place = #{@place.to_json}
+    gmap_form(place);    // form map for edit view (print marker and possibility of put newer)
+  });
+
+</script>

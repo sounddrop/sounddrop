@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150203104556) do
+ActiveRecord::Schema.define(version: 20150220113343) do
 
   create_table "comments", force: true do |t|
     t.text     "text"
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 20150203104556) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "lat"
+    t.decimal  "lng"
   end
 
   add_index "places", ["name"], name: "index_places_on_name", unique: true
