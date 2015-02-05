@@ -7,6 +7,8 @@ gem 'soundcloud'
 gem 'sqlite3', :platform =>[:ruby]
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+#Use to get new icons
+#gem 'font-awesome-less'
 
 group :development, :test do
   gem 'rspec'

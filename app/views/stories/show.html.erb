@@ -6,15 +6,15 @@
     end 
     artwork.sub! "large", "crop"
      %>">
-  <div class="forward">
+ <!--  <div class="forward">
      <span class="glyphicon glyphicon-forward"></span>
-  </div>
+  </div> -->
   <div class="play-button">
      <span class="glyphicon glyphicon-play-circle"></span>
   </div>  
-  <div class="rewind">
+  <!-- <div class="rewind">
      <span class="glyphicons glyphicons-rewind"</span>
-  </div>
+  </div> -->
 </div>
 </br>
 </br>
@@ -32,17 +32,15 @@
   var options = {
     onfinish : function(){
       playPauseButton.html('<span class="glyphicon glyphicon-play-circle"></span>');
-      console.log("finish!!");
     }
   }
 
   SC.initialize({
     client_id: '69e93cf2209402f6f3137a6452cf498f'
   });
+  //setup on click
   playPauseButton.on('click', function(event) {
     if (story) {
-
-
       if (state.isPlaying) {
         story.pause();
         playPauseButton.html('<span class="glyphicon glyphicon-play-circle"></span>');
@@ -52,17 +50,28 @@
         playPauseButton.html('<span class="glyphicon glyphicon-pause"></span>');
         state.isPlaying = true;
       }
-
     }else{
-       state.isBuffering = true;
-       playPauseButton.html('<span class="glyphicons glyphicon-cloud-download"></span>');
+      if (state.isBuffering) {
+        playPauseButton.html('<span class="glyphicon glyphicon-play-circle"></span>');
+        state.isBuffering = false;
+      } else{
+        playPauseButton.html('<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>');
+        state.isBuffering = true;
+      }
     }
-
   });
-  SC.stream(<%= @story.id %>, options ,function(sound){
-    //story = sound;
-    console.log("story ready");
-
-
+  //Fetch stream 
+  setTimeout( function (){
+    SC.stream(<%= @story.id %>, options ,function(sound){
+      //if we comment this line we can test the else ( if story is not true)
+     // story = sound;
+      // console.log("story ready");
+      // if (state.isBuffering) {
+      //   story.play();
+      //   playPauseButton.html('<span class="glyphicon glyphicon-pause"></span>');
+      //   state.isPlaying = true;
+      //   state.isBuffering = false;
+      // }
   });
+  }, 3000);
 </script>

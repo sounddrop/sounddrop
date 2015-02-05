@@ -117,7 +117,7 @@ input, button, select {
 
 .glyphicon{
   width: 140px; 
-  height: 0px;
+  height: 70px;
 
 }
 .glyphicon-play-circle{
@@ -133,14 +133,7 @@ input, button, select {
   border-radius: 4em;
 }
 
-.glyphicon-forward{
-  color: #ff7400;
-  font-size: 100px;
-  line-height: 1;
-  margin-left: 250px;
-  margin-top: -39px;
-}
-.glyphicons-rewind{
+.glyphicon-refresh{
   color: #ff7400;
   font-size: 70px;
   line-height: 1;
@@ -159,6 +152,27 @@ input, button, select {
   color: #999;
 }
 
+.glyphicon-refresh-animate {
+  -animation: spin .7s infinite linear;
+  -ms-animation: spin .7s infinite linear;
+  -webkit-animation: spinw .7s infinite linear;
+  -moz-animation: spinm .7s infinite linear;
+}
+ 
+@keyframes spin {
+  from { transform: rotate(0deg);}
+  to { transform: rotate(360deg);}
+}
+  
+@-webkit-keyframes spinw {
+  from { -webkit-transform: rotate(0deg);}
+  to { -webkit-transform: rotate(360deg);}
+}
+ 
+@-moz-keyframes spinm {
+  from { -moz-transform: rotate(0deg);}
+  to { -moz-transform: rotate(360deg);}
+}
 
 @font-face {
   font-family: 'Glyphicons Halflings';
