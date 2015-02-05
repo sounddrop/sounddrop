@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   get '/stats' => 'charts#stats', :as => 'stats'
   get '/charts' => 'charts#charts', :as => 'charts_json'
   # post "/charts" => "stories#charts", :as => "charts"
-
   get '/login' => 'create#login'
   get '/login_message' => 'create#login_message'
   get '/verify' => 'create#verify'
