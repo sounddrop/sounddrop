@@ -2,6 +2,7 @@ body {
   background-color: #1A0923;
   color: white;
   font-family: "Helvetica Neue";
+  padding-top: 50px;
 }
 
 #stories_chart {
@@ -12,6 +13,11 @@ body {
   padding-left: 15px;*/
 
 }
+
+.sounddrop-image {
+  height: 50px;
+}
+
 h1 {
   font-weight: 100;
   letter-spacing: 1px;
