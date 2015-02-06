@@ -17,10 +17,10 @@ describe "Playlist page" , type: :feature do
     end 
   end
 
-  it "displays the place" do
-    visit "/playlists/74584890/187472172"
-    expect(page).to have_content "@SoundCloud HQ"
-  end
+  # it "displays the place" do
+  #   visit "/playlists/74584890/187472172"
+  #   expect(page).to have_content "@SoundCloud HQ"
+  # end
 
   it "has the soundcloud widget" do
     visit "/playlists/74584890/187472172"

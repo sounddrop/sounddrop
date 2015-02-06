@@ -30,10 +30,10 @@ describe "Story page" , type: :feature do
     expect(page).to have_content("@SoundCloud HQ")
   end
 
-  it "has the soundcloud widget" do
-    visit "stories/187471639"
-    expect(page).to have_selector("iframe")
-  end
+  # it "has the soundcloud widget" do
+  #   visit "stories/187471639"
+  #   expect(page).to have_selector("iframe")
+  # end
 
   it "has a form for comments" do
     visit "stories/187472172"

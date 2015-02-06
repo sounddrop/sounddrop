@@ -1,8 +1,21 @@
 <%if @story %>
-  <div class="container-image">
-    <%=widget(@story_at_sc.id)%> 
+ <!--  <div class="container-image">
+    <#%=player(@story_at_sc.artwork_url, @story_at_sc.user.avatar_url)%> 
+  </div> -->
+  <div class="artwork">
+    <img class="container-image" src="<%=
+      artwork = @story_at_sc.artwork_url
+      if artwork == nil
+        artwork = @story_at_sc.user.avatar_url
+      end 
+      artwork.sub! "large", "crop"
+       %>">
+    <div class="play-button">
+       <span class="glyphicon glyphicon-play-circle"></span>
+    </div>  
   </div>
-
+  </br>
+  </br>
   <div class="container-like-button">
     <div id="likebutton" class="like"></br>
       <%= button_to "like", upvote_story_path(@story), {form_class: "button-like", :id => "like_button", method: :post} %>
@@ -23,9 +36,13 @@
   var story = {
     id: <%= @story.id %>   
   } 
+  var storyAtSC = {
+     id: <%= @story_at_sc.id %> 
+  }
 </script>
 
 <%= render partial: "create_comments" %>
 <%else%>
     <h1>Oops! We couldn't find this story, try again!! </h1>
 <%end%>
+
