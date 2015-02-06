@@ -42,9 +42,14 @@ class StoriesController < ApplicationController
     date_from = params[:start_date]
     date_to = params[:finish_date]
 
-    dateF = Date.parse(date_from)
-    dateT = Date.parse(date_to)
-    
+    if date_from.blank?
+      dateF = Date.today-3
+      dateT = Date.today
+    else
+      dateF = Date.parse(date_from)
+      dateT = Date.parse(date_to)
+    end
+
     @categories = (dateF..dateT).map do 
       |date| date.to_s
     end

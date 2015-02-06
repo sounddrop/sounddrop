@@ -57,7 +57,8 @@ var options = {
   $(document).on("ready page:load", function(){
     getJson();
     
-    $("#change_button").click(function(event) {  
+    $("#change_button").click(function(event) { 
       getJson();
-    });   
+    });
+       
   });
