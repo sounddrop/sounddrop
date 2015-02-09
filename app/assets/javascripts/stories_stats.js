@@ -38,7 +38,7 @@ var options = {
     series: []
   };
   
-  function getJson() {
+  function loadStats() {
     var fromDate  = $("#start_date").val();
     var toDate = $("#finish_date").val();
     var path = '/charts?start_date=' + fromDate + '&finish_date=' + toDate;
@@ -52,10 +52,10 @@ var options = {
   }
   
   $(document).on("ready page:load", function(){
-    getJson();
+    loadStats();
     
     $("#change_button").click(function(event) { 
-      getJson();
+      loadStats();
     });
        
   });

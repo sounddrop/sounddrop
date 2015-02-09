@@ -1,4 +1,7 @@
 require 'soundcloud'
+# Rails magically does the requires for you
+# require './models/story'
+# require './models/vote'
 
 class StoriesController < ApplicationController
   
@@ -66,4 +69,5 @@ class StoriesController < ApplicationController
 
     render json: { categories: @categories, stats: @story_votes }
   end
+
 end
