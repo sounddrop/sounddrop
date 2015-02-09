@@ -37,9 +37,6 @@ var options = {
 
     series: []
   };
-
-  // var fromDate  = "2015-02-02";
-  // var toDate = "2015-02-04";
   
   function getJson() {
     var fromDate  = $("#start_date").val();
