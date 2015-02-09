@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   get '/stories/:sc_track' => 'stories#show'
   get '/playlists/:playlist_id/:sc_track' => 'stories#playlists'
 
-  get "/stats" => "stories#stats", :as => "stats"
-  get '/charts' => "stories#charts", :as => "charts_json"
+  get "/stats" => "charts#stats", :as => "stats"
+  get '/charts' => "charts#charts", :as => "charts_json"
   # post "/charts" => "stories#charts", :as => "charts"
 
   post'comments' => 'comments#create'
