@@ -6,7 +6,16 @@ Rails.application.routes.draw do
   get 'welcome/scan'
 
   get 'comments/index'
-  
+
+  get '/stories/:sc_track' => 'stories#show'
+  get '/playlists/:playlist_id/:sc_track' => 'stories#playlists'
+
+  get '/stats' => 'charts#stats', :as => 'stats'
+  get '/charts' => 'charts#charts', :as => 'charts_json'
+  # post "/charts" => "stories#charts", :as => "charts"
+  get '/signup' => 'authentications#signup'
+  get '/verify' => 'authentications#verify'
+  get '/my_stories' => 'authentications#my_stories', as: 'my_stories'
 
   get '/places' => 'places#index'
   post '/places' => 'places#create'
