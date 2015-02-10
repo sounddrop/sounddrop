@@ -149,26 +149,30 @@ input, button, select {
   margin-top: -72px;
   top: 50%;
 }
-.rewind{ 
+.backward{ 
   z-index: 1;
-  width: 100%; 
+  width: 101px;
+  height: 100px;
   position: absolute;
   text-align: center;
-  margin-left: -10px;
+  margin-left: 128px;
+  margin-top: -7px;
   top: 50%;
 }
 .forward{ 
   z-index: 1;
-  width: 100%; 
+  width: 99px;
+  height: 100px;
   position: absolute;
   text-align: center;
-  margin-right: 10px;
+  margin-left: 74px;
+  margin-top: -7px;
   top: 50%;
 }
 
 .glyphicon{
   width: 140px; 
-  height: 70px;
+  height: -1px;
 
 }
 .glyphicon-play-circle{
@@ -183,11 +187,27 @@ input, button, select {
   line-height: 1;
   border-radius: 4em;
 }
-
 .glyphicon-refresh{
   color: #ff7400;
-  font-size: 70px;
+  font-size: 140px;
   line-height: 1;
+  border-radius: 4em;
+}
+
+.glyphicon-forward{
+  color: #ff7400;
+  font-size: 74px;
+  line-height: 1;
+  margin-left: 300px;
+  margin-top: -39px;
+}
+
+.glyphicon-backward{
+  color: #ff7400;
+  font-size: 74px;
+  line-height: 1;
+  margin-right: 250px;
+  margin-top: -39px;
 }
 
 .story-place {
