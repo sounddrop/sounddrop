@@ -4,6 +4,19 @@ require 'pry'
 
 
 describe "Playlist page" , type: :feature do
+
+  it 'has a navigation bar' do 
+    visit "/playlists/74584890/187472038"
+    expect(page).to have_css("img[src*='/assets/sounddrop-logo-name.png']")
+  end
+
+  # scenario 'klicking on SoundDrop logo links to homepage' do
+  #   visit '/playlists/74584890/187472172'
+  #   # my_link = find(".sounddrop-image")
+  #   click('.sounddrop-image')
+  #   expect(page).to have_content("SoundDrop lets you record stories and connect them to a place where they belong - via QR code or geolocation.")
+  # end
+
   it "displays list of stories" do
     visit "/playlists/74584890/187472038"
     expect(find_link("Brewing coffee for engineers")).to be_visible

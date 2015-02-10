@@ -11543,7 +11543,7 @@ return jQuery;
   });
 
 }).call(this);
-$(document).ready(function(){
+$(document).on("ready page:load", function(){
   $("#hide_comments").hide();
   $("#commentForm").submit(function(event) {
     event.preventDefault();
@@ -11868,65 +11868,79 @@ I(this,"mouseOver");this.setState("hover");a.hoverSeries=this},onMouseOut:functi
 function(b){b.setVisible(a,!1)});if(g)d.isDirtyBox=!0;b!==!1&&d.redraw();I(c,f)},setTooltipPoints:function(a){var b=[],c,d,e=this.xAxis,f=e&&e.getExtremes(),g=e?e.tooltipLen||e.len:this.chart.plotSizeX,h,i,j=[];if(!(this.options.enableMouseTracking===!1||this.singularTooltips)){if(a)this.tooltipPoints=null;q(this.segments||this.points,function(a){b=b.concat(a)});e&&e.reversed&&(b=b.reverse());this.orderTooltipPoints&&this.orderTooltipPoints(b);a=b.length;for(i=0;i<a;i++)if(e=b[i],c=e.x,c>=f.min&&
 c<=f.max){h=b[i+1];c=d===u?0:d+1;for(d=b[i+1]?L(t(0,U((e.clientX+(h?h.wrappedClientX||h.clientX:g))/2)),g):g;c>=0&&c<=d;)j[c++]=e}this.tooltipPoints=j}},show:function(){this.setVisible(!0)},hide:function(){this.setVisible(!1)},select:function(a){this.selected=a=a===u?!this.selected:a;if(this.checkbox)this.checkbox.checked=a;I(this,a?"select":"unselect")},drawTracker:T.drawTrackerGraph});r(K,{Axis:na,Chart:Ya,Color:ya,Point:Fa,Tick:Ta,Renderer:Za,Series:O,SVGElement:S,SVGRenderer:ta,arrayMin:Oa,arrayMax:Ca,
 charts:W,dateFormat:cb,format:Ja,pathAnim:vb,getOptions:function(){return E},hasBidiBug:Ob,isTouchDevice:Ib,numberFormat:Ba,seriesTypes:H,setOptions:function(a){E=w(!0,E,a);Bb();return E},addEvent:N,removeEvent:X,createElement:$,discardElement:Qa,css:B,each:q,extend:r,map:Va,merge:w,pick:p,splat:ra,extendClass:ma,pInt:y,wrap:Na,svg:ba,canvas:ga,vml:!ba&&!ga,product:"Highcharts",version:"4.0.4"})})();
-// $(document).ready(function() {
-//   $("#like_button").click
-//     {(function(event) {
-//     event.preventDefault();
-//     $.ajax ({
-//       url: '/stories/'+ story.id +'/upvote',
-//       method: 'POST'
-//     }).success(function(result) {
-//       $("#votes").html(result.count_votes);
-//       $("#session").html('List: ' + result.user_session)
-//     });
-//     });
-//   } else if {
-//     ($("#like_button").click){(function(event) {
-//       event.preventDefault();
-//       $.ajax ({
-//         url: 'playlists/'+ playlist.id + story.id +'/upvote',
-//         method: 'POST'
-//       }).success(function(result) {
-//         $("#votes").html(result.count_votes);
-//         $("#session").html('List: ' + result.user_session)
-//       });
-//     });
-//   };
-//   };
-// });
+  
+var options = {
+    chart: {
+      renderTo: "stories_chart",
+      type: 'column',
+      spacingBottom: 35,
+      spacingTop: 30,
+      spacingLeft: 10,
+      spacingRight: 15,
+    },
 
-$(document).ready(function(){
-  $("#like_button").click(function(event) {
+    title: {
+      text: "Stats"
+    },
+
+    subtitle: {
+      text: "Check how popular your story is on SoundDrop"
+    },
+    
+    xAxis: {
+    },
+
+    yAxis: {
+      title: {text: "Likes"},
+    },
+    
+    legend: {
+      layout: 'vertical',
+      align: 'right',
+      verticalAlign: 'middle',
+      borderWidth: 0,
+    },
+
+    tooltip: {
+      valueSuffix: ' likes'
+    },
+
+    series: []
+  };
+  
+  function getJson() {
+    var fromDate  = $("#start_date").val();
+    var toDate = $("#finish_date").val();
+    var path = '/charts?start_date=' + fromDate + '&finish_date=' + toDate;
+      $.getJSON(path, function(response) {          
+        options.xAxis.categories = response.categories;
+        options.series = response.stats.map(function(x) {
+          return { "name": x.title, "data": x.votes }; 
+        });
+          var chart = new Highcharts.Chart(options);
+      });
+  }
+  
+  $(document).on("ready page:load", function(){
+    getJson();
+    
+    $("#change_button").click(function(event) { 
+      getJson();
+    });
+       
+  });
+
+$(document).on("ready page:load", function(){
+  $(".button-like").submit(function(event) {
     event.preventDefault();
-    $.post ({
+    $.ajax ({
       url: '/stories/'+ story.id +'/upvote',
-      method: 'POST'
+      method: 'POST',
     }).success(function(result) {
-      $("#votes").html(result.count_votes);
-      $("#session").html('List: ' + result.user_session)
+      $("#votes").html(result.count_votes)
     });
   });
  });
-$(document).ready(function(){
-  $("#like_button_playlists").click(function(event) {
-    event.preventDefault();
-    $.ajax ({
-      url: 'playlists/'+ p.id + '/' + sc.id,
-      method: 'POST'
-    }).success(function(result) {
-      $("#votes").html(result.count_votes);
-      $("#session").html('List: ' + result.user_session)
-    });
-  });
-});
-
-
-
-
-
-
-
-
 (function() {
 
 

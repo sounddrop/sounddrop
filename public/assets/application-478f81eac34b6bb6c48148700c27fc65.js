@@ -11543,34 +11543,6 @@ return jQuery;
   });
 
 }).call(this);
-$(document).ready(function(){
-  $("#hide_comments").hide();
-  $("#commentForm").submit(function(event) {
-    event.preventDefault();
-    $.ajax({
-      url: '/comments/',
-      type: 'POST',
-      data: $('#commentForm').serialize()
-    }).done(function() {
-      $.ajax('/comments/index').done(function(comments) {
-        $("#hide_comments").html(comments).show();
-        $('#new_comment').val('');
-      });     
-    });
-  });
-});
-$("#like_button").click(function(event) {
-  event.preventDefault();
-  $.ajax ({
-    url: '/stories/<%=@story.id %>/upvote', method: 'POST'
-  }).success(function(result) {
-    $("#votes").html(result.count_votes);
-  });
-});
-(function() {
-
-
-}).call(this);
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //

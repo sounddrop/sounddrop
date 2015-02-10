@@ -7,8 +7,10 @@ Rails.application.routes.draw do
   get 'comments/index'
   get '/stories/:sc_track' => 'stories#show'
   get '/playlists/:playlist_id/:sc_track' => 'stories#playlists'
-  get "/charts" => "stories#charts", :as => "charts"
-  get "/stats" => "stories#stats", :as => "stats"
+
+  get "/stats" => "charts#stats", :as => "stats"
+  get '/charts' => "charts#charts", :as => "charts_json"
+  # post "/charts" => "stories#charts", :as => "charts"
 
   post'comments' => 'comments#create'
   resources :stories do
