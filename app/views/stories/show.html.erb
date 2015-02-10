@@ -1,12 +1,6 @@
 <%if @story %>
   <div class="artwork">
-     <img class="container-image" src="<%=
-      artwork = @story_at_sc.artwork_url
-      if artwork == nil
-        artwork = @story_at_sc.user.avatar_url
-      end 
-      artwork.sub! "large", "crop"
-       %>">
+     <img class="container-image" src="<%=@artwork%>">
     <div class="play-button">
       <span class="glyphicon glyphicon-play-circle"></span>
     </div> 

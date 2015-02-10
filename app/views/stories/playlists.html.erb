@@ -1,17 +1,7 @@
 <%if @story %>
   <div class="artwork">
     <div class="container-image"> 
-      <% @playlist.tracks.each do |track| %>
-        <%if track.id == @story_at_sc.id %>
-         <img class="container-image" src="<%=
-          artwork = @story_at_sc.artwork_url
-          if artwork == nil
-            artwork = @story_at_sc.user.avatar_url
-          end 
-          artwork.sub! "large", "crop"
-           %>">
-        <% end %>
-      <% end %>
+         <img class="container-image" src="<%=@artwork%>">
       <div class="play-button">
          <span class="glyphicon glyphicon-play-circle"></span>
       </div>
@@ -26,9 +16,9 @@
         <%= @story.votes.count %>
       </div>
   </div>
-  <div class ="story-title">
+ <div class ="story-title">
     <p><%=@story.title%></p>
-  </div> 
+ </div> 
   <div class="story-place"> 
       <% @place = Place.find_by(@story.sc_track) %>
       <% if @place != nil %>

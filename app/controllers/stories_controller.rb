@@ -14,8 +14,17 @@ class StoriesController < ApplicationController
     @story = Story.find_by_sc_track(params[:sc_track])
     if @story != nil
       @story_at_sc = client.get("/tracks/#{params[:sc_track]}")
+      diplay_image(@story_at_sc)
     end
   end
+
+  def diplay_image(story_at_sc)
+      @artwork = story_at_sc.artwork_url
+      if @artwork == nil
+        @artwork = story_at_sc.user.avatar_url
+      end 
+      @artwork.sub! "large", "crop"
+  end  
 
   def upvote
     @story = Story.find(params[:id])
@@ -38,6 +47,11 @@ class StoriesController < ApplicationController
     @current_track_id = params[:sc_track].to_i 
     @story_at_sc = @playlist.tracks.find do |track|
       track[:id] == params[:sc_track].to_i
+    end
+    @playlist.tracks.each do |track|
+      if track.id == @story_at_sc.id 
+        diplay_image(@story_at_sc) 
+      end
     end
   end
 end
