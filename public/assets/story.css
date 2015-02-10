@@ -131,6 +131,9 @@ input, button, select {
 }
 
 .story-title {
+  padding-left: 15px;
+  color: #ff7400;
+  font-size: 18px;
 }
 
 .story-place {
@@ -230,10 +233,10 @@ input, button, select {
 }
 
 .glyphicon-refresh-animate {
-  -animation: spin .7s infinite linear;
-  -ms-animation: spin .7s infinite linear;
-  -webkit-animation: spinw .7s infinite linear;
-  -moz-animation: spinm .7s infinite linear;
+  -animation: spin 1s infinite linear;
+  -ms-animation: spin 1s infinite linear;
+  -webkit-animation: spinw 1s infinite linear;
+  -moz-animation: spinm 1s infinite linear;
 }
  
 @keyframes spin {

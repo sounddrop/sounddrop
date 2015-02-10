@@ -1,7 +1,4 @@
 <%if @story %>
- <!--  <div class="container-image">
-    <#%=player(@story_at_sc.artwork_url, @story_at_sc.user.avatar_url)%> 
-  </div> -->
   <div class="artwork">
      <img class="container-image" src="<%=
       artwork = @story_at_sc.artwork_url
@@ -10,17 +7,12 @@
       end 
       artwork.sub! "large", "crop"
        %>">
-    <!-- <div class="forward">
-      <span class="glyphicon glyphicon-forward"></span>
-    </div> -->
     <div class="play-button">
       <span class="glyphicon glyphicon-play-circle"></span>
     </div> 
-     <!-- <div class="backward">
-      <span class="glyphicon glyphicon-backward"></span>
-    </div>  --> 
     
   </div>
+
   <div class="container-like-button">
     <div id="likebutton" class="like"></br>
       <%= button_to "like", upvote_story_path(@story), {form_class: "button-like", :id => "like_button", method: :post} %>
@@ -29,7 +21,9 @@
       <%= @story.votes.count %>
     </div>
   </div>
-
+  <div class ="story-title">
+    <p><%=@story.title%></p>
+  </div> 
   <div class="story-place"> 
     <% @place = Place.find_by(@story.sc_track) %>
     <% if @place != nil %>
