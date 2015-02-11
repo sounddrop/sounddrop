@@ -1,0 +1,35 @@
+<h1>Hello, <%= @current_user.username %></h1>
+<p></br>
+<h4>You have <%= @current_user.track_count %> tracks at SoundCloud:</h4>
+<p><h4>Click in the button to upload your track to SoundDrop.</h4>
+</br>
+
+  <table>
+    <tr> <% @current_user_tracks.each do |track| %> </tr>
+      <tr>
+        <td><%= track.title %></td>
+        <td><a><%= track.uri %></a>  </td>
+        <td><div id="track_title" value="bla"> </div> </td>
+        <td><div id="track_id" value="123"></div>  </td>
+        <td><input type="submit" id="upload_button" value="Upload"></div>  </td>
+      </tr>
+    <% end %>
+  </table>
+  <input type="text" id="user_id_test" value="123456"/>
+  <div id="user_id" value="111" /></div>
+
+<script>
+  $(document).on("ready page:load", function(){
+    $("#upload_button").click(function(event) { 
+      var track_id = $("#track_id").val();
+      var user_id = $("#user_id_test").val();
+      var track_title = $("#track_title").val();
+      var path = '/upload?&user_id=' + user_id; 
+        $.getJSON(path, function(response) { 
+          response;
+          console.log("bla");
+        });              
+    });
+  });
+  
+</script>
