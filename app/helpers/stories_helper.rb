@@ -1,5 +1,5 @@
 module StoriesHelper
-  def widget(sound_id)
-    render partial: "widget", locals: {sound_id: sound_id}
-  end
+  # def player(artworl_url, avatar_url)
+  #   render partial: "player", locals: {artworl_url: artworl_url, avatar_url: avatar_url}
+  #  end
 end

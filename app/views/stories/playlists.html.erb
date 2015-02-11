@@ -1,10 +1,11 @@
 <%if @story %>
-  <div class="container-image"> 
-    <% @playlist.tracks.each do |track| %>
-      <%if track.id == @story_at_sc.id %>
-        <%= widget(@story_at_sc.id) %>
-      <% end %>
-    <% end %>
+  <div class="artwork">
+    <div class="container-image"> 
+      <img class="container-image" src="<%=@artwork%>">
+      <div class="play-button">
+         <span class="glyphicon glyphicon-play-circle"></span>
+      </div>
+    </div>
   </div>
 
   <div class="container-like-button">
@@ -15,20 +16,18 @@
         <%= @story.votes.count %>
       </div>
   </div>
-
+ <div class ="story-title">
+    <p><%=@story.title%></p>
+ </div> 
   <div class="story-place"> 
-
-      <% @place = Place.find_by(@story.sc_track) %>
-      <% if @place != nil %>
-      <%= @place.name %>
-      <% end %>
+      <%=@place_name %>
   </div>
 
   <div class="container-fluid">
     <h4>Hear more stories:</h4> 
       <% @playlist.tracks.each do |track| %>
         <% if track.id != @story_at_sc.id %>
-          <a href="/playlists/<%=@playlist.id%>/<%=track.id%>"><%= track.title %></a></br>
+          <a href="/playlists/<%=@playlist.id%>/<%=track.id%>" data-no-turbolink><%= track.title %></a></br>
         <% end %>
       <% end %><br>
   </div>
@@ -36,6 +35,9 @@
 <script>
   var story = {
     id: <%= @story.id %>   
+  }
+  var storyAtSC = {
+     id: <%= @story_at_sc.id %> 
   }
  
 </script>
