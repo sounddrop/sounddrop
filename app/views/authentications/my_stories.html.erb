@@ -1,13 +1,19 @@
-ALL CURRENT USER DATA
+  <h1>Hello, <%= @current_user.username %></h1>
+  <p>
+  <h1>You have <%= @current_user.track_count %> tracks at SC </h1>
+<p>
+<p>
+<p>
+<hr>
+<hr>
+
+CURRENT USER DATA
 <p>
 <%= @current_user %>
-<p>
-  CURRENT USER NAME
-  <p>
+<hr>
+<hr>
 
-<%= @current_user.username %>
+CURRENT USER TRACKS:
 <p>
-  CURRENT USER id
-  <p>
-
-<%= @current_user.id%>
+<%= @current_user_tracks.to_json %>
+  
