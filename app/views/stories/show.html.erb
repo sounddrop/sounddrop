@@ -4,7 +4,6 @@
     <div class="play-button">
       <span class="glyphicon glyphicon-play-circle"></span>
     </div> 
-    
   </div>
 
   <div class="container-like-button">
@@ -19,10 +18,7 @@
     <p><%=@story.title%></p>
   </div> 
   <div class="story-place"> 
-    <% @place = Place.find_by(@story.sc_track) %>
-    <% if @place != nil %>
-    <%= @place.name %>
-    <% end %>
+    <%= @place_name %>
   </div>
 
 <script>

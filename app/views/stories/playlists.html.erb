@@ -1,7 +1,7 @@
 <%if @story %>
   <div class="artwork">
     <div class="container-image"> 
-         <img class="container-image" src="<%=@artwork%>">
+      <img class="container-image" src="<%=@artwork%>">
       <div class="play-button">
          <span class="glyphicon glyphicon-play-circle"></span>
       </div>
@@ -20,10 +20,7 @@
     <p><%=@story.title%></p>
  </div> 
   <div class="story-place"> 
-      <% @place = Place.find_by(@story.sc_track) %>
-      <% if @place != nil %>
-      <%= @place.name %>
-      <% end %>
+      <%=@place_name %>
   </div>
 
   <div class="container-fluid">
