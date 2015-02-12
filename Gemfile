@@ -48,7 +48,8 @@ gem 'spring',        group: :development
 gem 'unicorn'
 
 group :production do
-  gem 'mysql'
+  gem 'kgio','2.9.2' 
+  gem 'mysql' 
 end
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
