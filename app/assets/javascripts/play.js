@@ -1,16 +1,5 @@
-
 $(document).on("ready page:load", function(){
-  $(".button-like").submit(function(event) {
-    event.preventDefault();
-    $.ajax ({
-      url: '/stories/'+ story.id +'/upvote',
-      method: 'POST',
-    }).success(function(result) {
-      $("#votes").html(result.count_votes)
-    });
-  });
-
-  var storyAtPlay; 
+ var storyAtPlay; 
   var playPauseButton = $('.play-button');
   var state = {
       isPlaying: false,
@@ -22,7 +11,7 @@ $(document).on("ready page:load", function(){
       //hideForwardAndBackwardButton();
     }
   }
-
+  
   function showForwardAndBackwardButton(){
     $(".forward").show();
     $(".backward").show();
@@ -30,37 +19,43 @@ $(document).on("ready page:load", function(){
   function hideForwardAndBackwardButton(){
     $(".forward").hide();
     $(".backward").hide();
-  }      
+  }    
+
+  function setupBufferingState(){
+    if(state.isBuffering) {
+      //hideForwardAndBackwardButton();
+      playPauseButton.html('<span class="glyphicon glyphicon-play-circle"></span>');
+      state.isBuffering = false;
+    }else{
+      playPauseButton.html('<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>');
+      //hideForwardAndBackwardButton();
+      state.isBuffering = true;
+    }
+  }  
+
+  function setupPlayOrPauseState(){
+    if(state.isPlaying) {
+      // hideForwardAndBackwardButton();
+      storyAtPlay.pause();
+      playPauseButton.html('<span class="glyphicon glyphicon-play-circle"></span>');
+      state.isPlaying = false;
+    }else {
+      //showForwardAndBackwardButton();
+      storyAtPlay.play();
+      playPauseButton.html('<span class="glyphicon glyphicon-pause"></span>');
+      state.isPlaying = true;
+    }
+  }
 
    SC.initialize({
      client_id: '69e93cf2209402f6f3137a6452cf498f'
    });
   //setup on click
   playPauseButton.on('click', function(event) {
-
     if (storyAtPlay) {
-      if(state.isPlaying) {
-        // hideForwardAndBackwardButton();
-        storyAtPlay.pause();
-        playPauseButton.html('<span class="glyphicon glyphicon-play-circle"></span>');
-        state.isPlaying = false;
-      }else {
-        //showForwardAndBackwardButton();
-        storyAtPlay.play();
-        playPauseButton.html('<span class="glyphicon glyphicon-pause"></span>');
-        state.isPlaying = true;
-      }
+      setupPlayOrPauseState();
     }else{
-      if(state.isBuffering) {
-        //hideForwardAndBackwardButton();
-        playPauseButton.html('<span class="glyphicon glyphicon-play-circle"></span>');
-        state.isBuffering = false;
-      }else{
-        playPauseButton.html('<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>');
-        //hideForwardAndBackwardButton();
-        state.isBuffering = true;
-
-      }
+      setupBufferingState();
     }
   });
   //Fetch stream 
@@ -78,6 +73,4 @@ $(document).on("ready page:load", function(){
       }
     });
   }, 3000);
-
-
-});
+});  
