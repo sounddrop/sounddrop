@@ -8,7 +8,8 @@
       dateF = Date.today-3
       dateT = Date.today
     else
-      dateF = Date.parse(date_from)
+      puts "=====Data From: "+date_from
+      dateF = Date.parse(date_from) 
       dateT = Date.parse(date_to)
     end
 

@@ -90,7 +90,14 @@ input, button, select {
   margin-right: auto;
   margin-left: auto; 
 }
-
+.container-play-button {
+  margin-right: auto;
+  margin-left: auto;
+  padding-bottom: 0;
+  width:100%;
+  position: relative; left:0; top:0;
+  z-index:0;
+}
 .container-image {
   margin-right: auto;
   margin-left: auto;
