@@ -1,6 +1,9 @@
 <%if @story %>
-  <div class="container-image">
-    <%=widget(@story_at_sc.id)%> 
+  <div class="artwork">
+     <img class="container-image" src="<%=@artwork%>">
+    <div class="play-button">
+      <span class="glyphicon glyphicon-play-circle"></span>
+    </div> 
   </div>
 
   <div class="container-like-button">
@@ -11,21 +14,24 @@
       <%= @story.votes.count %>
     </div>
   </div>
-
+  <div class ="story-title">
+    <p><%=@story.title%></p>
+  </div> 
   <div class="story-place"> 
-    <% @place = Place.find_by(@story.sc_track) %>
-    <% if @place != nil %>
-    <%= @place.name %>
-    <% end %>
+    <%= @place_name %>
   </div>
 
 <script>
   var story = {
     id: <%= @story.id %>   
   } 
+  var storyAtSC = {
+     id: <%= @story_at_sc.id %> 
+  }
 </script>
 
 <%= render partial: "create_comments" %>
 <%else%>
     <h1>Oops! We couldn't find this story, try again!! </h1>
 <%end%>
+

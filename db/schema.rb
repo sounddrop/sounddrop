@@ -36,10 +36,6 @@ ActiveRecord::Schema.define(version: 20150203104556) do
     t.integer  "place_id"
   end
 
-  create_table "users", force: true do |t|
-    t.text "name"
-  end
-
   create_table "votes", force: true do |t|
     t.integer  "story_id"
     t.datetime "created_at"

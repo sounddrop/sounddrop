@@ -3,6 +3,5 @@ class Vote < ActiveRecord::Base
    def self.total_on(date)
     where("date(created_at) = ?", date).count
      # where("date(created_at) = ?", date).sum(:total_votes)  
-
   end
 end

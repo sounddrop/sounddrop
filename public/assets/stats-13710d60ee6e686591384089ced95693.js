@@ -39,21 +39,8 @@ var options = {
   };
   
   function loadStats() {
-  
-    if ( $('#start_date')[0].type = "date" ) 
-      var fromDate  = $("#start_date").val();
-    else 
-      $(document).on("ready page:load", function(){
-        fromDate  = $("#start_date").datepicker("getDate")
-      });
-    if 
-      ( $('#finish_date')[0].type = "date" ) 
-        var toDate  = $("#finish_date").val();
-    else 
-       $(document).on("ready page:load", function(){
-        toDate  = $('#finish_date').datepicker("getDate")
-       });
-
+    var fromDate  = $("#start_date").val();
+    var toDate = $("#finish_date").val();
     var path = '/charts?start_date=' + fromDate + '&finish_date=' + toDate;
       $.getJSON(path, function(response) {          
         options.xAxis.categories = response.categories;
@@ -66,12 +53,9 @@ var options = {
   
   $(document).on("ready page:load", function(){
     loadStats();
-  
+    
     $("#change_button").click(function(event) { 
       loadStats();
     });
        
   });
-
- 
-
