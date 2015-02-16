@@ -5,7 +5,7 @@ require 'pry'
 describe 'Place page', type: :feature do 
 
   it 'shows all existing places' do
-    visit '/places/index'
+    visit '/places'
     expect(page).to have_content('@SoundCloud HQ')
   end
 
