@@ -45,7 +45,6 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'unicorn'
 
 group :production do
-  gem 'kgio','2.9.2' 
   gem 'mysql' 
 end
 # Use Capistrano for deployment
