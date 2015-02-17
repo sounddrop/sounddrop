@@ -16,59 +16,52 @@ describe "Playlist page" , type: :feature do
   #   click('.sounddrop-image')
   #   expect(page).to have_content("SoundDrop lets you record stories and connect them to a place where they belong - via QR code or geolocation.")
   # end
+
+  # it "has a play button" do
+  #    visit "/playlists/74584890/187472038"
+  #    within ".container-image" do
+  #     expect(page).to have_selector("play-button")
+  #    end
+  # end
   
-   #-----Comment to pass because of the new player
-  # it "displays list of stories" do
-  #   visit "/playlists/74584890/187472038"
-  #   expect(find_link("Brewing coffee for engineers")).to be_visible
-  #   expect(find_link("Coffee Machine")).to be_visible
-  # end
+  it "displays list of stories" do
+    visit "/playlists/74584890/187472038"
+    expect(find_link("Brewing coffee for engineers")).to be_visible
+    expect(find_link("Coffee Machine")).to be_visible
+  end
    
-   #------Comment to pass because of the new player
-  # it "displays story title ", :js => true do 
-  #   visit "/playlists/74584890/187472038"
-  #   within_frame(find("iframe")) do
-  #     expect(page).to have_content("Art Installation")
-  #   end 
-  # end
+  it "displays story title ", :js => true do 
+    visit "/playlists/74584890/187472038"
+    expect(page).to have_content("Art installation")
+  end
 
-  # it "displays the place" do
-  #   visit "/playlists/74584890/187472172"
-  #   expect(page).to have_content "@SoundCloud HQ"
-  # end
-
-   #------Comment to pass because of the new player
-  # it "has the soundcloud widget" do
-  #   visit "/playlists/74584890/187472172"
-  #   expect(page).to have_selector("iframe")
-  # end
+  it "displays the place" do
+    visit "/playlists/74584890/187472172"
+    expect(page).to have_content "@SoundCloud HQ"
+  end
    
-   #------Comment to pass because of the new player
-  # it "has a form for comments" do
-  #   visit "/playlists/74584890/187471639"
-  #   expect(page).to have_selector("form")
-  # end
+  it "has a form for comments" do
+    visit "/playlists/74584890/187471639"
+    expect(page).to have_selector("form")
+  end
    
-   #------Comment to pass because of the new player
-  # it "has a button to save the comments" do
-  #   visit "/playlists/74584890/187471639"
-  #   expect(page).to have_selector("input")
-  # end
+  it "has a button to save the comments" do
+    visit "/playlists/74584890/187471639"
+    expect(page).to have_selector("input")
+  end
 
-   #------Comment to pass because of the new player
-  # scenario "writing a comment and sending it saves the comment and shows it on page", js: true do
-  #   visit "/playlists/74584890/187471639"
-  #   fill_in "new_comment", with: "Test comment"
-  #   click_button "Send Comment"
-  #   expect(page).to have_content("Test comment")
-  # end
+  scenario "writing a comment and sending it saves the comment and shows it on page", js: true do
+    visit "/playlists/74584890/187471639"
+    fill_in "new_comment", with: "Test comment"
+    click_button "Send Comment"
+    expect(page).to have_content("Test comment")
+  end
 
-   #------Comment to pass because of the new player
-  # scenario "klicking the like button increases the likes of a story", js: true do
-  #   visit "/playlists/74584890/187472038"
-  #   likes_before = page.find("#votes").text.to_i
-  #   click_button "like"
-  #   likes_now = page.find("#votes").text.to_i
-  #   expect(likes_now - likes_before).to eq(1)
-  # end
+  scenario "klicking the like button increases the likes of a story", js: true do
+    visit "/playlists/74584890/187472038"
+    likes_before = page.find("#votes").text.to_i
+    click_button "like"
+    likes_now = page.find("#votes").text.to_i
+    expect(likes_now - likes_before).to eq(1)
+  end
 end

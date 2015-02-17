@@ -9,4 +9,5 @@ $(document).on("ready page:load", function(){
       $("#votes").html(result.count_votes)
     });
   });
- });
+
+});
