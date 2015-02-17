@@ -1,0 +1,38 @@
+<h1>Hello, <%= @current_user.username %></h1>
+<p></br>
+<h4>You have <%= @current_user.track_count %> tracks at SoundCloud:</h4>
+<p><h4>Choose the one you want to connect to SoundDrop.</h4>
+</br>
+
+
+
+
+<%= form_for Story.new, :url => url_for(:controller => 'create', :action => 'upload_track') do |s| %>
+    <% ids = @current_user_tracks.map do |track| %>
+       <% title = track.title %>
+       <% id = track.id %>
+       <% {title: title, id: id} %>
+      <% end %>
+    
+    <% ids.each do |id| %>
+      <%= s.radio_button :id, id[1] %>
+        <label for="<%=id[1] %>"><%= id[1] %></label>
+    <% end %>
+
+<% end %>
+
+
+<script>
+  // $(document).on("ready page:load", function(){
+  //   $("#upload_button").click(function(event) { 
+  //     var track_id = $("#track_id").text();
+  //     var track_title = $("#track_title").val();
+  //     var path = '/upload?track_id=' + track_id; 
+  //       $.getJSON(path, function(response) { 
+  //         response;
+  //         console.log("oi");
+  //       });              
+  //   });
+  // });
+  
+</script>

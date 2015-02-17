@@ -14,10 +14,11 @@ Rails.application.routes.draw do
   get '/charts' => 'charts#charts', :as => 'charts_json'
   # post "/charts" => "stories#charts", :as => "charts"
 
-  get '/login' => 'authentications#login'
-  get '/verify' => 'authentications#verify'
-  get '/list_tracks' => 'authentications#list_tracks', as: 'list_tracks'
-  get '/upload' => 'authentications#upload', as: 'upload_done'
+  get '/login' => 'create#login'
+  get '/login_message' => 'create#login_message'
+  get '/verify' => 'create#verify'
+  get '/list_tracks' => 'create#list_tracks', as: 'list_tracks'
+  get '/upload' => 'create#upload_track', as: 'upload_done'
 
   get '/places' => 'places#index'
   post '/places' => 'places#create'
