@@ -61,16 +61,14 @@ class StoriesController < ApplicationController
   end  
 
   def display_place(story)
-    begin
-      unless story.sc_track.nil?
-        place = Place.find_by(story.sc_track)
-        if place != nil
-         @place_name = place.name
-        end
-      end
-    rescue Exception => e
-      e.message
-    end 
+      unless story.nil?
+        unless story.sc_track.nil?
+          place = Place.find_by_id(story.place.id)
+          if place != nil
+           @place_name = place.name
+          end
+        end 
+      end  
   end 
 
 end
