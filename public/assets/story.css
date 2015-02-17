@@ -24,6 +24,12 @@ h1 {
   color: white;
 }
 
+h2 {
+  font-weight: 100;
+  letter-spacing: 1px;
+  color: white;
+}
+
 h4 {
   margin-top: 0;
   font-weight: 100;
