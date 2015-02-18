@@ -5,10 +5,10 @@
 </br>
 
 
-<%= form_for @story, url: stories_path do |f| %>
+<%= form_for @story do |f| %>
     <% stories = @current_user_tracks.map do |track| %>
       <% {id: track.id}.each do |key,id_value| %>
-        <br><%= radio_button_tag(:sc_track, id_value) %>
+        <br><%= f.radio_button(:sc_track, id_value) %>
         <%= label_tag(id_value, track.title) %></br>
       <% end %>
     <% end %>

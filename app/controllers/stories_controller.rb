@@ -11,21 +11,15 @@ class StoriesController < ApplicationController
 
   def create
     # render plain: params.inspect
-    #params from the server: arameters: 
-    # {"utf8"=>"✓", "authenticity_token"=>"tnjfsWs1RYkDr8s06WmnKOhI7DhdlCUmQ1YBPp1PSzk=", 
-    #   "sc_track"=>"190913070", "commit"=>"Save"}
 
     @story = Story.new(story_params)
     if @story.save
-      redirect to stories_path
-    # else
-    #   redirect_to list_tracks_path
+       redirect_to stories_path
     end
   end
-
+  
   def index
-    @stories = Story.all
-  end 
+  end
   
   def show
     client = SoundCloud.new(:client_id => '69e93cf2209402f6f3137a6452cf498f') 
