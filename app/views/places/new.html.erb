@@ -1,6 +1,8 @@
+
+<div class="container-fluid">
 <h1>Hello, </h1>
 </br>
-<h2>Choose a location:</h2>
+<h4>Choose a Place:</h4>
 
 <table>
   <tr>
@@ -13,17 +15,10 @@
     </tr>
   <% end %>
 </table>
+<%= submit_tag("Choose this Place") %>
 <br></br>
 
 <h4>OR</h4>
+</div>
 
-<%= form_for :place do |f| %>
-  <p>
-    <%= f.label "Create a new place" %><br>
-    <%= f.text_field :string %>
-  </p>
- 
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
+<%= render partial: "create_places" %>

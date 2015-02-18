@@ -1,0 +1,9 @@
+<div class='places'>
+  <%= form_for :place, :html => {:id => "placeForm"}, url: places_path do |f| %>
+  <p>
+    <%= f.label :text, "Create a New Place" %><br>
+    <%= f.text_area :name, size: "70%", :id => "new_place"%><p>
+    <%= f.submit "Create New Place" %>
+  </p>
+<% end %>
+</div>
