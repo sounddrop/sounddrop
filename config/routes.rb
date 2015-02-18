@@ -18,7 +18,6 @@ Rails.application.routes.draw do
   get '/verify' => 'create#verify'
   get '/list_tracks' => 'create#list_tracks', as: 'list_tracks'
   get '/upload' => 'create#upload_track', as: 'upload_done'
-
   get '/places' => 'places#index'
   post '/places' => 'places#create'
   
@@ -29,19 +28,8 @@ Rails.application.routes.draw do
     end
   end
 
-  # get '/stories/:sc_track' => 'stories#show', :as => "sc_track"
-  get '/playlists/:playlist_id/:sc_track' => 'stories#playlists'
-  
-  get '/stats' => 'charts#stats', :as => 'stats'
-  get '/charts' => 'charts#charts', :as => 'charts_json'
-  get '/login' => 'connect#login'
-  get '/login_message' => 'connect#login_message'
-  get '/verify' => 'connect#verify'
-
-
-
- 
-
+  resources :places do
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

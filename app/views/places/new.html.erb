@@ -1,0 +1,29 @@
+<h1>Hello, </h1>
+</br>
+<h2>Choose a location:</h2>
+
+<table>
+  <tr>
+  </tr>
+ 
+  <% @places.each do |place| %>
+    <tr>
+      <td><%= radio_button_tag(:place_id, place.id) %>
+        <%= label_tag(:location, place.name) %></td>
+    </tr>
+  <% end %>
+</table>
+<br></br>
+
+<h4>OR</h4>
+
+<%= form_for :place do |f| %>
+  <p>
+    <%= f.label "Create a new place" %><br>
+    <%= f.text_field :string %>
+  </p>
+ 
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
