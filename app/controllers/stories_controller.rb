@@ -1,13 +1,32 @@
 require 'soundcloud'
-# Rails magically does the requires for you
-# require './models/story'
-# require './models/vote'
 
 class StoriesController < ApplicationController
   
-  def index
+  def new
+    client = Soundcloud.new(:access_token => session[:access_token_hash]["access_token"])
+    @current_user = client.get('/me')
+    @current_user_tracks = client.get('/me/tracks')
+    @story = Story.new
   end
 
+  def create
+    # render plain: params.inspect
+    #params from the server: arameters: 
+    # {"utf8"=>"✓", "authenticity_token"=>"tnjfsWs1RYkDr8s06WmnKOhI7DhdlCUmQ1YBPp1PSzk=", 
+    #   "sc_track"=>"190913070", "commit"=>"Save"}
+
+    @story = Story.new(story_params)
+    if @story.save
+      redirect to stories_path
+    # else
+    #   redirect_to list_tracks_path
+    end
+  end
+
+  def index
+    @stories = Story.all
+  end 
+  
   def show
     client = SoundCloud.new(:client_id => '69e93cf2209402f6f3137a6452cf498f') 
     @story = Story.find_by_sc_track(params[:sc_track])
@@ -16,7 +35,7 @@ class StoriesController < ApplicationController
       @story_at_sc = client.get("/tracks/#{params[:sc_track]}")
       diplay_image(@story_at_sc)
     end
-  end
+  end 
 
   def upvote
     @story = Story.find(params[:id])
@@ -73,4 +92,8 @@ class StoriesController < ApplicationController
     end 
   end 
 
+  private
+    def story_params
+      params.require(:story).permit(:sc_track)
+    end
 end

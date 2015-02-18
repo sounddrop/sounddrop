@@ -1,4 +1,4 @@
-class CreateController < ApplicationController
+class ConnectController < ApplicationController
   
   require 'soundcloud'
 
@@ -19,18 +19,6 @@ class CreateController < ApplicationController
     code = params[:code]
     access_token_hash = client.exchange_token(:code => code)
     session[:access_token_hash] = access_token_hash
-    # puts "this is the session: " + session[:access_token_hash].to_s
-    redirect_to list_tracks_path
+    redirect_to new_story_path
   end
-
-  def list_tracks
-    # client = Soundcloud.new(:access_token => 'YOUR_ACCESS_TOKEN')
-    client = Soundcloud.new(:access_token => session[:access_token_hash]["access_token"])
-    @current_user = client.get('/me')
-    @current_user_tracks = client.get('/me/tracks')
-  end
-  
-  def upload_track
-  
-  end  
 end
