@@ -5,12 +5,7 @@ Rails.application.routes.draw do
   get 'welcome/index'
   get 'welcome/scan'
   get 'comments/index'
-  get '/stories/:sc_track' => 'stories#show'
-  get '/playlists/:playlist_id/:sc_track' => 'stories#playlists'
-
-  get "/stats" => "charts#stats", :as => "stats"
-  get '/charts' => "charts#charts", :as => "charts_json"
-  # post "/charts" => "stories#charts", :as => "charts"
+  
 
   post'comments' => 'comments#create'
   resources :stories do
@@ -18,6 +13,19 @@ Rails.application.routes.draw do
       post 'upvote'
     end
   end
+
+  # get '/stories/:sc_track' => 'stories#show', :as => "sc_track"
+  get '/playlists/:playlist_id/:sc_track' => 'stories#playlists'
+  
+  get '/stats' => 'charts#stats', :as => 'stats'
+  get '/charts' => 'charts#charts', :as => 'charts_json'
+  get '/login' => 'connect#login'
+  get '/login_message' => 'connect#login_message'
+  get '/verify' => 'connect#verify'
+
+
+
+ 
 
 
   # The priority is based upon order of creation: first created -> highest priority.
