@@ -11,6 +11,7 @@ class StoriesController < ApplicationController
     @current_user = client.get('/me')
     @current_user_tracks = client.get('/me/tracks')
     @story = Story.new
+    @places = Place.all
   end
 
   def create
@@ -20,13 +21,13 @@ class StoriesController < ApplicationController
     if @story.save
       # redirect_to story_path(@story)
       redirect_to story_path(@story.sc_track)
-    else 
-      @story = Story.find_by_sc_track(params[:story][:sc_track])
-      if @story != nil
-        redirect_to story_path(@story.sc_track)
-      else
-        redirect_to :back
-      end
+    else
+      puts "Error was #{@story.errors}"   
+      client = Soundcloud.new(:access_token => session[:access_token_hash]["access_token"])    
+      @current_user = client.get('/me')
+      @current_user_tracks = client.get('/me/tracks')
+      @places = Place.all
+      render :new     
     end  
   end
 
@@ -34,8 +35,9 @@ class StoriesController < ApplicationController
     client = SoundCloud.new(:client_id => '69e93cf2209402f6f3137a6452cf498f') 
     @story = Story.find_by_sc_track(params[:id])
     # @story.title = Story.find_by_sc_track(params[:id]).title
-    display_place(@story)
+   display_place(@story)
     if @story != nil
+       
       # @story_at_sc = client.get("/tracks/#{params[:sc_track]}")
       @story_at_sc = client.get("/tracks/#{@story.sc_track}")
       display_image(@story_at_sc)
@@ -97,6 +99,6 @@ class StoriesController < ApplicationController
 
   private
     def story_params
-      params.require(:story).permit(:sc_track, :title)
+      params.require(:story).permit(:sc_track, :title, :place_id)
     end
 end
