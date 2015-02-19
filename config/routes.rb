@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'welcome/index'
   get 'welcome/scan'
   get 'comments/index'
-
+  
 
   post'comments' => 'comments#create'
   resources :stories do
@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/stories/:sc_track' => 'stories#show'
+  # get '/stories/:sc_track' => 'stories#show', :as => "sc_track"
   get '/playlists/:playlist_id/:sc_track' => 'stories#playlists'
   
   get '/stats' => 'charts#stats', :as => 'stats'

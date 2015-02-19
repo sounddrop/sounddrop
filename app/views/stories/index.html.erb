@@ -1,1 +1,5 @@
-bla - do we need this view?
+<% @stories.each do |story| %>
+<%= story.id %>
+<%= story.title%>
+</br>
+<% end %>

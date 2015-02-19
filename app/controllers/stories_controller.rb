@@ -2,6 +2,10 @@ require 'soundcloud'
 
 class StoriesController < ApplicationController
   
+  def index
+    @stories = Story.all
+  end
+
   def new
     client = Soundcloud.new(:access_token => session[:access_token_hash]["access_token"])
     @current_user = client.get('/me')
@@ -11,23 +15,30 @@ class StoriesController < ApplicationController
 
   def create
     # render plain: params.inspect
-
     @story = Story.new(story_params)
+
     if @story.save
-       redirect_to stories_path
-    end
+      # redirect_to story_path(@story)
+      redirect_to story_path(@story.sc_track)
+    else 
+      @story = Story.find_by_sc_track(params[:story][:sc_track])
+      if @story != nil
+        redirect_to story_path(@story.sc_track)
+      else
+        redirect_to :back
+      end
+    end  
   end
-  
-  def index
-  end
-  
+
   def show
     client = SoundCloud.new(:client_id => '69e93cf2209402f6f3137a6452cf498f') 
-    @story = Story.find_by_sc_track(params[:sc_track])
+    @story = Story.find_by_sc_track(params[:id])
+    # @story.title = Story.find_by_sc_track(params[:id]).title
     display_place(@story)
     if @story != nil
-      @story_at_sc = client.get("/tracks/#{params[:sc_track]}")
-      diplay_image(@story_at_sc)
+      # @story_at_sc = client.get("/tracks/#{params[:sc_track]}")
+      @story_at_sc = client.get("/tracks/#{@story.sc_track}")
+      display_image(@story_at_sc)
     end
   end 
 
@@ -57,7 +68,7 @@ class StoriesController < ApplicationController
     @playlist.tracks.each do |track|
       begin
         if track.id == @story_at_sc.id 
-          diplay_image(@story_at_sc) 
+          display_image(@story_at_sc) 
         end
       rescue Exception => e
         e.message
@@ -65,7 +76,7 @@ class StoriesController < ApplicationController
     end
   end
 
-  def diplay_image(story_at_sc)
+  def display_image(story_at_sc)
       @artwork = story_at_sc.artwork_url
       if @artwork == nil
         @artwork = story_at_sc.user.avatar_url
@@ -81,13 +92,13 @@ class StoriesController < ApplicationController
          @place_name = place.name
         end
       end
-    rescue Exception => e
+    rescue Exception => e # bad practice
       e.message
     end 
   end 
 
   private
     def story_params
-      params.require(:story).permit(:sc_track)
+      params.require(:story).permit(:sc_track, :title)
     end
 end

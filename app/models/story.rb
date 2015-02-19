@@ -7,5 +7,5 @@ class Story < ActiveRecord::Base
   belongs_to :place
 
   validates :sc_track, presence: true, uniqueness: true, numericality: { only_integer: true }
-  validates :place_id, presence: true
+  # validates :place_id, presence: true
 end
