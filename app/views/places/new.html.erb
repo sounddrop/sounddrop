@@ -7,15 +7,20 @@
 <table>
   <tr>
   </tr>
- 
-  <% @places.each do |place| %>
-    <tr>
-      <td><%= radio_button_tag(:place_id, place.id) %>
-        <%= label_tag(:location, place.name) %></td>
-    </tr>
-  <% end %>
+  
+  <tr>
+    <td>
+        <%= form_for @place, url: places_path do |f| %>
+          <% @places.each do |place| %>
+          <p><%= f.radio_button(:id, place.id) %>
+          <%= f.label(:name, place.name) %></p>
+        <% end %>
+        <%= submit_tag("Choose this Place") %>
+      <% end %>
+    </td>
+  </tr>
 </table>
-<%= submit_tag("Choose this Place") %>
+
 <br></br>
 
 <h4>OR</h4>

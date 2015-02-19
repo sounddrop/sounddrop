@@ -18,9 +18,6 @@ Rails.application.routes.draw do
   get '/verify' => 'create#verify'
   get '/list_tracks' => 'create#list_tracks', as: 'list_tracks'
   get '/upload' => 'create#upload_track', as: 'upload_done'
-  get '/places' => 'places#index'
-  post '/places' => 'places#create'
-  
   post'comments' => 'comments#create'
   resources :stories do
     member do
