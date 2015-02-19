@@ -18,7 +18,7 @@ class StoriesController < ApplicationController
     # render plain: params.inspect
     @story = Story.new(story_params)
 
-    if @story.save
+    if @story.save!
       # redirect_to story_path(@story)
       redirect_to story_path(@story.sc_track)
     else
