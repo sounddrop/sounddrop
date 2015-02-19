@@ -16,11 +16,6 @@ RSpec.describe Story, :type => :model do
     expect(story_test.place_id).to eql 3
   end
 
-  it 'must have unique sc_track' do
-    Story.create!(title: "Test1", sc_track: "654321", place_id: "1")
-    expect{Story.create!(title: "Test2", sc_track: "654321", place_id: "2")}.to raise_error
-  end
-
   it 'must have numerical sc_track' do
     expect{Story.create!(title: "Test", sc_track: "abc", place_id: "1")}.to raise_error
   end
