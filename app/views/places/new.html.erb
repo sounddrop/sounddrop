@@ -10,8 +10,8 @@
   
   <tr>
     <td>
-        <%= form_for @place, url: places_path do |f| %>
-          <% @places.each do |place| %>
+      <%= form_for @place, url: places_path do |f| %>
+        <% @places.each do |place| %>
           <p><%= f.radio_button(:id, place.id) %>
           <%= f.label(:name, place.name) %></p>
         <% end %>
