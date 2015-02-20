@@ -1,0 +1,23 @@
+<div class="container-fluid">
+  <h1>
+    <%= @place.name %>
+  </h1>
+  <p>
+    lat:
+    <%= @place.lat %>
+  </p>
+  <p>
+    lng:
+    <%= @place.lng %>
+  </p>
+  <!-- map div -->
+  <div id="map" style="width: 550px; height: 350px;"></div>
+  <script>
+    
+    $(document).on("ready page:load", function(){
+      var place = #{@place.to_json}    // pass ruby variable to javascript
+      gmap_show(place);    // init show map for place card (only print marker)
+    });
+
+  </script>
+</div>

@@ -19,8 +19,16 @@ class PlacesController < ApplicationController
     # redirect_to story_path(@story.sc_track)
   end
 
+  def edit
+    # necessary for maps
+  end
+
+  def show
+    @place = Place.find(params[:id])
+  end
+
   private
   def place_params
-    params.require(:place).permit(:name) #name? string? aus schema?
+    params.require(:place).permit(:name, :lat, :lng) #name? string? aus schema?
   end
 end
