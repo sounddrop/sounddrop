@@ -9,7 +9,6 @@ gem 'sqlite3', :platform =>[:ruby]
 gem 'jquery-rails'
 #Use to get new icons
 #gem 'font-awesome-less'
-
 group :development, :test do
   gem 'rspec'
   gem 'rspec-rails'
