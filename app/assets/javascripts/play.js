@@ -78,7 +78,7 @@ $(document).on("ready page:load", function() {
 
   $('.rewind').on('click', function(event) {
     //pause();
-    var rewind = storyAtPlay.position - 30000;
+    var rewind = storyAtPlay.position - 5000;
     if (rewind > 0 && rewind < storyAtPlay.duration) {
       storyAtPlay.setPosition(rewind);
     } else {
@@ -89,7 +89,7 @@ $(document).on("ready page:load", function() {
 
   $('.forward').on('click', function(event) {
     //pause();
-    var forward = storyAtPlay.position + 30000;
+    var forward = storyAtPlay.position + 5000;
     if (forward < storyAtPlay.duration) {
       storyAtPlay.setPosition(forward);
     } else {
