@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
   
-    sc_place = Place.create!(name: "@SoundCloud HQ")
+    sc_place = Place.create!(name: "@SoundCloud HQ", lat:"52.536756", lng:"13.39496")
     sc_place = Place.create!(name: "@SoundCloud SF")
     sc_place = Place.create!(name: "@SoundCloud NY")
 
