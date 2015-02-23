@@ -2,14 +2,19 @@ require 'soundcloud'
 
 class StoriesController < ApplicationController
   
+  before_action :get_users_soundcloud_tracks, only: [:new, :create]
+
+  def get_users_soundcloud_tracks
+    client = Soundcloud.new(:access_token => session[:access_token_hash]["access_token"])
+    @current_user = client.get('/me')
+    @current_user_tracks = client.get('/me/tracks')
+  end
+
   def index
     @stories = Story.all
   end
 
   def new
-    client = Soundcloud.new(:access_token => session[:access_token_hash]["access_token"])
-    @current_user = client.get('/me')
-    @current_user_tracks = client.get('/me/tracks')
     @story = Story.new
     @places = Place.all
   end
@@ -19,13 +24,9 @@ class StoriesController < ApplicationController
     @story = Story.new(story_params)
 
     if @story.save!
-      # redirect_to story_path(@story)
       redirect_to story_path(@story.sc_track)
     else
       puts "Error was #{@story.errors}"   
-      client = Soundcloud.new(:access_token => session[:access_token_hash]["access_token"])    
-      @current_user = client.get('/me')
-      @current_user_tracks = client.get('/me/tracks')
       @places = Place.all
       render :new     
     end  
