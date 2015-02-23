@@ -34,10 +34,13 @@ class StoriesController < ApplicationController
   def show
     client = SoundCloud.new(:client_id => '69e93cf2209402f6f3137a6452cf498f') 
     @story = Story.find_by_sc_track(params[:id])
-    # @story.title = Story.find_by_sc_track(params[:id]).title
-   display_place(@story)
-    if @story != nil
-       
+    if @story.nil?
+      head 404
+    else
+      # @story.title = Story.find_by_sc_track(params[:id]).title
+      display_place(@story)
+      
+         
       # @story_at_sc = client.get("/tracks/#{params[:sc_track]}")
       @story_at_sc = client.get("/tracks/#{@story.sc_track}")
       display_image(@story_at_sc)
@@ -87,14 +90,12 @@ class StoriesController < ApplicationController
   end  
 
   def display_place(story)
-      unless story.nil?
-        unless story.sc_track.nil?
-          place = Place.find_by_id(story.place.id)
-          if place != nil
-           @place_name = place.name
-          end
-        end 
-      end  
+    unless story.sc_track.nil?
+      place = Place.find_by_id(story.place.id)
+      if place != nil
+       @place_name = place.name
+      end
+    end     
   end 
 
   private
