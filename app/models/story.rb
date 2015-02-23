@@ -6,6 +6,7 @@ class Story < ActiveRecord::Base
   belongs_to :user
   belongs_to :place
 
-  validates :sc_track, presence: true, numericality: { only_integer: true }
+  # validates :sc_track, presence: true, numericality: { only_integer: true }
+  validates :sc_track, :uniqueness => {:scope => [:place]}, presence: true, numericality: { only_integer: true }
   validates :place_id, presence: true
 end

@@ -23,10 +23,11 @@ class StoriesController < ApplicationController
     # render plain: params.inspect
     @story = Story.new(story_params)
 
-    if @story.save!
+    if @story.save
       redirect_to story_path(@story.sc_track)
     else
-      puts "Error was #{@story.errors}"   
+      # puts "Error was #{@story.errors}"
+      # user.errors.full_messages   
       @places = Place.all
       render :new     
     end  
