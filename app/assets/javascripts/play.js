@@ -5,61 +5,52 @@ $(document).on("ready page:load", function() {
     isPlaying: false,
     isBuffering: false
   };
+  hideForwardAndRewindButton();
   var options = {
     onfinish: function() {
       playPauseButton.html('<span class="glyphicon glyphicon-play-circle"></span>');
-      //hideForwardAndBackwardButton();
-    },
-    autoPlay: false
-
-    // whileplaying : function() {
-    //   console.log(this.position);
-    //   self.updateScrubber(this.position / (this.duration / 100));
-    //   self.$timeLeft.text(self.formatTime(this.position / 1000));
-    //   console.log(totalPercent,'My position');
-    // }
+      hideForwardAndRewindButton();
+    }
   }
 
-  function showForwardAndBackwardButton() {
+  function showForwardAndRewindButton() {
     $(".forward").show();
-    $(".backward").show();
+    $(".rewind").show();
   }
 
-  function hideForwardAndBackwardButton() {
+  function hideForwardAndRewindButton() {
     $(".forward").hide();
-    $(".backward").hide();
+    $(".rewind").hide();
   }
 
   function setupBufferingState() {
     if (state.isBuffering) {
-      //hideForwardAndBackwardButton();
+      hideForwardAndRewindButton();
       playPauseButton.html('<span class="glyphicon glyphicon-play-circle"></span>');
       state.isBuffering = false;
     } else {
+      hideForwardAndRewindButton();
       playPauseButton.html('<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>');
-      //hideForwardAndBackwardButton();
       state.isBuffering = true;
     }
   }
 
   function setupPlayOrPauseState() {
     if (state.isPlaying) {
-      // hideForwardAndBackwardButton();
       pause();
     } else {
-      //showForwardAndBackwardButton();
       play();
     }
   }
 
   function pause() {
-    // state.isPlaying = false;
+    hideForwardAndRewindButton();
     storyAtPlay.pause();
     playPauseButton.html('<span class="glyphicon glyphicon-play-circle"></span>');
   }
 
   function play() {
-    // state.isPlaying = true;
+    showForwardAndRewindButton();
     storyAtPlay.play();
     playPauseButton.html('<span class="glyphicon glyphicon-pause"></span>');
   }
@@ -86,7 +77,6 @@ $(document).on("ready page:load", function() {
     }
   });
 
-
   $('.forward').on('click', function(event) {
     //pause();
     var forward = storyAtPlay.position + 5000;
@@ -99,30 +89,26 @@ $(document).on("ready page:load", function() {
 
   //setup on click
   playPauseButton.on('click', function(event) {
+    showForwardAndRewindButton();
     playOrPause();
-    // if (storyAtPlay) {
-    //   console.log((storyAtPlay.duration / 1000) / 60);
-    //   setupPlayOrPauseState();
-    // } else {
-    //   setupBufferingState();
-    // }
   });
 
 
   //Fetch stream 
-  //setTimeout(function() {
+  setTimeout(function() {
     SC.stream(storyAtSC.id, options, function(sound) {
       console.log("Streaming");
       //if we comment this line we can test the else ( if story is not true)
       storyAtPlay = sound;
       console.log("story ready");
       if (state.isBuffering) {
+        hideForwardAndRewindButton();
         storyAtPlay.play();
         playPauseButton.html('<span class="glyphicon glyphicon-pause"></span>');
         state.isPlaying = true;
         state.isBuffering = false;
-        //hideForwardAndBackwardButton();
+     
       }
     });
-  //}, 1000);
+  }, 1000);
 });

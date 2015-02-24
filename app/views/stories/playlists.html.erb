@@ -2,15 +2,7 @@
   <div class="artwork">
     <div class="container-play-button"> 
       <img class="container-image" src="<%=@artwork%>">
-      <div class="rewind">
-          <span class="glyphicon glyphicon-backward"></span>
-      </div> 
-      <div class="play-button">
-        <span class="glyphicon glyphicon-play-circle"></span>
-      </div> 
-      <div class="forward">
-        <span class="glyphicon glyphicon-forward"></span>
-      </div>
+      <%= render partial: "load_playbuttons" %>
     </div>
   </div>
 
