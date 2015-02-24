@@ -15,7 +15,11 @@ class StoriesController < ApplicationController
   end
 
   def new
-    @story = Story.new
+    if session[:sc_track_for_create]
+      @story = Story.new(:sc_track => session[:sc_track_for_create])
+    else
+      @story = Story.new
+    end
     @places = Place.all
   end
 

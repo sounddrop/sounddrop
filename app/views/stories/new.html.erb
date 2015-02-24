@@ -12,19 +12,25 @@
   <%= form_for @story, url: stories_path do |f| %>
     <%= render 'error_messages' %>
     <% stories = @current_user_tracks.each do |track| %>
-        <br><%= f.radio_button(:sc_track, track.id) %>
+        <% if @story.sc_track == track.id %>
+          <br><%= f.radio_button(:sc_track, track.id, required: true, selected: true)%>
+        <% else %>
+          <br><%= f.radio_button(:sc_track, track.id, required: true)%>
+        <% end %>
         <%= f.label(track.id, track.title) %></br>
     <% end %></br><p></br>
       
-    <h4>Choose a Place:</h4>
+  <h4>Choose a Place:</h4>
 
     <% @places.each do |place| %>
-      <p><%= f.radio_button(:place_id, place.id) %>
+      <p><%= f.radio_button(:place_id, place.id, required: true) %>
       <%= f.label(:name, place.name) %></p>
     <% end %>   
   <%= submit_tag("Save") %>
   <% end %>
   
+<!--   <h4> link_to "Create a new place", :controller => :places, :action => :new </h4>
+ -->
 </div>
 
 
