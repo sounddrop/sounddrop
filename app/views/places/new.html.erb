@@ -28,23 +28,32 @@
 
 <%= render partial: "create_places" %>
 
-<div class="container-fluid">
   <h1>Create a new Place on a Map</h1>
   <%= form_for @place do |f| %>
     <%= f.label :name, 'New Place' %>
     <%= f.text_field :name %>
-    <!-- map div -->
-    <div id="map" style="width: 550px; height: 350px;"></div>
     <%= f.hidden_field :lat, id: 'map_lat' %>
     <%= f.hidden_field :lng, id: 'map_lng' %>
     <%= f.submit 'CREATE' %>
+    <!-- map div -->
+    <div id="map-container">
+      <div id="map-canvas"> 
+      </div>
+    </div>
   <% end %>
-  <script>
 
-    $(document).on("ready page:load", function(){
-      gmap_form(null);    // form map for new view (print nothing with possibility of put marker)
-    });
 
-  </script>
-</div>
+  <script type="text/javascript">
+  function initialize() {
+    var mapOptions = {
+      center: { lat: 52.536756, lng: 13.39496},
+      zoom: 15
+    };
+    var map = new google.maps.Map(document.getElementById('map-canvas'),
+        mapOptions);
+  }
+  google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
+  
 
