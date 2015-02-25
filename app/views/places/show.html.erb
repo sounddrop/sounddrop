@@ -13,13 +13,31 @@
 </div>
 
 <script type="text/javascript">
+  var marker;
+  function createMarker(coords, map, title){
+      marker = new google.maps.Marker({
+      position: coords,
+      map: map,
+      title: title,
+      draggable: true,
+      animation: google.maps.Animation.DROP
+    });
+      return marker;
+  }
   function initialize() {
+    var placeLat      = '<%=@place.lat%>';
+    var placeLng      = '<%=@place.lng%>';
+    var markerCoords1 = new google.maps.LatLng(placeLat, placeLng);
+    var markerCoords2 = new google.maps.LatLng(30.543523, 31.656232);
     var mapOptions = {
-      center: { lat: 52.536756, lng: 13.39496},
-      zoom: 15
+      center: new google.maps.LatLng(placeLat, placeLng),
+      zoom: 17,
+      mapTypeId: google.maps.MapTypeId.NORMAL
     };
     var map = new google.maps.Map(document.getElementById('map-canvas'),
         mapOptions);
+
+    var marker = new createMarker(markerCoords1, map, 'Juhu');
   }
   google.maps.event.addDomListener(window, 'load', initialize);
 </script>
