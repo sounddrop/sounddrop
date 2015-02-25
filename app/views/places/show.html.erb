@@ -24,22 +24,77 @@
     });
       return marker;
   }
+
+  function createInfoWindow(text){
+    var infowindow = new google.maps.InfoWindow({
+      content: text,
+    });
+    return infowindow;
+  }
+
+var map;
+
+var ORANGE_MAP = 'custom_style';
+
+
   function initialize() {
     var placeLat      = '<%=@place.lat%>';
     var placeLng      = '<%=@place.lng%>';
+    var placeName     = '<%=@place.name%>';
     var markerCoords1 = new google.maps.LatLng(placeLat, placeLng);
-    var markerCoords2 = new google.maps.LatLng(30.543523, 31.656232);
+
+    var featureOpts = [
+      {
+        stylers: [
+          { hue: '#FC5A03' },
+          { weight: 1.5 }
+        ]
+      },
+      {
+        elementType: 'labels',
+        stylers: [
+        ]
+      },
+      {
+        featureType: 'water',
+        "elementType": "geometry.fill",
+        "stylers": [
+          { "color": "#282744" },
+          { "saturation": -30 },
+          { "gamma": 3.91 }
+        ]
+      },
+    ];
+
     var mapOptions = {
+      zoom: 14,
       center: new google.maps.LatLng(placeLat, placeLng),
-      zoom: 17,
-      mapTypeId: google.maps.MapTypeId.NORMAL
+      mapTypeControlOptions: {
+        mapTypeIds: [google.maps.MapTypeId.ROADMAP, ORANGE_MAP]
+      },
+      mapTypeId: ORANGE_MAP
     };
-    var map = new google.maps.Map(document.getElementById('map-canvas'),
+
+    map = new google.maps.Map(document.getElementById('map-canvas'),
         mapOptions);
 
-    var marker = new createMarker(markerCoords1, map, 'Juhu');
+    var styledMapOptions = {
+      name: 'Custom Style'
+    };
+
+    var customMapType = new google.maps.StyledMapType(featureOpts, styledMapOptions);
+
+    map.mapTypes.set(ORANGE_MAP, customMapType);
+
+    var marker = new createMarker(markerCoords1, map, placeName);
+    var info = createInfoWindow(placeName);
+    google.maps.event.addListener(marker, 'click', function() {
+      info.open(map,marker);
+    });
   }
+
   google.maps.event.addDomListener(window, 'load', initialize);
+
 </script>
 <div id="map-container">
   <div id="map-canvas">
