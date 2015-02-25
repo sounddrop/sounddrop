@@ -15,7 +15,7 @@
 /log/*.log
 /tmp
 /:memory
-/public
+/public/
 vendor/bundle
 comments.csv
 backup.sql

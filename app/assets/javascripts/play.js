@@ -35,31 +35,17 @@ $(document).on("ready page:load", function() {
     }
   }
 
-  function setupPlayOrPauseState() {
-    if (state.isPlaying) {
-      pause();
-    } else {
-      play();
-    }
-  }
-
-  function pause() {
-    hideForwardAndRewindButton();
-    storyAtPlay.pause();
-    playPauseButton.html('<span class="glyphicon glyphicon-play-circle"></span>');
-  }
-
-  function play() {
-    showForwardAndRewindButton();
-    storyAtPlay.play();
-    playPauseButton.html('<span class="glyphicon glyphicon-pause"></span>');
-  }
-
-  function playOrPause() {
-    if (storyAtPlay.paused || storyAtPlay.playState == 0) {
-      play();
-    } else {
-      pause();
+  function setupPlayOrPauseState(){
+    if(state.isPlaying) {
+      hideForwardAndRewindButton();
+      storyAtPlay.pause();
+      playPauseButton.html('<span class="glyphicon glyphicon-play-circle"></span>');
+      state.isPlaying = false;
+    }else {
+      showForwardAndRewindButton();
+      storyAtPlay.play();
+      playPauseButton.html('<span class="glyphicon glyphicon-pause"></span>');
+      state.isPlaying = true;
     }
   }
 
@@ -89,8 +75,13 @@ $(document).on("ready page:load", function() {
 
   //setup on click
   playPauseButton.on('click', function(event) {
-    showForwardAndRewindButton();
-    playOrPause();
+    if (storyAtPlay) {
+      showForwardAndRewindButton();
+      setupPlayOrPauseState();
+    }else{
+      hideForwardAndRewindButton();
+      setupBufferingState();
+    }
   });
 
 
@@ -102,7 +93,7 @@ $(document).on("ready page:load", function() {
       storyAtPlay = sound;
       console.log("story ready");
       if (state.isBuffering) {
-        hideForwardAndRewindButton();
+        showForwardAndRewindButton();
         storyAtPlay.play();
         playPauseButton.html('<span class="glyphicon glyphicon-pause"></span>');
         state.isPlaying = true;
@@ -110,5 +101,5 @@ $(document).on("ready page:load", function() {
      
       }
     });
-  }, 1000);
+  }, 3000);
 });
