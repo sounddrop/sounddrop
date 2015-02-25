@@ -164,7 +164,7 @@ input, button, select {
 
 /*for the new player*/
 .play-button{ 
-  z-index: 1;
+  z-index: 2;
   width: 100%; 
   position: absolute;
   text-align: center;
@@ -172,18 +172,22 @@ input, button, select {
   top: 50%;
 }
 .rewind{ 
-  z-index: 2;
-  width: 80px;
+  z-index: 3;
+  width: 43%;
   position: absolute;
-  top: 48%;
-  left: 17%;
+  top: 50%;
+  left: 0;
+  margin-top: -30px;
+  text-align: center;
 }
 .forward{ 
-  z-index: 2;
-  width: 100px;
+  z-index: 3;
+  width: 47%;
   position: absolute;
-  top: 48%;
-  left: 68%;
+  top: 50%;
+  left: 55%;
+  margin-top: -30px;
+  text-align: center;
 }
 
 .glyphicon{
@@ -224,6 +228,19 @@ input, button, select {
   font-size: 74px;
   line-height: 1;
   border-radius: 4em;
+}
+
+@media (max-width: 400px) {
+  .glyphicon-play-circle,
+  .glyphicon-pause,
+  .glyphicon-refresh {
+    font-size: 100px;
+  }
+
+  .glyphicon-forward,
+  .glyphicon-backward {
+    font-size: 40px;
+  }
 }
 
 .story-place {
