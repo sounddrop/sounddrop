@@ -1,2 +1,5 @@
-welcome
-
+<% @stories.each do |story| %>
+<%= story.id %>
+<%= story.title%>
+</br>
+<% end %>

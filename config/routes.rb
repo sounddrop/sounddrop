@@ -1,16 +1,17 @@
 Rails.application.routes.draw do
+  get 'errors/file_not_found'
+
+  get 'errors/unprocessable'
+
+  get 'errors/internal_server_error'
+
   #get 'welcome/index'
 
   root 'welcome#index'
   get 'welcome/index'
   get 'welcome/scan'
   get 'comments/index'
-  get '/stories/:sc_track' => 'stories#show'
-  get '/playlists/:playlist_id/:sc_track' => 'stories#playlists'
-
-  get "/stats" => "charts#stats", :as => "stats"
-  get '/charts' => "charts#charts", :as => "charts_json"
-  # post "/charts" => "stories#charts", :as => "charts"
+  
 
   post'comments' => 'comments#create'
   resources :stories do
@@ -19,6 +20,18 @@ Rails.application.routes.draw do
     end
   end
 
+  # get '/stories/:sc_track' => 'stories#show', :as => "sc_track"
+  get '/playlists/:playlist_id/:sc_track' => 'stories#playlists'
+  
+  get '/stats' => 'charts#stats', :as => 'stats'
+  get '/charts' => 'charts#charts', :as => 'charts_json'
+  get '/login' => 'connect#login'
+  get '/login_message' => 'connect#login_message'
+  get '/verify' => 'connect#verify'
+
+  match '/404', to: 'errors#file_not_found', via: :all
+  match '/422', to: 'errors#unprocessable', via: :all
+  match '/500', to: 'errors#internal_server_error', via: :all
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

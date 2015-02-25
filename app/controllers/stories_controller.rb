@@ -1,22 +1,51 @@
 require 'soundcloud'
-# Rails magically does the requires for you
-# require './models/story'
-# require './models/vote'
 
 class StoriesController < ApplicationController
   
   def index
+    @stories = Story.all
+  end
+
+  def new
+    client = Soundcloud.new(:access_token => session[:access_token_hash]["access_token"])
+    @current_user = client.get('/me')
+    @current_user_tracks = client.get('/me/tracks')
+    @story = Story.new
+    @places = Place.all
+  end
+
+  def create
+    # render plain: params.inspect
+    @story = Story.new(story_params)
+
+    if @story.save!
+      # redirect_to story_path(@story)
+      redirect_to story_path(@story.sc_track)
+    else
+      puts "Error was #{@story.errors}"   
+      client = Soundcloud.new(:access_token => session[:access_token_hash]["access_token"])    
+      @current_user = client.get('/me')
+      @current_user_tracks = client.get('/me/tracks')
+      @places = Place.all
+      render :new     
+    end  
   end
 
   def show
     client = SoundCloud.new(:client_id => '69e93cf2209402f6f3137a6452cf498f') 
-    @story = Story.find_by_sc_track(params[:sc_track])
-    display_place(@story)
-    if @story != nil
-      @story_at_sc = client.get("/tracks/#{params[:sc_track]}")
-      diplay_image(@story_at_sc)
+    @story = Story.find_by_sc_track(params[:id])
+    if @story.nil?
+      head 404
+    else
+      # @story.title = Story.find_by_sc_track(params[:id]).title
+      display_place(@story)
+      
+         
+      # @story_at_sc = client.get("/tracks/#{params[:sc_track]}")
+      @story_at_sc = client.get("/tracks/#{@story.sc_track}")
+      display_image(@story_at_sc)
     end
-  end
+  end 
 
   def upvote
     @story = Story.find(params[:id])
@@ -44,7 +73,7 @@ class StoriesController < ApplicationController
     @playlist.tracks.each do |track|
       begin
         if track.id == @story_at_sc.id 
-          diplay_image(@story_at_sc) 
+          display_image(@story_at_sc) 
         end
       rescue Exception => e
         e.message
@@ -52,7 +81,7 @@ class StoriesController < ApplicationController
     end
   end
 
-  def diplay_image(story_at_sc)
+  def display_image(story_at_sc)
       @artwork = story_at_sc.artwork_url
       if @artwork == nil
         @artwork = story_at_sc.user.avatar_url
@@ -61,14 +90,16 @@ class StoriesController < ApplicationController
   end  
 
   def display_place(story)
-      unless story.nil?
-        unless story.sc_track.nil?
-          place = Place.find_by_id(story.place.id)
-          if place != nil
-           @place_name = place.name
-          end
-        end 
-      end  
+    unless story.sc_track.nil?
+      place = Place.find_by_id(story.place.id)
+      if place != nil
+       @place_name = place.name
+      end
+    end     
   end 
 
+  private
+    def story_params
+      params.require(:story).permit(:sc_track, :title, :place_id)
+    end
 end
