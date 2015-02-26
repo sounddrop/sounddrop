@@ -1,10 +1,8 @@
 
 <%if @story %>
   <div class="artwork">
-     <img class="container-image" src="<%=@artwork%>">
-    <div class="play-button">
-      <span class="glyphicon glyphicon-play-circle"></span>
-    </div> 
+    <img class="container-image" src="<%=@artwork%>">
+    <%= render partial: "load_playbuttons" %>
   </div>
 
   <div class="container-like-button">
@@ -33,6 +31,6 @@
 
 <%= render partial: "create_comments" %>
 <%else%>
-    <h1>Oops! We couldn't find this story, try again!! </h1>
+    <h1>Oops! We couldn't find this story!!</h1>
 <%end%>
 

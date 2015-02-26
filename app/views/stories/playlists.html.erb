@@ -2,9 +2,7 @@
   <div class="artwork">
     <div class="container-play-button"> 
       <img class="container-image" src="<%=@artwork%>">
-      <div class="play-button">
-         <span class="glyphicon glyphicon-play-circle"></span>
-      </div>
+      <%= render partial: "load_playbuttons" %>
     </div>
   </div>
 
