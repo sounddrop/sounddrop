@@ -14,7 +14,6 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
-/:memory
 /public/
 vendor/bundle
 comments.csv
