@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  get 'errors/file_not_found'
-
-  get 'errors/unprocessable'
-
-  get 'errors/internal_server_error'
-
   #get 'welcome/index'
 
   root 'welcome#index'
@@ -29,9 +23,6 @@ Rails.application.routes.draw do
   get '/login_message' => 'connect#login_message'
   get '/verify' => 'connect#verify'
 
-  match '/404', via: :all, to: 'errors#not_found'
-  match '/422', via: :all, to: 'errors#unprocessable_entity'
-  match '/500', via: :all, to: 'errors#server_error'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

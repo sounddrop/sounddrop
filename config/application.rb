@@ -11,7 +11,6 @@ module Anchor
     #config.force_ssl = true  Forces the use of an SSL connection. We don't have a certificate though.
   
     config.assets.paths << "#{Rails}/vendor/assets/fonts"
-    config.exceptions_app = self.routes
 
     #config.assets.enable = false
     
