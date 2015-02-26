@@ -35,13 +35,9 @@ class StoriesController < ApplicationController
     client = SoundCloud.new(:client_id => '69e93cf2209402f6f3137a6452cf498f') 
     @story = Story.find_by_sc_track(params[:id])
     if @story.nil?
-      head 404
+      page_not_found
     else
-      # @story.title = Story.find_by_sc_track(params[:id]).title
       display_place(@story)
-      
-         
-      # @story_at_sc = client.get("/tracks/#{params[:sc_track]}")
       @story_at_sc = client.get("/tracks/#{@story.sc_track}")
       display_image(@story_at_sc)
     end
@@ -63,22 +59,26 @@ class StoriesController < ApplicationController
 
   def playlists
     @story = Story.find_by_sc_track(params[:sc_track])
-    display_place(@story)
-    client = SoundCloud.new(:client_id => '69e93cf2209402f6f3137a6452cf498f')
-    @playlist = client.get("/playlists/#{params[:playlist_id]}") 
-    @current_track_id = params[:sc_track].to_i 
-    @story_at_sc = @playlist.tracks.find do |track|
-      track[:id] == params[:sc_track].to_i
-    end
-    @playlist.tracks.each do |track|
-      begin
-        if track.id == @story_at_sc.id 
-          display_image(@story_at_sc) 
-        end
-      rescue Exception => e
-        e.message
+    if @story.nil?
+      page_not_found
+    else
+      display_place(@story)
+      client = SoundCloud.new(:client_id => '69e93cf2209402f6f3137a6452cf498f')
+      @playlist = client.get("/playlists/#{params[:playlist_id]}") 
+      @current_track_id = params[:sc_track].to_i 
+      @story_at_sc = @playlist.tracks.find do |track|
+        track[:id] == params[:sc_track].to_i
       end
-    end
+      @playlist.tracks.each do |track|
+        begin
+          if track.id == @story_at_sc.id 
+            display_image(@story_at_sc) 
+          end
+        rescue Exception => e
+          e.message
+        end
+      end
+    end  
   end
 
   def display_image(story_at_sc)

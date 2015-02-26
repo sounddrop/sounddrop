@@ -1,5 +1,3 @@
-
-<%if @story %>
   <div class="artwork">
     <img class="container-image" src="<%=@artwork%>">
     <%= render partial: "load_playbuttons" %>
@@ -30,7 +28,4 @@
 </script>
 
 <%= render partial: "create_comments" %>
-<%else%>
-    <h1>Oops! We couldn't find this story!!</h1>
-<%end%>
 

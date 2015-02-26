@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  get "/404", :to => "errors#error_404"
+
   #get 'welcome/index'
 
   root 'welcome#index'
