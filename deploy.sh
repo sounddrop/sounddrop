@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ssh-add
-ssh -A root@178.62.207.114 <<END
+ssh -A root@sounddrop.audio <<END
 cd /home/rails
 git pull
 bundle install --deployment
