@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/cloudyMBC/soundanchor.svg?branch=master)](https://travis-ci.org/cloudyMBC/soundanchor)
 
+This is the repository for SoundDrop. <a href="http://sounddrop.audio">Read about and view SoundDrop here.</a>
+
 ## System Setup
 
 * Follow these instruction only for creating the droplet https://www.digitalocean.com/community/tutorials/how-to-use-the-1-click-ruby-on-rails-on-ubuntu-14-04-image
