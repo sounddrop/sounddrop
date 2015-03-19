@@ -14,8 +14,7 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
-/:memory
 /public/
-vendor/bundle
+vendor/
 comments.csv
 backup.sql
