@@ -15,5 +15,3 @@
 //= require turbolinks
 //= require bootstrap
 //= require analytics
-
-
