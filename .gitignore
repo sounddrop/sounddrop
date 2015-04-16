@@ -18,3 +18,4 @@
 vendor/
 comments.csv
 backup.sql
+.DS_Store
