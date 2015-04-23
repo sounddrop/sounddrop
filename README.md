@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/cloudyMBC/soundanchor.svg?branch=master)](https://travis-ci.org/cloudyMBC/soundanchor)
+[![Build Status](https://travis-ci.org/cloudyMBC/sounddrop.svg?branch=master)](https://travis-ci.org/cloudyMBC/sounddrop)
 
 This is the repository for SoundDrop. <a href="http://sounddrop.audio">Read about and view SoundDrop here.</a>
 
@@ -11,7 +11,7 @@ Prerequisites:
 
 Install bundler and run bundle install:
 
-``` 
+```
 gem install bundler
 bundle install
 ```
@@ -39,7 +39,7 @@ See a SoundDrop playlist: http://localhost:3000/playlists/74584890/187471639
 ## Debugging server problems in production
 
 
-Look at the Rails logs 
+Look at the Rails logs
 ```
 cd /home/rails
 tail -100 log/production.log
@@ -53,14 +53,14 @@ tail -100 /home/unicorn/log/unicorn.log
 
 Restart server `service unicorn restart`
 
-## 
+##
 
-* Follow these instruction only for creating the droplet https://www.digitalocean.com/community/tutorials/how-to-use-the-1-click-ruby-on-rails-on-ubuntu-14-04-image
+* Follow these instruction only for [creating the Droplet][droplet]
+
+[droplet]: https://www.digitalocean.com/community/tutorials/how-to-use-the-1-click-ruby-on-rails-on-ubuntu-14-04-image
 
 * Added ssh keys
 * login and install git: `apt-get install git`
 * Remove the sample app `rm -Rf /home/rails`
-* Clone `cd /home; git clone git@github.com:cloudyMBC/soundanchor.git rails`
+* Clone `cd /home; git clone git@github.com:cloudyMBC/sounddrop.git rails`
 * `chown -R rails:www-data .`
-
-
