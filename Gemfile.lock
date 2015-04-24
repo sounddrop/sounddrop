@@ -182,7 +182,7 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
-    websocket (1.2.1)
+    websocket (1.2.2)
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
