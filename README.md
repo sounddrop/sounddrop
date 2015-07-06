@@ -21,18 +21,17 @@ Setup the development database:
 bundle exec rake db:create
 bundle exec rake db:migrate
 bundle exec rake db:seed
-
 ```
 Start rails:
 
 ```
-bundle exec rails s
+rails s
 ```
 See a SoundDrop playlist: http://localhost:3000/playlists/74584890/187471639
 
 Run tests:
 ````
-bundle exec fspec
+bundle exec rspec
 ````
 
 ## Contribution
@@ -75,5 +74,5 @@ Restart server `service unicorn restart`
 * Added ssh keys
 * login and install git: `apt-get install git`
 * Remove the sample app `rm -Rf /home/rails`
-* Clone `cd /home; git clone git@github.com:cloudyMBC/sounddrop.git rails`
+* Clone `cd /home; git clone git@github.com:sounddrop/sounddrop.git rails`
 * `chown -R rails:www-data .`
