@@ -6,7 +6,7 @@ This is the repository for SoundDrop. <a href="http://sounddrop.audio">Read abou
 
 Prerequisites:
 
-* ruby 2.1.3
+* ruby 2.2.2
 * mysql libraries. If you are using a mac, do `brew install mysql`
 
 Install bundler and run bundle install:
