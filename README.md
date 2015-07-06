@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/cloudyMBC/sounddrop.svg?branch=master)](https://travis-ci.org/cloudyMBC/sounddrop)
+[![Build Status](https://travis-ci.org/sounddrop/sounddrop.svg?branch=master)](https://travis-ci.org/sounddrop/sounddrop)
 
 This is the repository for SoundDrop. <a href="http://sounddrop.audio">Read about and view SoundDrop here.</a>
 
@@ -29,6 +29,19 @@ Start rails:
 bundle exec rails s
 ```
 See a SoundDrop playlist: http://localhost:3000/playlists/74584890/187471639
+
+Run tests:
+````
+bundle exec fspec
+````
+
+## Contribution
+
+Small fixes can be pushed straight to master. For new features, please drop a line to sounddrop@googlegroups.com
+
+Please
+* ensure master build is always passing (run your tests locally before pushing to master)
+* ensure master is always what is deployed (deploy your change to master)
 
 ## Deployment
 
