@@ -13,13 +13,13 @@
 
 ActiveRecord::Schema.define(version: 20150203104556) do
 
-  create_table "comments", force: true do |t|
+  create_table "comments", force: :cascade do |t|
     t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "places", force: true do |t|
+  create_table "places", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20150203104556) do
 
   add_index "places", ["name"], name: "index_places_on_name", unique: true
 
-  create_table "stories", force: true do |t|
+  create_table "stories", force: :cascade do |t|
     t.string   "title"
     t.integer  "sc_track"
     t.integer  "user_id"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20150203104556) do
     t.integer  "place_id"
   end
 
-  create_table "votes", force: true do |t|
+  create_table "votes", force: :cascade do |t|
     t.integer  "story_id"
     t.datetime "created_at"
     t.datetime "updated_at"
