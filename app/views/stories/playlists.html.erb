@@ -1,5 +1,5 @@
   <div class="artwork">
-    <div class="container-play-button"> 
+    <div class="container-play-button">
       <img class="container-image" src="<%=@artwork%>">
       <%= render partial: "load_playbuttons" %>
     </div>
@@ -15,13 +15,13 @@
   </div>
  <div class ="story-title">
     <p><%=@story.title%></p>
- </div> 
-  <div class="story-place"> 
+ </div>
+  <div class="story-place">
       <%=@place_name %>
   </div>
 
   <div class="container-fluid">
-    <h4>Hear more stories:</h4> 
+    <h4>Hear more stories:</h4>
       <% @playlist.tracks.each do |track| %>
         <% if track.id != @story_at_sc.id %>
           <a href="/playlists/<%=@playlist.id%>/<%=track.id%>" data-no-turbolink><%= track.title %></a></br>
@@ -31,12 +31,12 @@
 
 <script>
   var story = {
-    id: <%= @story.id %>   
+    id: <%= @story.id %>
   }
   var storyAtSC = {
-     id: <%= @story_at_sc.id %> 
+     id: <%= @story_at_sc.id %>
   }
- 
+
 </script>
 
 <%= render partial: "create_comments" %>

@@ -1,5 +1,5 @@
 class ConnectController < ApplicationController
-  
+
   require 'soundcloud'
 
   def login_message

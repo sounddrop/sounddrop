@@ -10,7 +10,7 @@ $(document).on("ready page:load", function(){
       $.ajax('/comments/index').done(function(comments) {
         $("#hide_comments").html(comments).show();
         $('#new_comment').val('');
-      });     
+      });
     });
   });
 });

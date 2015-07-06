@@ -11,13 +11,13 @@
       <br><%= f.radio_button(:sc_track, track.id) %>
       <%= f.label(track.id, track.title) %></br>
   <% end %></br><p></br>
-    
+
   <h4>Choose a Place:</h4>
 
   <% @places.each do |place| %>
     <p><%= f.radio_button(:place_id, place.id) %>
     <%= f.label(:name, place.name) %></p>
-  <% end %>   
+  <% end %>
 <%= submit_tag("Save") %>
 <% end %>
 

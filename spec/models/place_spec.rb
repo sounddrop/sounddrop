@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Place, :type => :model do
-  
+
  it 'has multiple stories' do
   place = Place.new
   place.name = "Test"

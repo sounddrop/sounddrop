@@ -9,11 +9,11 @@ Bundler.require(*Rails.groups)
 module Sounddrop
   class Application < Rails::Application
     #config.force_ssl = true  Forces the use of an SSL connection. We don't have a certificate though.
-  
+
     config.assets.paths << "#{Rails}/vendor/assets/fonts"
 
     #config.assets.enable = false
-    
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

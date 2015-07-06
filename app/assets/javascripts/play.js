@@ -85,7 +85,7 @@ $(document).on("ready page:load", function() {
   });
 
 
-  //Fetch stream 
+  //Fetch stream
   setTimeout(function() {
     SC.stream(storyAtSC.id, options, function(sound) {
       console.log("Streaming");
@@ -98,7 +98,7 @@ $(document).on("ready page:load", function() {
         playPauseButton.html('<span class="glyphicon glyphicon-pause"></span>');
         state.isPlaying = true;
         state.isBuffering = false;
-     
+
       }
     });
   }, 3000);

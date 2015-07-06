@@ -10,7 +10,7 @@ RSpec.describe Story, :type => :model do
     story_test = Story.create!(title: "Test", sc_track: "654321", place_id: "1")
     expect(story_test.place_id).to eql 1
   end
-  
+
   it 'has only one place' do
     story_test = Story.create!(title: "Test", sc_track: "654321", place_id: "1", place_id: "2", place_id: "3")
     expect(story_test.place_id).to eql 3
@@ -19,5 +19,5 @@ RSpec.describe Story, :type => :model do
   it 'must have numerical sc_track' do
     expect{Story.create!(title: "Test", sc_track: "abc", place_id: "1")}.to raise_error
   end
-  
+
 end
