@@ -14,6 +14,8 @@ body {
 
 }
 
+
+
 .sounddrop-image {
   height: 50px;
 }
@@ -241,6 +243,19 @@ input, button, select {
   .glyphicon-backward {
     font-size: 40px;
   }
+}
+
+.story-info {
+  padding-left: 150px;
+  padding-right: 15px;
+  
+}
+
+.story-description {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .story-place {
