@@ -25,7 +25,7 @@ bundle exec rake db:seed
 Start rails:
 
 ```
-bundle exec rails s
+rails s
 ```
 See a SoundDrop playlist: http://localhost:3000/playlists/74584890/187471639
 
