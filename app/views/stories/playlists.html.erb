@@ -13,12 +13,20 @@
         <%= @story.votes.count %>
       </div>
   </div>
- <div class ="story-title">
-    <p><%=@story.title%></p>
- </div>
-  <div class="story-place">
-      <%=@place_name %>
-  </div>
+
+<div class="story-info">
+   <div class ="story-title">
+      <p><%=@story.title%></p>
+   </div>
+
+    <div class ="story-description">
+      <p><%=@story.description%></p>
+   </div>
+    
+   <div class="story-place">
+      <p><%=@place_name %></p>
+   </div>
+</div>
 
   <div class="container-fluid">
     <h4>Hear more stories:</h4>

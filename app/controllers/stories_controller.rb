@@ -100,6 +100,6 @@ class StoriesController < ApplicationController
 
   private
     def story_params
-      params.require(:story).permit(:sc_track, :title, :place_id)
+      params.require(:story).permit(:sc_track, :title, :place_id, :description)
     end
 end
