@@ -2,12 +2,12 @@ require 'rails_helper'
 
 RSpec.describe Place, :type => :model do
 
- it 'has multiple stories' do
+ it 'has multiple drops' do
   place = Place.new
   place.name = "Test"
   place.save!
   # same as: Place.create!(name: "Test")
-  expect(place.stories).to eq []
+  expect(place.drops).to eq []
  end
 
   it 'must have a name' do
