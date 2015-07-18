@@ -1,24 +1,29 @@
 require 'rails_helper'
 
-RSpec.describe Place, :type => :model do
+RSpec.describe Place do
+  let(:place) { create :place }
+  let(:story) { create :story, place: place }
 
- it 'has multiple stories' do
-  place = Place.new
-  place.name = "Test"
-  place.save!
-  # same as: Place.create!(name: "Test")
-  expect(place.stories).to eq []
- end
-
-  it 'must have a name' do
-    expect {Place.create!}.to raise_error
+  describe 'associations' do
+    it { is_expected.to have_many :stories }
   end
 
-  it 'raises an error when a name is used twice' do
-    Place.create!(name: "Test")
-    place = Place.new
-    place.name = "Test"
-    expect {place.save!}.to raise_error
+  describe 'validations' do
+    it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_uniqueness_of(:name) }
+  end
+
+  it 'has multiple stories' do
+    expect(place.reload.stories).to include story
+  end
+
+  describe 'place names must be unique' do
+    let!(:place1) { create :place }
+
+    specify do
+      expect{ place.save! }.to raise_error(ActiveRecord::RecordInvalid)
+    end
   end
 end
+
 

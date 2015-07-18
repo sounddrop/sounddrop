@@ -41,6 +41,10 @@ group :production do
   gem 'mysql'
 end
 
+group :test do
+  gem 'shoulda-matchers', require: false
+end
+
 group :development, :test do
   gem 'capybara'
   gem 'pry'
@@ -48,6 +52,7 @@ group :development, :test do
   gem 'rspec'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
+  gem 'factory_girl_rails'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
