@@ -18,9 +18,7 @@ bundle install
 Setup the development database:
 
 ```
-bundle exec rake db:create
-bundle exec rake db:migrate
-bundle exec rake db:seed
+rake db:setup
 ```
 Start rails:
 
@@ -29,7 +27,17 @@ rails s
 ```
 See a SoundDrop playlist: http://localhost:3000/playlists/74584890/187471639
 
-Run tests:
+## How to run tests
+
+Setup test database
+
+For bash:
+````
+RAILS_ENV=test rake db:setup
+````
+For fish
+````
+env RAILS_ENV=test rake db:setup
 ````
 bundle exec rspec
 ````
