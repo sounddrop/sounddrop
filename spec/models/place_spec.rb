@@ -2,10 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Place do
   let(:place) { create :place }
-  let(:story) { create :story, place: place }
+  let(:drop) { create :drop, place: place }
 
   describe 'associations' do
-    it { is_expected.to have_many :stories }
+    it { is_expected.to have_many :drops }
   end
 
   describe 'validations' do
@@ -13,8 +13,8 @@ RSpec.describe Place do
     it { is_expected.to validate_uniqueness_of(:name) }
   end
 
-  it 'has multiple stories' do
-    expect(place.reload.stories).to include story
+  it 'has multiple drops' do
+    expect(place.reload.drops).to include drop
   end
 
   describe 'place names must be unique' do

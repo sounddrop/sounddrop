@@ -16,16 +16,16 @@
       |date| date.to_s
     end
 
-    @stories = Story.all
-    @story_votes = @stories.map do |story|
-      title = story.title
-      # place = Place.find_by_story_id(story.id)
+    @drops = Drop.all
+    @drop_votes = @drops.map do |drop|
+      title = drop.title
+      # place = Place.find_by_drop_id(drop.id)
       votes = dateF.upto(dateT).map do |date|
-        story.votes.total_on(date).to_i
+        drop.votes.total_on(date).to_i
       end
       {votes: votes, title: title}  # , place: place.name
     end
 
-    render json: { categories: @categories, stats: @story_votes }
+    render json: { categories: @categories, stats: @drop_votes }
   end
 end

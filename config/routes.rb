@@ -11,14 +11,14 @@ Rails.application.routes.draw do
 
 
   post'comments' => 'comments#create'
-  resources :stories do
+  resources :drops do
     member do
       post 'upvote'
     end
   end
 
-  # get '/stories/:sc_track' => 'stories#show', :as => "sc_track"
-  get '/playlists/:playlist_id/:sc_track' => 'stories#playlists'
+  # get '/drops/:sc_track' => 'drops#show', :as => "sc_track"
+  get '/playlists/:playlist_id/:sc_track' => 'drops#playlists'
 
   get '/stats' => 'charts#stats', :as => 'stats'
   get '/charts' => 'charts#charts', :as => 'charts_json'

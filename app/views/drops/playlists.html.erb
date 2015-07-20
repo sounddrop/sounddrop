@@ -7,34 +7,34 @@
 
   <div class="container-like-button">
       <div id="likebutton" class="like"></br>
-        <%= button_to "like", upvote_story_path(@story), {form_class: "button-like", :id => "like_button", method: :post} %>
+        <%= button_to "like", upvote_drop_path(@drop), {form_class: "button-like", :id => "like_button", method: :post} %>
       </div>
       <div id="votes" class="vote">
-        <%= @story.votes.count %>
+        <%= @drop.votes.count %>
       </div>
   </div>
- <div class ="story-title">
-    <p><%=@story.title%></p>
+ <div class ="drop-title">
+    <p><%=@drop.title%></p>
  </div>
-  <div class="story-place">
+  <div class="drop-place">
       <%=@place_name %>
   </div>
 
   <div class="container-fluid">
-    <h4>Hear more stories:</h4>
+    <h4>Hear more drops:</h4>
       <% @playlist.tracks.each do |track| %>
-        <% if track.id != @story_at_sc.id %>
+        <% if track.id != @drop_at_sc.id %>
           <a href="/playlists/<%=@playlist.id%>/<%=track.id%>" data-no-turbolink><%= track.title %></a></br>
         <% end %>
       <% end %><br>
   </div>
 
 <script>
-  var story = {
-    id: <%= @story.id %>
+  var drop = {
+    id: <%= @drop.id %>
   }
-  var storyAtSC = {
-     id: <%= @story_at_sc.id %>
+  var dropAtSC = {
+     id: <%= @drop_at_sc.id %>
   }
 
 </script>
