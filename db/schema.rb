@@ -11,12 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150203104556) do
+ActiveRecord::Schema.define(version: 20150717150141) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "drops", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "sc_track"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "place_id"
+    t.string   "description"
   end
 
   create_table "places", force: :cascade do |t|
@@ -27,17 +37,8 @@ ActiveRecord::Schema.define(version: 20150203104556) do
 
   add_index "places", ["name"], name: "index_places_on_name", unique: true
 
-  create_table "stories", force: :cascade do |t|
-    t.string   "title"
-    t.integer  "sc_track"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "place_id"
-  end
-
   create_table "votes", force: :cascade do |t|
-    t.integer  "story_id"
+    t.integer  "drop_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

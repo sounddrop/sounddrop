@@ -1,7 +1,7 @@
 require 'date'
 require 'active_support/all'
 
-class Story < ActiveRecord::Base
+class Drop < ActiveRecord::Base
   has_many :votes, dependent: :destroy
   belongs_to :user
   belongs_to :place
