@@ -19,6 +19,6 @@ class ConnectController < ApplicationController
     code = params[:code]
     access_token_hash = client.exchange_token(:code => code)
     session[:access_token_hash] = access_token_hash
-    redirect_to new_story_path
+    redirect_to new_drop_path
   end
 end
