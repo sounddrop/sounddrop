@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(version: 20150717150141) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "place_id"
-    t.string   "description"
   end
 
   create_table "places", force: :cascade do |t|
