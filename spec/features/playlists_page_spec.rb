@@ -50,13 +50,6 @@ describe "Playlist page" , type: :feature do
     expect(page).to have_selector("input")
   end
 
- # scenario "writing a comment and sending it saves the comment and shows it on page", js: true do
- #   visit "/playlists/74584890/187471639"
- #   fill_in "new_comment", with: "Test comment"
- #   click_button "Send Comment"
- #   expect(page).to have_content("Test comment")
- # end
-
   scenario "clicking the like button increases the likes of a drop", js: true do
     visit "/playlists/74584890/187472038"
     likes_before = page.find("#votes").text.to_i
