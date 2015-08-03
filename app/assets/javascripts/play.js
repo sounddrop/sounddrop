@@ -1,5 +1,5 @@
 $(document).on("ready page:load", function() {
-  var storyAtPlay;
+  var dropAtPlay;
   var playPauseButton = $('.play-button');
   var state = {
     isPlaying: false,
@@ -38,12 +38,12 @@ $(document).on("ready page:load", function() {
   function setupPlayOrPauseState(){
     if(state.isPlaying) {
       hideForwardAndRewindButton();
-      storyAtPlay.pause();
+      dropAtPlay.pause();
       playPauseButton.html('<span class="glyphicon glyphicon-play-circle"></span>');
       state.isPlaying = false;
     }else {
       showForwardAndRewindButton();
-      storyAtPlay.play();
+      dropAtPlay.play();
       playPauseButton.html('<span class="glyphicon glyphicon-pause"></span>');
       state.isPlaying = true;
     }
@@ -55,27 +55,27 @@ $(document).on("ready page:load", function() {
 
   $('.rewind').on('click', function(event) {
     //pause();
-    var rewind = storyAtPlay.position - 5000;
-    if (rewind > 0 && rewind < storyAtPlay.duration) {
-      storyAtPlay.setPosition(rewind);
+    var rewind = dropAtPlay.position - 5000;
+    if (rewind > 0 && rewind < dropAtPlay.duration) {
+      dropAtPlay.setPosition(rewind);
     } else {
-      storyAtPlay.setPosition(0);
+      dropAtPlay.setPosition(0);
     }
   });
 
   $('.forward').on('click', function(event) {
     //pause();
-    var forward = storyAtPlay.position + 5000;
-    if (forward < storyAtPlay.duration) {
-      storyAtPlay.setPosition(forward);
+    var forward = dropAtPlay.position + 5000;
+    if (forward < dropAtPlay.duration) {
+      dropAtPlay.setPosition(forward);
     } else {
-      storyAtPlay.setPosition(storyAtPlay.duration);
+      dropAtPlay.setPosition(dropAtPlay.duration);
     }
   });
 
   //setup on click
   playPauseButton.on('click', function(event) {
-    if (storyAtPlay) {
+    if (dropAtPlay) {
       showForwardAndRewindButton();
       setupPlayOrPauseState();
     }else{
@@ -87,14 +87,14 @@ $(document).on("ready page:load", function() {
 
   //Fetch stream
   setTimeout(function() {
-    SC.stream(storyAtSC.id, options, function(sound) {
+    SC.stream(dropAtSC.id, options, function(sound) {
       console.log("Streaming");
-      //if we comment this line we can test the else ( if story is not true)
-      storyAtPlay = sound;
-      console.log("story ready");
+      //if we comment this line we can test the else ( if drop is not true)
+      dropAtPlay = sound;
+      console.log("drop ready");
       if (state.isBuffering) {
         showForwardAndRewindButton();
-        storyAtPlay.play();
+        dropAtPlay.play();
         playPauseButton.html('<span class="glyphicon glyphicon-pause"></span>');
         state.isPlaying = true;
         state.isBuffering = false;
