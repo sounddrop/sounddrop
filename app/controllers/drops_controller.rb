@@ -15,20 +15,27 @@ class DropsController < ApplicationController
   end
 
   def create
-    # render plain: params.inspect
-    @drop = Drop.new(drop_params)
+    url = params["sc_url"]
 
-    if @drop.save!
-      # redirect_to drop_path(@drop)
-      redirect_to drop_path(@drop.sc_track)
-    else
-      puts "Error was #{@drop.errors}"
-      client = Soundcloud.new(:access_token => session[:access_token_hash]["access_token"])
-      @current_user = client.get('/me')
-      @current_user_tracks = client.get('/me/tracks')
-      @places = Place.all
-      render :new
+    if url =~ /^https?:\/\/(www\.)?soundcloud\.com\/.+\/.+$/i
+      render plain: "yay!"
+    else 
+      render plain: "Bad Soundcloud url. try again"
     end
+
+    #@drop = Drop.new(drop_params)
+
+    #if @drop.save!
+      # redirect_to drop_path(@drop)
+     # redirect_to drop_path(@drop.sc_track)
+  #  else
+   #   puts "Error was #{@drop.errors}"
+    #  client = Soundcloud.new(:access_token => session[:access_token_hash]["access_token"])
+     # @current_user = client.get('/me')
+   #   @current_user_tracks = client.get('/me/tracks')
+    #  @places = Place.all
+     # render :new
+    #end
   end
 
   def show
