@@ -90,12 +90,7 @@ input, button, select {
   height: 100%;
   position: relative;
 }
-.list_comments {
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto; 
-}
+
 .container-play-button {
   margin-right: auto;
   margin-left: auto;

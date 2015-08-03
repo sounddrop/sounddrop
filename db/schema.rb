@@ -11,13 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150717150141) do
-
-  create_table "comments", force: :cascade do |t|
-    t.text     "text"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(version: 20150727170455) do
 
   create_table "drops", force: :cascade do |t|
     t.string   "title"
