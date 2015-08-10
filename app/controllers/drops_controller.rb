@@ -30,10 +30,9 @@ class DropsController < ApplicationController
 
     
 
-    if @drop.save!
+    if @drop.save
       redirect_to drop_path(@drop.sc_track)
     else
-      puts "Error was #{@drop.errors}"
       client = Soundcloud.new(:access_token => session[:access_token_hash]["access_token"])
       @current_user = client.get('/me')
       @current_user_tracks = client.get('/me/tracks')
