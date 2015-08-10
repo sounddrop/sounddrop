@@ -1,11 +1,10 @@
 <h1>Hello, <%= @current_user.username %></h1>
 <p></br>
 <p><h4>Create your own Sounddrop</h4>
-<% @drop.errors.messages.each do |message| %>
-  <%= message.inspect%>
-<% end %>
+
 
 <%= form_for @drop, url: drops_path do |f| %>
+<%= render 'shared/error_messages', object: f.object %>
   <%= label_tag(:sc_url, "Enter a Soundcloud url:") %>
   <%= text_field_tag(:sc_url) %>
   </br><p></br>
