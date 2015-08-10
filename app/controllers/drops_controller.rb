@@ -7,21 +7,15 @@ class DropsController < ApplicationController
   end
 
   def new
-    client = Soundcloud.new(:access_token => session[:access_token_hash]["access_token"])
-    begin
+    if session[:access_token_hash].nil?
+      render :login_redirect
+    else
+      client = Soundcloud.new(:access_token => session[:access_token_hash]["access_token"])
       @current_user = client.get('/me')
-    rescue => e
-     if e.response.code == 401
-        redirect_to login_url
-      else 
-        render plain: "There was some error, namely #{e.message}"
-     end
-  end
-
-
-    #@current_user_tracks = client.get('/me/tracks')
-    #@drop = Drop.new
-    #@places = Place.all
+      @current_user_tracks = client.get('/me/tracks')
+      @drop = Drop.new
+      @places = Place.all
+    end
   end
 
   def create
