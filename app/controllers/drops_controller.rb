@@ -15,11 +15,22 @@ class DropsController < ApplicationController
   end
 
   def create
-    # render plain: params.inspect
+    url = params["sc_url"]
+    sc_url_regex = /^https?:\/\/(www\.)?soundcloud\.com\/.+\/.+$/i
+
     @drop = Drop.new(drop_params)
 
+    if !params[:drop][:sc_track].present? and url =~ sc_url_regex
+      client = Soundcloud.new({
+        :client_id => '69e93cf2209402f6f3137a6452cf498f'
+        })
+      track = client.get("/resolve?url=#{url}")
+      @drop.sc_track = track.id
+    end
+
+    
+
     if @drop.save!
-      # redirect_to drop_path(@drop)
       redirect_to drop_path(@drop.sc_track)
     else
       puts "Error was #{@drop.errors}"
@@ -45,13 +56,13 @@ class DropsController < ApplicationController
 
   def upvote
     @drop = Drop.find(params[:id])
-    if session[:liked_stories].nil?
-      session[:liked_stories] = []
+    if session[:liked_drops].nil?
+      session[:liked_drops] = []
     end
     unless
-      session[:liked_stories].include?(@drop.id)
+      session[:liked_drops].include?(@drop.id)
       @create_votes = @drop.votes.create
-      session[:liked_stories] << @drop.id
+      session[:liked_drops] << @drop.id
     end
     @count_votes = @drop.votes.count
     render json: {count_votes: @count_votes, user_session: session[:liked_stories].inspect}
