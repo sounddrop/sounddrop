@@ -6,6 +6,6 @@ class Drop < ActiveRecord::Base
   belongs_to :user
   belongs_to :place
 
-  validates :sc_track, presence: true, numericality: { only_integer: true }
-  validates :place_id, presence: true
+  validates :sc_track, presence: true, numericality: { only_integer: true, message: "Sorry, this isn't a valid SoundCloud link. Try again!"}
+  validates :place_id, presence: { message: "Please pick a place for your drop."}
 end

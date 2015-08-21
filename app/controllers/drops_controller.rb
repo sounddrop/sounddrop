@@ -28,8 +28,6 @@ class DropsController < ApplicationController
       @drop.sc_track = track.id
     end
 
-    
-
     if @drop.save
       redirect_to drop_path(@drop.sc_track)
     else
