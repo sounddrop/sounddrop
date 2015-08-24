@@ -6,15 +6,15 @@ class ConnectController < ApplicationController
   end
 
   def login
-    client = SoundCloud.new({ client_id: '69e93cf2209402f6f3137a6452cf498f',
-                              client_secret: '8ca711ab13836dc62482164d3a952eda',
+    client = SoundCloud.new({ client_id: ENV['SOUNDCLOUD_CLIENT_ID'],
+                              client_secret: ENV['SOUNDCLOUD_CLIENT_SECRET'],
                               redirect_uri: environment_url })
     redirect_to client.authorize_url()
   end
 
   def verify
-    client = SoundCloud.new({ client_id: '69e93cf2209402f6f3137a6452cf498f',
-                              client_secret: '8ca711ab13836dc62482164d3a952eda',
+    client = SoundCloud.new({ client_id: ENV['SOUNDCLOUD_CLIENT_ID'],
+                              client_secret: ENV['SOUNDCLOUD_CLIENT_SECRET'],
                               redirect_uri: environment_url })
     code = params[:code]
     access_token_hash = client.exchange_token(:code => code)
