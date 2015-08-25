@@ -17,3 +17,4 @@
 //= require analytics
 //= require upvote
 //= require play
+//= require drop
