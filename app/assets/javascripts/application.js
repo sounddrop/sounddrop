@@ -15,3 +15,5 @@
 //= require turbolinks
 //= require bootstrap
 //= require analytics
+//= require upvote
+//= require play
