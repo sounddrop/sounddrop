@@ -87,19 +87,21 @@ $(document).on("ready page:load", function() {
 
   //Fetch stream
   setTimeout(function() {
-    SC.stream(dropAtSC.id, options, function(sound) {
-      console.log("Streaming");
-      //if we comment this line we can test the else ( if drop is not true)
-      dropAtPlay = sound;
-      console.log("drop ready");
-      if (state.isBuffering) {
-        showForwardAndRewindButton();
-        dropAtPlay.play();
-        playPauseButton.html('<span class="glyphicon glyphicon-pause"></span>');
-        state.isPlaying = true;
-        state.isBuffering = false;
+    if (typeof(dropAtSC) != "undefined") {
+      SC.stream(dropAtSC.id, options, function(sound) {
+        console.log("Streaming");
+        //if we comment this line we can test the else ( if drop is not true)
+        dropAtPlay = sound;
+        console.log("drop ready");
+        if (state.isBuffering) {
+          showForwardAndRewindButton();
+          dropAtPlay.play();
+          playPauseButton.html('<span class="glyphicon glyphicon-pause"></span>');
+          state.isPlaying = true;
+          state.isBuffering = false;
 
-      }
-    });
+        }
+      });
+    }
   }, 3000);
 });
