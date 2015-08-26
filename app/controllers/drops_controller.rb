@@ -7,11 +7,15 @@ class DropsController < ApplicationController
   end
 
   def new
-    client = Soundcloud.new(:access_token => session[:access_token_hash]["access_token"])
-    @current_user = client.get('/me')
-    @current_user_tracks = client.get('/me/tracks')
-    @drop = Drop.new
-    @places = Place.all
+    if session[:access_token_hash].nil?
+      render :login_redirect
+    else
+      client = Soundcloud.new(:access_token => session[:access_token_hash]["access_token"])
+      @current_user = client.get('/me')
+      @current_user_tracks = client.get('/me/tracks')
+      @drop = Drop.new
+      @places = Place.all
+    end
   end
 
   def create
