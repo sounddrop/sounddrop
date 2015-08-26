@@ -22,7 +22,7 @@ class DropsController < ApplicationController
 
     if !params[:drop][:sc_track].present? and url =~ sc_url_regex
       client = Soundcloud.new({
-        :client_id => '69e93cf2209402f6f3137a6452cf498f'
+        :client_id => ENV['SOUNDCLOUD_CLIENT_ID']
         })
       track = client.get("/resolve?url=#{url}")
       @drop.sc_track = track.id
@@ -40,7 +40,7 @@ class DropsController < ApplicationController
   end
 
   def show
-    client = SoundCloud.new(:client_id => '69e93cf2209402f6f3137a6452cf498f')
+    client = SoundCloud.new(:client_id => ENV['SOUNDCLOUD_CLIENT_ID'])
     @drop = Drop.find_by_sc_track(params[:id])
     if @drop.nil?
       page_not_found
@@ -71,7 +71,7 @@ class DropsController < ApplicationController
       page_not_found
     else
       display_place(@drop)
-      client = SoundCloud.new(:client_id => '69e93cf2209402f6f3137a6452cf498f')
+      client = SoundCloud.new(:client_id => ENV['SOUNDCLOUD_CLIENT_ID'])
       @playlist = client.get("/playlists/#{params[:playlist_id]}")
       @current_track_id = params[:sc_track].to_i
       @drop_at_sc = @playlist.tracks.find do |track|
