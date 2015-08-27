@@ -4,7 +4,7 @@
 
 
 <%= form_for @drop, url: drops_path do |f| %>
-<%= render 'shared/error_messages', object: f.object %>
+  <%= render 'shared/error_messages', object: f.object %>
   <%= label_tag(:sc_url, "Enter a Soundcloud url:") %>
   <%= text_field_tag(:sc_url) %>
   </br><p></br>
@@ -12,8 +12,12 @@
   <h4>You have <%= @current_user.track_count %> tracks at SoundCloud:</h4>
   <%= select(:drop, :sc_track, options_for_select(@current_user_tracks.map { |t| [t.title, t.id]}), :include_blank => true) %>
   </br><p></br>
-  <%= label_tag(:place_id, "choose a place:") %>
-  <%= select(:drop, :place_id, options_for_select(@places.map { |p| [p.name, p.id]})) %>
+
+  <%= f.fields_for :place do |ff| %>
+    <%= ff.label(:name, "name a place:") %>
+    <%= ff.text_field(:name)%>
+  <% end %>
+
   </br><p></br>
   <%= submit_tag("Save") %>
 <% end %>

@@ -22,7 +22,8 @@ class DropsController < ApplicationController
     url = params["sc_url"]
     sc_url_regex = /^https?:\/\/(www\.)?soundcloud\.com\/.+\/.+$/i
 
-    @drop = Drop.new(drop_params)
+    @place = Place.create(place_params)
+    @drop = Drop.new(drop_params.merge({place_id: @place.id}))
 
     if !params[:drop][:sc_track].present? and url =~ sc_url_regex
       client = Soundcloud.new({
@@ -112,6 +113,9 @@ class DropsController < ApplicationController
 
   private
     def drop_params
-      params.require(:drop).permit(:sc_track, :title, :place_id)
+      params.require(:drop).permit(:sc_track, :title)
+    end
+    def place_params
+      params.require(:drop).require(:place).permit(:name)
     end
 end
