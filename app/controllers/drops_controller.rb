@@ -22,7 +22,7 @@ class DropsController < ApplicationController
     url = params["sc_url"]
     sc_url_regex = /^https?:\/\/(www\.)?soundcloud\.com\/.+\/.+$/i
 
-    @place = Place.create(place_params)
+    @place = Place.find_or_create_by(place_params)
     @drop = Drop.new(drop_params.merge({place_id: @place.id}))
 
     if !params[:drop][:sc_track].present? and url =~ sc_url_regex
