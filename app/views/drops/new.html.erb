@@ -16,6 +16,10 @@
   <%= f.fields_for :place do |ff| %>
     <%= ff.label(:name, "name a place:") %>
     <%= ff.text_field(:name)%>
+    <%= ff.label(:latitude, "latitude")%>
+    <%= ff.text_field(:latitude)%>
+    <%= ff.label(:longitude, "longitude")%>
+    <%= ff.text_field(:longitude)%>
   <% end %>
 
   </br><p></br>

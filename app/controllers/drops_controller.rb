@@ -106,7 +106,7 @@ class DropsController < ApplicationController
     unless drop.sc_track.nil?
       place = Place.find_by_id(drop.place.id)
       if place != nil
-       @place_name = place.name
+       @place = place
       end
     end
   end
@@ -116,6 +116,6 @@ class DropsController < ApplicationController
       params.require(:drop).permit(:sc_track, :title)
     end
     def place_params
-      params.require(:drop).require(:place).permit(:name)
+      params.require(:drop).require(:place).permit(:name, :longitude, :latitude)
     end
 end
