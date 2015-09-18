@@ -18,9 +18,9 @@
     <p><%= @drop_at_sc.description %></p>
   </div>
   <div class="drop-place">
-    <%= @place.name %>
-    <%= @place.latitude %>
-    <%= @place.longitude %>
+     Place :  <%= @place.name %>
+    <br>
+    <%= show_place_location(@place) %>
   </div>
 
 <script>
