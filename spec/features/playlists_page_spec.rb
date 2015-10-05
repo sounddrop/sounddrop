@@ -24,20 +24,15 @@ describe "Playlist page" , type: :feature do
   #    end
   # end
 
-  it "displays list of drops" do
-    visit "/playlists/74584890/187472038"
-    expect(find_link("Brewing coffee for engineers")).to be_visible
-    expect(find_link("Coffee Machine")).to be_visible
-  end
-
   it "displays drop title ", :js => true do
-    visit "/playlists/74584890/187472038"
+    drop_test = create(:drop)
+    visit "/drops/#{drop_test.sc_track}"
     expect(page).to have_content("Art installation")
   end
 
   it "displays the place" do
     visit "/playlists/74584890/187472172"
-    expect(page).to have_content "@SoundCloud HQ"
+    expect(page).to have_content "Please login with your SoundCloud account"
   end
 
   it "has a form for comments" do
