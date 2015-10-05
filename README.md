@@ -20,10 +20,10 @@ Setup the development database:
 ```
 rake db:setup
 ```
-Start rails:
+We use [foreman](https://github.com/ddollar/foreman) to get the app running. Make sure you've done bundle install so that you have forman available. Then run:
 
 ```
-rails s
+foreman start dev
 ```
 See a SoundDrop playlist: http://localhost:3000/playlists/74584890/187471639
 
