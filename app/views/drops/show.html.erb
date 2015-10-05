@@ -14,8 +14,13 @@
   <div class ="drop-title">
     <p><%= @drop_at_sc.title %></p>
   </div>
+   <div class ="drop-description">
+    <p><%= @drop_at_sc.description %></p>
+  </div>
   <div class="drop-place">
-    <%= @place_name %>
+     Place :  <%= @place.name %>
+    <br>
+    <%= show_place_location(@place) %>
   </div>
 
 <script>
@@ -27,5 +32,7 @@
   }
 </script>
 
-<%= render partial: "create_comments" %>
+<iframe width="200" height="200" frameborder="0" style="border:0"
+src="https://www.google.com/maps/embed/v1/view?zoom=15&center=<%= google_map_parameter(@place) %>&key=AIzaSyBnrES8kMe2DiQqg0eF2YcYn7dAcJNPYEk" allowfullscreen></iframe>
+
 

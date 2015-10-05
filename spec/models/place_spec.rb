@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Place do
-  let(:place) { create :place }
+  let(:place) { create :place, name: 'OH HAI' }
   let(:drop) { create :drop, place: place }
 
   describe 'associations' do
@@ -18,7 +18,7 @@ RSpec.describe Place do
   end
 
   describe 'place names must be unique' do
-    let!(:place1) { create :place }
+    let!(:place1) { create :place, name: 'OH HAI' }
 
     specify do
       expect{ place.save! }.to raise_error(ActiveRecord::RecordInvalid)

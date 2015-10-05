@@ -1,4 +1,3 @@
-
 $(document).on("ready page:load", function(){
   $(".button-like").submit(function(event) {
     event.preventDefault();

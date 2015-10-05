@@ -34,11 +34,11 @@ Setup test database
 For bash:
 ````
 RAILS_ENV=test rake db:setup
+bundle exec rspec
 ````
 For fish
 ````
 env RAILS_ENV=test rake db:setup
-````
 bundle exec rspec
 ````
 

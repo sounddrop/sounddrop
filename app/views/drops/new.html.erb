@@ -1,27 +1,27 @@
 <h1>Hello, <%= @current_user.username %></h1>
 <p></br>
-<h4>You have <%= @current_user.track_count %> tracks at SoundCloud:</h4>
-<p><h4>Choose one to connect to SoundDrop.</h4>
-<% @drop.errors.messages.each do |message| %>
-  <%= message.inspect%>
-<% end %>
+<p><h4>Create your own Sounddrop</h4>
+
 
 <%= form_for @drop, url: drops_path do |f| %>
-  <% drops = @current_user_tracks.each do |track| %>
-      <br><%= f.radio_button(:sc_track, track.id) %>
-      <%= f.label(track.id, track.title) %></br>
-  <% end %></br><p></br>
+  <%= render 'shared/error_messages', object: f.object %>
+  <%= label_tag(:sc_url, "Enter a Soundcloud url:") %>
+  <%= text_field_tag(:sc_url) %>
+  </br><p></br>
+  <%= label_tag(:sc_track, "OR choose from your tracks:") %>
+  <h4>You have <%= @current_user.track_count %> tracks at SoundCloud:</h4>
+  <%= select(:drop, :sc_track, options_for_select(@current_user_tracks.map { |t| [t.title, t.id]}), :include_blank => true) %>
+  </br><p></br>
 
-  <h4>Choose a Place:</h4>
-
-  <% @places.each do |place| %>
-    <p><%= f.radio_button(:place_id, place.id) %>
-    <%= f.label(:name, place.name) %></p>
+  <%= f.fields_for :place do |ff| %>
+    <%= ff.label(:name, "name a place:") %>
+    <%= ff.text_field(:name)%>
+    <%= ff.label(:latitude, "latitude")%>
+    <%= ff.text_field(:latitude)%>
+    <%= ff.label(:longitude, "longitude")%>
+    <%= ff.text_field(:longitude)%>
   <% end %>
-<%= submit_tag("Save") %>
+
+  </br><p></br>
+  <%= submit_tag("Save") %>
 <% end %>
-
-
-
-
-

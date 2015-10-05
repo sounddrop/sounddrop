@@ -7,22 +7,35 @@ class DropsController < ApplicationController
   end
 
   def new
-    client = Soundcloud.new(:access_token => session[:access_token_hash]["access_token"])
-    @current_user = client.get('/me')
-    @current_user_tracks = client.get('/me/tracks')
-    @drop = Drop.new
-    @places = Place.all
+    if session[:access_token_hash].nil?
+      render :login_redirect
+    else
+      client = Soundcloud.new(:access_token => session[:access_token_hash]["access_token"])
+      @current_user = client.get('/me')
+      @current_user_tracks = client.get('/me/tracks')
+      @drop = Drop.new
+      @places = Place.all
+    end
   end
 
   def create
-    # render plain: params.inspect
-    @drop = Drop.new(drop_params)
+    url = params["sc_url"]
+    sc_url_regex = /^https?:\/\/(www\.)?soundcloud\.com\/.+\/.+$/i
 
-    if @drop.save!
-      # redirect_to drop_path(@drop)
+    @place = Place.find_or_create_by(place_params)
+    @drop = Drop.new(drop_params.merge({place_id: @place.id}))
+
+    if !params[:drop][:sc_track].present? and url =~ sc_url_regex
+      client = Soundcloud.new({
+        :client_id => ENV['SOUNDCLOUD_CLIENT_ID']
+        })
+      track = client.get("/resolve?url=#{url}")
+      @drop.sc_track = track.id
+    end
+
+    if @drop.save
       redirect_to drop_path(@drop.sc_track)
     else
-      puts "Error was #{@drop.errors}"
       client = Soundcloud.new(:access_token => session[:access_token_hash]["access_token"])
       @current_user = client.get('/me')
       @current_user_tracks = client.get('/me/tracks')
@@ -32,7 +45,7 @@ class DropsController < ApplicationController
   end
 
   def show
-    client = SoundCloud.new(:client_id => '69e93cf2209402f6f3137a6452cf498f')
+    client = SoundCloud.new(:client_id => ENV['SOUNDCLOUD_CLIENT_ID'])
     @drop = Drop.find_by_sc_track(params[:id])
     if @drop.nil?
       page_not_found
@@ -45,13 +58,13 @@ class DropsController < ApplicationController
 
   def upvote
     @drop = Drop.find(params[:id])
-    if session[:liked_stories].nil?
-      session[:liked_stories] = []
+    if session[:liked_drops].nil?
+      session[:liked_drops] = []
     end
     unless
-      session[:liked_stories].include?(@drop.id)
+      session[:liked_drops].include?(@drop.id)
       @create_votes = @drop.votes.create
-      session[:liked_stories] << @drop.id
+      session[:liked_drops] << @drop.id
     end
     @count_votes = @drop.votes.count
     render json: {count_votes: @count_votes, user_session: session[:liked_stories].inspect}
@@ -63,7 +76,7 @@ class DropsController < ApplicationController
       page_not_found
     else
       display_place(@drop)
-      client = SoundCloud.new(:client_id => '69e93cf2209402f6f3137a6452cf498f')
+      client = SoundCloud.new(:client_id => ENV['SOUNDCLOUD_CLIENT_ID'])
       @playlist = client.get("/playlists/#{params[:playlist_id]}")
       @current_track_id = params[:sc_track].to_i
       @drop_at_sc = @playlist.tracks.find do |track|
@@ -93,13 +106,16 @@ class DropsController < ApplicationController
     unless drop.sc_track.nil?
       place = Place.find_by_id(drop.place.id)
       if place != nil
-       @place_name = place.name
+       @place = place
       end
     end
   end
 
   private
     def drop_params
-      params.require(:drop).permit(:sc_track, :title, :place_id)
+      params.require(:drop).permit(:sc_track, :title)
+    end
+    def place_params
+      params.require(:drop).require(:place).permit(:name, :longitude, :latitude)
     end
 end
