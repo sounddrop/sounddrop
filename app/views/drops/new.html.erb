@@ -1,27 +1,62 @@
-<h1>Hello, <%= @current_user.username %></h1>
-<p></br>
-<p><h4>Create your own Sounddrop</h4>
+<div class='container'>
+  <div class='row'>
+    <div class='col-xs-12 text-center welcome'>
+      <h1>Hello, <%= @current_user.username %>. Here you can create your own Sounddrop</h1>
+    </div>
+  </div>
 
+  <div class='row'>
+    <%= form_for @drop, url: drops_path do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <div class='tracks'>
+        <div class='row'>
+          <h2>First, find your sound:</h2>
+        </div>
+        <div class='row'>
+          <div class='col-md-5 col-sm-12'>
+            <%= label_tag(:sc_url, "Enter a Soundcloud url:") %>
+            <%= text_field_tag(:sc_url) %>
+          </div>
 
-<%= form_for @drop, url: drops_path do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-  <%= label_tag(:sc_url, "Enter a Soundcloud url:") %>
-  <%= text_field_tag(:sc_url) %>
-  </br><p></br>
-  <%= label_tag(:sc_track, "OR choose from your tracks:") %>
-  <h4>You have <%= @current_user.track_count %> tracks at SoundCloud:</h4>
-  <%= select(:drop, :sc_track, options_for_select(@current_user_tracks.map { |t| [t.title, t.id]}), :include_blank => true) %>
-  </br><p></br>
+          <div class='col-md-2 col-sm-12 text-center choices'>
+            <%= label_tag(:sc_track, "OR choose from your tracks:") %>
+          </div>
 
-  <%= f.fields_for :place do |ff| %>
-    <%= ff.label(:name, "name a place:") %>
-    <%= ff.text_field(:name)%>
-    <%= ff.label(:latitude, "latitude")%>
-    <%= ff.text_field(:latitude)%>
-    <%= ff.label(:longitude, "longitude")%>
-    <%= ff.text_field(:longitude)%>
-  <% end %>
+          <div class='col-md-5 col-sm-12 text-right'>
+            <h4>You have <%= @current_user.track_count %> tracks on SoundCloud:</h4>
+            <%= select(:drop, :sc_track, options_for_select(@current_user_tracks.map { |t| [t.title, t.id]}), :include_blank => true) %>
+          </div>
 
-  </br><p></br>
-  <%= submit_tag("Save") %>
-<% end %>
+        </div>
+      </div>
+    </div>
+    <hr>
+
+    <div class='row'>
+      <div class='row'>
+        <h2>Second, drop your sound on a place:</h2>
+      </div>
+      <div class='row'>
+        <%= f.fields_for :place do |ff| %>
+          
+          <div class='col-md-4 col-sm-12'>
+            <%= ff.label(:name, "name (required):") %>
+            <%= ff.text_field(:name)%>
+          </div>
+          <div class='col-md-4 col-sm-12'>
+            <%= ff.label(:latitude, "latitude (required):")%>
+            <%= ff.text_field(:latitude)%>
+          </div>
+          <div class='col-md-4 col-sm-12'>
+            <%= ff.label(:longitude, "longitude (required):")%>
+            <%= ff.text_field(:longitude)%>
+          </div>
+        <% end %>
+      </div>
+      <div class='row'>
+        <%= submit_tag("Save", class: 'submit-button')%>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>
