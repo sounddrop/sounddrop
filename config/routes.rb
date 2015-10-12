@@ -15,9 +15,6 @@ Rails.application.routes.draw do
     end
   end
 
-  # get '/drops/:sc_track' => 'drops#show', :as => "sc_track"
-  get '/playlists/:playlist_id/:sc_track' => 'drops#playlists'
-
   get '/stats' => 'charts#stats', :as => 'stats'
   get '/charts' => 'charts#charts', :as => 'charts_json'
   get '/login' => 'connect#login'

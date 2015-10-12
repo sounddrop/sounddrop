@@ -24,6 +24,11 @@ RSpec.describe Place do
       expect{ place.save! }.to raise_error(ActiveRecord::RecordInvalid)
     end
   end
+
+  it 'must have a name' do
+    nameless_place = build(:place, name: nil)
+    expect(nameless_place).not_to be_valid
+  end
 end
 
 

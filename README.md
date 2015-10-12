@@ -20,12 +20,15 @@ Setup the development database:
 ```
 rake db:setup
 ```
-Start rails:
+We use [foreman](https://github.com/ddollar/foreman) to get the app running. Make sure you've done bundle install so that you have forman available. Then run:
 
 ```
-rails s
+foreman start dev
 ```
-See a SoundDrop playlist: http://localhost:3000/playlists/74584890/187471639
+
+If this doesn't work, clear your cookies. It could solve the problem.
+
+See a SoundDrop: http://localhost:3000/drops/187471639
 
 ## How to run tests
 
