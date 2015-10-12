@@ -70,30 +70,6 @@ class DropsController < ApplicationController
     render json: {count_votes: @count_votes, user_session: session[:liked_stories].inspect}
   end
 
-  def playlists
-    @drop = Drop.find_by_sc_track(params[:sc_track])
-    if @drop.nil?
-      page_not_found
-    else
-      display_place(@drop)
-      client = SoundCloud.new(:client_id => ENV['SOUNDCLOUD_CLIENT_ID'])
-      @playlist = client.get("/playlists/#{params[:playlist_id]}")
-      @current_track_id = params[:sc_track].to_i
-      @drop_at_sc = @playlist.tracks.find do |track|
-        track[:id] == params[:sc_track].to_i
-      end
-      @playlist.tracks.each do |track|
-        begin
-          if track.id == @drop_at_sc.id
-            display_image(@drop_at_sc)
-          end
-        rescue Exception => e
-          e.message
-        end
-      end
-    end
-  end
-
   def display_image(drop_at_sc)
       @artwork = drop_at_sc.artwork_url
       if @artwork == nil
