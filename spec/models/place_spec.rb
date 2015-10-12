@@ -1,22 +1,21 @@
 require 'rails_helper'
 
-RSpec.describe Place, :type => :model do
+RSpec.describe Place, type: :model do
+  let(:place) { create :place, drops: [drop] }
+  let(:drop)  { build :drop }
 
   it 'has multiple drops' do
-    place = create(:place)
-    expect(place.drops).to be_an(Array)
+    expect(place.drops.first).to eql drop
   end
 
   it 'must have a name' do
-    place_test = build(:place, name: nil)
-    expect(place_test).not_to be_valid
-
+    nameless_place = build(:place, name: nil)
+    expect(nameless_place).not_to be_valid
   end
 
   it 'raises an error when a name is used twice' do
-    place1 = create(:place)
-    place2 = build(:place, name: place1.name)
-    expect(place2).not_to be_valid
+    duplicate_place = build(:place, name: place.name)
+    expect(duplicate_place).not_to be_valid
   end
 end
 
