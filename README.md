@@ -25,6 +25,9 @@ We use [foreman](https://github.com/ddollar/foreman) to get the app running. Mak
 ```
 foreman start dev
 ```
+
+If this doesn't work, clear your cookies. It could solve the problem. 
+
 See a SoundDrop playlist: http://localhost:3000/playlists/74584890/187471639
 
 ## How to run tests
