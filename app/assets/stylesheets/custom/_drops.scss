@@ -4,6 +4,11 @@
 
 .choices label {
   color: #f50;
+  font-size: 30px;
+}
+
+.title {
+  margin-bottom: 30px;
 }
 
 .submit-button {
@@ -19,4 +24,9 @@
   margin-bottom: 5%;
   border-color: #f50;
   border-radius: 20px;
+}
+
+.glyphicon {
+  width: 12px;
+  color: #f50;
 }
