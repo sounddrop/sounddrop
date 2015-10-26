@@ -6,13 +6,29 @@ require 'pry'
 describe DropsController do
 
   it "returns 200 if the drop exists" do
+    stub_request(:get, "http://api.soundcloud.com/tracks/2").
+      with(:query => {
+        "client_id" => "69e93cf2209402f6f3137a6452cf498f",
+        "format" => "json",
+      }).
+      to_return(:body => File.read('spec/fixtures/oberholz5.json'), :headers => {"Content-Type" => "application/json; charset=utf-8"})
+
      drop = create(:drop)
      get :show , {'id' => drop.sc_track}
      expect(@response.status).to eq(200)
   end
   it "creates a drop at a place" do
+    url = "http://soundcloud.com/eric/oberholz5"
+    stub_request(:get, "http://api.soundcloud.com/resolve").
+      with(:query => {
+        "client_id" => "69e93cf2209402f6f3137a6452cf498f",
+        "format" => "json",
+        "url" => url,
+      }).
+      to_return(:body => File.read('spec/fixtures/oberholz5.json'), :headers => {"Content-Type" => "application/json; charset=utf-8"})
+
     get :create, {
-      'sc_url' => 'https://soundcloud.com/prince3eg/prince-3rdeyegirl-the-look-live-in-toronto-05-19-15',
+      'sc_url' => url,
       'drop' => {
         'place' => {
           'name' => "himmel",
