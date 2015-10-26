@@ -10,7 +10,7 @@ class DropsController < ApplicationController
     if session[:access_token_hash].nil?
       render :login_redirect
     else
-      client = Soundcloud.new(:access_token => session[:access_token_hash]["access_token"])
+      client = SoundCloud.new(:access_token => session[:access_token_hash]["access_token"])
       @current_user = client.get('/me')
       @current_user_tracks = client.get('/me/tracks')
       @drop = Drop.new
@@ -26,9 +26,7 @@ class DropsController < ApplicationController
     @drop = Drop.new(drop_params.merge({place_id: @place.id}))
 
     if !params[:drop][:sc_track].present? and url =~ sc_url_regex
-      client = Soundcloud.new({
-        :client_id => ENV['SOUNDCLOUD_CLIENT_ID']
-        })
+      client = SoundCloud.new(:client_id => ENV['SOUNDCLOUD_CLIENT_ID'])
       track = client.get("/resolve?url=#{url}")
       @drop.sc_track = track.id
     end
@@ -36,7 +34,7 @@ class DropsController < ApplicationController
     if @drop.save
       redirect_to drop_path(@drop.sc_track)
     else
-      client = Soundcloud.new(:access_token => session[:access_token_hash]["access_token"])
+      client = SoundCloud.new(:access_token => session[:access_token_hash]["access_token"])
       @current_user = client.get('/me')
       @current_user_tracks = client.get('/me/tracks')
       @places = Place.all

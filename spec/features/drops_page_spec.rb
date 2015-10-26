@@ -1,9 +1,30 @@
 require 'spec_helper'
 require 'rails_helper'
-require 'pry'
 
 describe "Drop page" , type: :feature do
 
+  before do
+    stub_request(:get, "http://api.soundcloud.com/tracks/187472172").
+      with(:query => {
+        "client_id" => "69e93cf2209402f6f3137a6452cf498f",
+        "format" => "json",
+      }).
+      to_return(:body => File.read('spec/fixtures/brewing-coffee-for-engineers-1.json'), :headers => {"Content-Type" => "application/json; charset=utf-8"})
+
+    stub_request(:get, "http://api.soundcloud.com/tracks/187471639").
+      with(:query => {
+        "client_id" => "69e93cf2209402f6f3137a6452cf498f",
+        "format" => "json",
+      }).
+      to_return(:body => File.read('spec/fixtures/coffee-machine-1.json'), :headers => {"Content-Type" => "application/json; charset=utf-8"})
+
+    stub_request(:get, "http://api.soundcloud.com/tracks/187472038").
+      with(:query => {
+        "client_id" => "69e93cf2209402f6f3137a6452cf498f",
+        "format" => "json",
+      }).
+      to_return(:body => File.read('spec/fixtures/art-installation-1.json'), :headers => {"Content-Type" => "application/json; charset=utf-8"})
+  end
 
   it "displays SoundDrop info" do
     visit "/drops/187471639"
