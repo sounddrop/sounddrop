@@ -69,11 +69,11 @@ class DropsController < ApplicationController
   end
 
   def display_image(drop_at_sc)
-      @artwork = drop_at_sc.artwork_url
-      if @artwork == nil
-        @artwork = drop_at_sc.user.avatar_url
-      end
-      @artwork.sub! "large", "crop"
+    @artwork = drop_at_sc.artwork_url
+    if @artwork == nil
+      @artwork = drop_at_sc.user.avatar_url
+    end
+    @artwork.sub! "large", "crop"
   end
 
   def display_place(drop)
