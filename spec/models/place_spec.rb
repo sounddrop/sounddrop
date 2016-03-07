@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Place do
+RSpec.describe Place, :vcr => {:cassette_name => "place" } do
   let(:place) { create :place, name: 'OH HAI' }
   let(:drop) { create :drop, place: place }
 
@@ -29,6 +29,7 @@ RSpec.describe Place do
     nameless_place = build(:place, name: nil)
     expect(nameless_place).not_to be_valid
   end
+
 end
 
 

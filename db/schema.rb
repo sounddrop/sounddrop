@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150918094354) do
+ActiveRecord::Schema.define(version: 20151102182725) do
 
   create_table "drops", force: :cascade do |t|
     t.string   "title"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20150918094354) do
     t.datetime "updated_at"
     t.decimal  "longitude"
     t.decimal  "latitude"
+    t.string   "location"
   end
 
   add_index "places", ["name"], name: "index_places_on_name", unique: true
