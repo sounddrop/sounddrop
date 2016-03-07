@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Drop, :type => :model do
+RSpec.describe Drop, :vcr => {:cassette_name => "place" } do
 
   it 'must have a SoundCloud track' do
     drop_test = build(:drop, sc_track: nil)

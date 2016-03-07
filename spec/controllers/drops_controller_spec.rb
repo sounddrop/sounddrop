@@ -2,8 +2,7 @@ require 'spec_helper'
 require 'rails_helper'
 require 'pry'
 
-
-describe DropsController do
+describe DropsController, :vcr => {:cassette_name => "place" } do
 
   it "returns 200 if the drop exists" do
     stub_request(:get, "http://api.soundcloud.com/tracks/2").
@@ -17,6 +16,7 @@ describe DropsController do
      get :show , {'id' => drop.sc_track}
      expect(@response.status).to eq(200)
   end
+
   it "creates a drop at a place" do
     url = "http://soundcloud.com/eric/oberholz5"
     stub_request(:get, "http://api.soundcloud.com/resolve").
@@ -33,7 +33,8 @@ describe DropsController do
         'place' => {
           'name' => "himmel",
           'latitude' => 12.0,
-          'longitude' => 12.0
+          'longitude' => 12.0,
+          'location' => 'soundcloud'
         }
       }
     }
@@ -43,6 +44,7 @@ describe DropsController do
     expect(place.latitude).to eq(12.0)
     expect(place.longitude).to eq(12.0)
   end
+
   it "returns 404 if the drop doesn't exist" do
      get :show , {'id' => '666'}
      expect(@response.status).to eq(404)

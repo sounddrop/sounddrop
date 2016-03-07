@@ -90,6 +90,6 @@ class DropsController < ApplicationController
       params.require(:drop).permit(:sc_track, :title)
     end
     def place_params
-      params.require(:drop).require(:place).permit(:name, :longitude, :latitude)
+      params.require(:drop).require(:place).permit(:name, :longitude, :latitude, :location)
     end
 end

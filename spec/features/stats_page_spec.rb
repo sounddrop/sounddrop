@@ -1,9 +1,7 @@
 require 'spec_helper'
 require 'rails_helper'
-require 'pry'
 
-
-describe "Stats page" , type: :feature do
+describe "Stats page", type: :feature, :vcr => {:cassette_name => "place" } do
 
   it "should have a highchart", js: true do
     visit "/stats"
