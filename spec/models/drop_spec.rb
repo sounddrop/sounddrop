@@ -25,22 +25,18 @@ RSpec.describe Drop, :vcr => {:cassette_name => "place" } do
     let(:drop) { build :drop }
 
     describe 'with an artwork url' do
-      before do
-        expect(drop).to receive(:soundcloud_track).twice.and_return with_url
-      end
+      before { expect(drop).to receive(:soundcloud_track).twice.and_return with_url }
 
       it 'returns the correct artwork url if present' do
-        expect(drop.image_from(with_url)).to eql "https://www.artwork-crop.jpg"
+        expect(drop.image_from_track).to eql "https://www.artwork-crop.jpg"
       end
     end
 
     describe 'without an artwork url' do
-      before do
-        expect(drop).to receive(:soundcloud_track).twice.and_return without_url
-      end
+      before { expect(drop).to receive(:soundcloud_track).twice.and_return without_url }
 
       it 'returns the user avatar url if no artwork url present' do
-        expect(drop.image_from(without_url)).to eql "https://www.avatar-crop.jpg"
+        expect(drop.image_from_track).to eql "https://www.avatar-crop.jpg"
       end
     end
   end
