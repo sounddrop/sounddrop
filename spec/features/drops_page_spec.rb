@@ -5,7 +5,7 @@ describe "Drop page", type: :feature, :vcr => {:cassette_name => "place" } do
 
   before do
     place = create :place, name: "@SoundCloud HQ"
-    drop_1 = create :drop, sc_track:"187471639", title:"Coffee Machine", place: place
+    drop_1 = create :drop, id: 5, sc_track:"187471639", title:"Coffee Machine", place: place
 
     stub_request(:get, "http://api.soundcloud.com/tracks/187471639").
       with(:query => {
@@ -16,7 +16,7 @@ describe "Drop page", type: :feature, :vcr => {:cassette_name => "place" } do
   end
 
   it "displays SoundDrop info" do
-    visit "/drops/187471639"
+    visit "/drops/5"
     expect(page).to have_content("@SoundCloud HQ")
     expect(page).to have_content("Ben Kochie shares the history of the coffee machine.")
   end
