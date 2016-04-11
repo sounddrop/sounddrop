@@ -23,7 +23,7 @@ class DropsController < ApplicationController
     link_with_track(@drop)
 
     if @drop.save
-      redirect_to drop_path(@drop.sc_track)
+      redirect_to drop_path(@drop)
     else
       client = SoundCloud.new(:access_token => session[:access_token_hash]["access_token"])
       @current_user = client.get('/me')
@@ -33,7 +33,7 @@ class DropsController < ApplicationController
   end
 
   def show
-    @drop = Drop.find_by_sc_track(params[:id])
+    @drop = Drop.find_by_id(params[:id])
     @drop.present? ? @place = @drop.place : page_not_found
   end
 

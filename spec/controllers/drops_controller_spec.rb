@@ -13,7 +13,7 @@ describe DropsController, :vcr => {:cassette_name => "place" } do
       to_return(:body => File.read('spec/fixtures/oberholz5.json'), :headers => {"Content-Type" => "application/json; charset=utf-8"})
 
      drop = create(:drop)
-     get :show , {'id' => drop.sc_track}
+     get :show , {'id' => drop.id}
      expect(@response.status).to eq(200)
   end
 
