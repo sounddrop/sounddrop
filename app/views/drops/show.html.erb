@@ -1,7 +1,7 @@
 <div class="artwork">
   <img class="container-image" src="<%=@drop.image_from_track%>">
   <%= render partial: "load_playbuttons" %>
-   <iframe width="570" height="570" frameborder="0" style="border:0; float:right;margin-left: auto;vertical-align:middle; pointer-events:none" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBnrES8kMe2DiQqg0eF2YcYn7dAcJNPYEk&q=<%= @place.location %>"></iframe>
+  <div id='map'></div>
 </div>
 
 <div class="container-like-button">
@@ -34,4 +34,11 @@
   var dropAtSC = {
      id: <%= @drop.soundcloud_track.id %>
   }
+  var dropLat = <%= @drop.place.latitude %>
+  var dropLong = <%= @drop.place.longitude %>
+  var image = "<%= asset_path('sounddrop-logo.png') %>"
+</script>
+
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkImnni-kZABntvWwgNhfxXFpUC0lc8lY&callback=initMap">
 </script>

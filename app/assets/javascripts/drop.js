@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
   var form = $('form#new_drop');
   form.on('submit', function(e) {
     if($('input#sc_url').val() == '' && $('select#drop_sc_track').val() == '') {
@@ -12,3 +13,22 @@ $(document).ready(function() {
     }
   });
 });
+
+function initMap() {
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 15,
+    center: { lat: dropLat, lng: dropLong }
+  });
+
+  var icon = {
+    url: image,
+    scaledSize: new google.maps.Size(50, 50)
+  }
+
+  var marker = new google.maps.Marker({
+    position: map.getCenter(),
+    icon: icon,
+    map: map
+  });
+}
+
