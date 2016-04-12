@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151102182725) do
+ActiveRecord::Schema.define(version: 20160412055332) do
 
   create_table "drops", force: :cascade do |t|
     t.string   "title"
     t.integer  "sc_track"
-    t.integer  "user_id"
+    t.integer  "sc_user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "place_id"
