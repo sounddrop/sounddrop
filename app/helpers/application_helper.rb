@@ -1,4 +1,14 @@
 module ApplicationHelper
+
+  def flash_class(level)
+    case level
+      when :notice then "info"
+      when :error then "error"
+      when :alert then "warning"
+      when :success then "success"
+    end
+  end
+
   def client
     @client ||= SoundCloud.new(:access_token => session[:access_token_hash]["access_token"])
   end
