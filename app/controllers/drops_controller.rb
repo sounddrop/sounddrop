@@ -10,8 +10,6 @@ class DropsController < ApplicationController
     if session[:access_token_hash].nil?
       render :login_redirect
     else
-      @current_user = current_user
-      @current_user_tracks = current_user_tracks
       @drop = Drop.new
     end
   end
@@ -22,21 +20,26 @@ class DropsController < ApplicationController
 
   def create
     @place = Place.find_or_create_by(place_params)
-    @drop = Drop.new(drop_params.merge({place_id: @place.id, sc_user_id: current_user.id}))
+    @drop = Drop.new(drop_params.merge({place_id: @place.id, sc_user_id: view_context.current_user.id}))
+    session[:user] = view_context.current_user.id
     link_with_track(@drop)
 
     if @drop.save
       redirect_to drop_path(@drop)
     else
-      @current_user = current_user
-      @current_user_tracks = current_user_tracks
       render :new
     end
   end
 
   def show
     @drop = Drop.find_by_id(params[:id])
-    @drop.present? ? @place = @drop.place : page_not_found
+    if @drop.present?
+      @place = @drop.place
+    else
+      page_not_found
+    end
+  end
+
   def update
     @drop = Drop.find_by_id(params[:id])
     @place = Place.find_or_create_by(place_params)
@@ -79,18 +82,6 @@ class DropsController < ApplicationController
       params.require(:drop).require(:place).permit(:name, :longitude, :latitude, :location)
     end
 
-    def client
-      @client ||= SoundCloud.new(:access_token => session[:access_token_hash]["access_token"])
-    end
-
-    def current_user
-      @current_user ||= client.get('/me')
-    end
-
-    def current_user_tracks
-      @current_user_tracks = client.get('/me/tracks')
-    end
-
     def link_with_track(drop)
       url = params["sc_url"]
       sc_url_regex = /^https?:\/\/(www\.)?soundcloud\.com\/.+\/.+$/i
@@ -100,6 +91,7 @@ class DropsController < ApplicationController
         track = client.get("/resolve?url=#{url}")
         drop.sc_track = track.id
         drop.title = track.title
+        drop
       end
     end
 
