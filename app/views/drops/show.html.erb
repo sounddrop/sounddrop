@@ -4,20 +4,28 @@
   <div id='map'></div>
 </div>
 
-<div class="container-like-button">
+<div class="user-buttons">
   <div id="likebutton" class="like"></br>
     <%= button_to "like", upvote_drop_path(@drop), {form_class: "button-like", :id => "like_button", method: :post} %>
   </div>
   <div id="votes" class="vote">
     <%= @drop.votes.count %>
   </div>
+
+  <div class='pull-right'>
+    <% if current_user_made_drop?(@drop) %>
+      <%= link_to 'Edit', edit_drop_path(@drop) %> |
+      <%= link_to 'Delete', @drop, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+  </div>
 </div>
 
-<div class ="drop-title">
+
+<div class="drop-title">
   <p><%= @drop.title %></p>
 </div>
 
-<div class ="drop-description">
+<div class="drop-description">
   <p><%= @drop.soundcloud_track.description %></p>
 </div>
 

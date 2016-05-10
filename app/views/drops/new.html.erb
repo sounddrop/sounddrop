@@ -1,62 +1,9 @@
 <div class='container'>
   <div class='row'>
     <div class='col-xs-12 text-center welcome'>
-      <h1>Hello, <%= @current_user.username %>. Here you can create your own Sounddrop</h1>
+      <h1>Hello, <%= current_user.username %>. Here you can create your own Sounddrop</h1>
     </div>
   </div>
 
-  <div class='row'>
-    <%= form_for @drop, url: drops_path do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-      <div class='tracks'>
-        <div class='row'>
-          <div class='title'>
-            <h2>First, choose your sound:</h2>
-          </div>
-        </div>
-        <div class='row'>
-          <div class='col-md-5 col-sm-12'>
-            <%= label_tag(:sc_url, "Enter a Soundcloud url:") %></br>
-            <%= text_field_tag(:sc_url) %>
-          </div>
-
-          <div class='col-md-2 col-sm-12 text-center choices'>
-            <%= label_tag(:sc_track, "OR:") %>
-          </div>
-
-          <div class='col-md-5 col-sm-12 text-right'>
-            <h4>Select one of your <%= @current_user.track_count %> tracks:</h4>
-            <%= select(:drop, :sc_track, options_for_select(@current_user_tracks.map { |t| [t.title, t.id]}), :include_blank => true) %>
-          </div>
-        </div>
-      </div>
-      <hr>
-
-      <div class='row'>
-        <div class='row'>
-          <div class='title'>
-            <h2>Second, drop your sound on a place:</h2>
-          </div>
-        </div>
-        <div class='row'>
-          <%= f.fields_for :place do |ff| %>
-
-            <div class='col-md-6 col-sm-12'>
-              <%= ff.label(:name, "name:") %>
-              <div class='glyphicon glyphicon-star '></div>
-              <%= ff.text_field(:name)%>
-            </div>
-            <div class='col-md-6 col-sm-12'>
-              <%= ff.label(:location, "location:")%>
-              <div class='glyphicon glyphicon-star'></div>
-              <%= ff.text_field(:location)%>
-            </div>
-          <% end %>
-        </div>
-        <div class='row'>
-          <%= submit_tag("Save", class: 'submit-button')%>
-        </div>
-      </div>
-    <% end %>
-  </div>
+  <%= render 'form' %>
 </div>

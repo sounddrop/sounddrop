@@ -16,6 +16,10 @@ class DropsController < ApplicationController
     end
   end
 
+  def edit
+    @drop = Drop.find_by_id(params[:id])
+  end
+
   def create
     @place = Place.find_or_create_by(place_params)
     @drop = Drop.new(drop_params.merge({place_id: @place.id, sc_user_id: current_user.id}))
@@ -33,6 +37,25 @@ class DropsController < ApplicationController
   def show
     @drop = Drop.find_by_id(params[:id])
     @drop.present? ? @place = @drop.place : page_not_found
+  def update
+    @drop = Drop.find_by_id(params[:id])
+    @place = Place.find_or_create_by(place_params)
+    link_with_track(@drop)
+    if @drop.sc_track.present?
+      @drop.update_attributes(place_id: @place.id)
+      redirect_to drop_path(@drop), notice: 'Drop successfully updated'
+    elsif drop_params["sc_track"].present?
+      @drop.update_attributes(drop_params.merge({place_id: @place.id}))
+      redirect_to drop_path(@drop), notice: 'Drop successfully updated'
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @drop = Drop.find_by_id(params[:id])
+    @drop.destroy
+    redirect_to root_path, notice: 'Drop successfully deleted'
   end
 
   def upvote
