@@ -161,7 +161,7 @@ input, button, select {
 /*for the new player*/
 .play-button{
   z-index: 2;
-  width: 100%;
+  width: 13%;
   position: absolute;
   margin-top: -72px;
   top: 50%;
@@ -169,21 +169,34 @@ input, button, select {
 }
 .rewind{
   z-index: 3;
-  width: 43%;
+  width: 10%;
   position: absolute;
   top: 50%;
   left: 0;
   margin-top: -30px;
-  text-align: center;
+  text-align: left;
 }
 .forward{
   z-index: 3;
-  width: 47%;
+  width: 80px;
   position: absolute;
   top: 50%;
-  left: 55%;
+  left: 50%;
   margin-top: -30px;
-  text-align: center;
+  margin-left: -80px;
+  text-align: right;
+}
+
+.control-btn {
+  cursor: pointer;
+}
+
+.play-button.control-btn .glyphicon {
+  color: #ff7400;
+}
+
+.control-btn .glyphicon {
+  color: #F9A120;
 }
 
 .glyphicon{
@@ -192,19 +205,16 @@ input, button, select {
 
 }
 .glyphicon-play-circle{
-  color: #ff7400;
   font-size: 140px;
   line-height: 1;
   border-radius: 4em;
 }
 .glyphicon-pause{
-  color: #ff7400;
   font-size: 140px;
   line-height: 1;
   border-radius: 4em;
 }
 .glyphicon-refresh{
-  color: #ff7400;
   font-size: 140px;
   line-height: 1;
   border-radius: 4em;
