@@ -1,44 +1,47 @@
-<div class="artwork">
-  <img class="container-image" src="<%=@drop.image_from_track%>">
-  <%= render partial: "load_playbuttons" %>
-  <div id='map'></div>
-</div>
-
-<div class="container-like-button">
-  <div id="likebutton" class="like"></br>
-    <%= button_to "like", upvote_drop_path(@drop), {form_class: "button-like", :id => "like_button", method: :post} %>
+<div class="drop-container">
+  <div class ="drop-title">
+    <h1><%= @drop.title %></h1>
   </div>
-  <div id="votes" class="vote">
-    <%= @drop.votes.count %>
+
+  <div class ="drop-description">
+    <p><%= @drop.soundcloud_track.description %></p>
   </div>
+
+
+  <div class="artwork">
+    <img class="container-image" src="<%=@drop.image_from_track%>">
+    <%= render partial: "load_playbuttons" %>
+    <div id='map'></div>
+  </div>
+
+  <div class="container-like-button">
+    <div id="likebutton" class="like"></br>
+      <%= button_to "like", upvote_drop_path(@drop), {form_class: "button-like", :id => "like_button", method: :post} %>
+    </div>
+    <div id="votes" class="vote">
+      <%= @drop.votes.count %>
+    </div>
+  </div>
+
+  <div class="drop-place">
+    Place : <%= @place.name %>
+    <br>
+    <%= show_place_location(@place) %>
+  </div>
+
+  <script>
+    var drop = {
+      id: <%= @drop.id %>
+    }
+    var dropAtSC = {
+       id: <%= @drop.soundcloud_track.id %>
+    }
+    var dropLat = <%= @drop.place.latitude %>
+    var dropLong = <%= @drop.place.longitude %>
+    var image = "<%= asset_path('sounddrop-logo.png') %>"
+  </script>
+
+  <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkImnni-kZABntvWwgNhfxXFpUC0lc8lY&callback=initMap">
+  </script>
 </div>
-
-<div class ="drop-title">
-  <p><%= @drop.title %></p>
-</div>
-
-<div class ="drop-description">
-  <p><%= @drop.soundcloud_track.description %></p>
-</div>
-
-<div class="drop-place">
-  Place : <%= @place.name %>
-  <br>
-  <%= show_place_location(@place) %>
-</div>
-
-<script>
-  var drop = {
-    id: <%= @drop.id %>
-  }
-  var dropAtSC = {
-     id: <%= @drop.soundcloud_track.id %>
-  }
-  var dropLat = <%= @drop.place.latitude %>
-  var dropLong = <%= @drop.place.longitude %>
-  var image = "<%= asset_path('sounddrop-logo.png') %>"
-</script>
-
-<script async defer
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkImnni-kZABntvWwgNhfxXFpUC0lc8lY&callback=initMap">
-</script>

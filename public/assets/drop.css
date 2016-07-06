@@ -114,6 +114,15 @@ input, button, select {
   padding-right: 15px;
   padding-left: 15px;
 }
+
+.drop-container{
+  position: absolute;
+  left: 50%;
+  margin-left: -590px;
+  top: 50%;
+  margin-top: -330px;
+}
+
 .like{
   float: left;
   position: relative;
@@ -234,6 +243,12 @@ input, button, select {
   font-size: 74px;
   line-height: 1;
   border-radius: 4em;
+}
+
+footer{
+  position: fixed;
+  width: 100%;
+  bottom: 20px;
 }
 
 @media (max-width: 400px) {
