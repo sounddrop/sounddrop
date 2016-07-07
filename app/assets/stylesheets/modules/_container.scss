@@ -1,3 +1,22 @@
+.drop-container{
+  position: absolute;
+  left: 50%;
+  margin-left: -590px;
+  top: 50%;
+  margin-top: -380px;
+  width: 1140px;
+}
+
+@media (max-height: 870px) {
+ .drop-container{
+    position: relative;
+    left: 0;
+    margin-left: 0;
+    top: 0;
+    margin-top: 0;
+  }
+}
+
 .container-play-button {
   margin-right: auto;
   margin-left: auto;
@@ -20,15 +39,6 @@
   position: relative;
   padding-right: 15px;
   padding-left: 15px;
-}
-
-.drop-container{
-  position: absolute;
-  left: 50%;
-  margin-left: -590px;
-  top: 50%;
-  margin-top: -380px;
-  width: 1140px;
 }
 
 .container-fluid {
