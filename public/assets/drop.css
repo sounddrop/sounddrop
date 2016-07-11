@@ -129,60 +129,10 @@ input, button, select {
   color: #999;
 }
 
-.glyphicon{
-  width: 140px;
-  height: -1px;
-
-}
-.glyphicon-play-circle{
-  font-size: 140px;
-  line-height: 1;
-  border-radius: 4em;
-}
-.glyphicon-pause{
-  font-size: 140px;
-  line-height: 1;
-  border-radius: 4em;
-}
-.glyphicon-refresh{
-  font-size: 140px;
-  line-height: 1;
-  border-radius: 4em;
-}
-
-.glyphicon-forward{
-  color: #ff7400;
-  width: 100px;
-  font-size: 74px;
-  line-height: 1;
-  border-radius: 4em;
-}
-
-.glyphicon-backward{
-  color: #ff7400;
-  width: 80px;
-  font-size: 74px;
-  line-height: 1;
-  border-radius: 4em;
-}
-
 footer{
   position: fixed;
   width: 100%;
   bottom: 20px;
-}
-
-@media (max-width: 400px) {
-  .glyphicon-play-circle,
-  .glyphicon-pause,
-  .glyphicon-refresh {
-    font-size: 100px;
-  }
-
-  .glyphicon-forward,
-  .glyphicon-backward {
-    font-size: 40px;
-  }
 }
 
 .story-place {
@@ -198,12 +148,6 @@ footer{
   color: #999;
 }
 
-.glyphicon-refresh-animate {
-  -animation: spin .7s infinite linear;
-  -ms-animation: spin .7s infinite linear;
-  -webkit-animation: spinw .7s infinite linear;
-  -moz-animation: spinm .7s infinite linear;
-}
 
 @keyframes spin {
   from { transform: rotate(0deg);}
