@@ -1,6 +1,7 @@
 require 'soundcloud'
 
 class DropsController < ApplicationController
+  include ApplicationHelper
 
   def index
     @drops = Drop.all
@@ -20,8 +21,7 @@ class DropsController < ApplicationController
 
   def create
     @place = Place.find_or_create_by(place_params)
-    @drop = Drop.new(drop_params.merge({place_id: @place.id, sc_user_id: view_context.current_user.id}))
-    session[:user] = view_context.current_user.id
+    @drop = Drop.new(drop_params.merge({place_id: @place.id, sc_user_id: current_user.id}))
     link_with_track(@drop)
 
     if @drop.save
@@ -44,6 +44,7 @@ class DropsController < ApplicationController
     @drop = Drop.find_by_id(params[:id])
     @place = Place.find_or_create_by(place_params)
     link_with_track(@drop)
+
     if @drop.sc_track.present?
       @drop.update_attributes(place_id: @place.id)
       redirect_to drop_path(@drop), notice: 'Drop successfully updated'
@@ -89,8 +90,7 @@ class DropsController < ApplicationController
       if params[:drop][:sc_track].blank? && url =~ sc_url_regex
         client = SoundCloud.new(:client_id => ENV['SOUNDCLOUD_CLIENT_ID'])
         track = client.get("/resolve?url=#{url}")
-        drop.sc_track = track.id
-        drop.title = track.title
+        drop.assign_attributes({ sc_track: track.id, title: track.title })
         drop
       end
     end

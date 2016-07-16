@@ -3,7 +3,7 @@ class Drop < ActiveRecord::Base
   has_many :votes, dependent: :destroy
   belongs_to :place
 
-  validates :sc_track, presence: true
+  validates :sc_track, presence: true,  numericality: { only_integer: true }
   validates :place_id, presence: true
 
   def image_from_track

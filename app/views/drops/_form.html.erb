@@ -19,7 +19,7 @@
 
         <div class='col-md-5 col-sm-12 text-right'>
           <h4>Select one of your <%= current_user.track_count %> tracks:</h4>
-          <%= select(:drop, :sc_track, options_for_select(current_user_tracks.map { |t| [t.title, t.id]}), :include_blank => true) %>
+          <%= select(:drop, :sc_track, options_for_select(current_user_tracks.map { |t| [t.title, t.id]}), include_blank: true) %>
         </div>
       </div>
     </div>
