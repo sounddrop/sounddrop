@@ -8,9 +8,6 @@
   margin-left: -70px;
 }
 
-@media (max-width: 1140px) {
-  
-}
 
 .rewind{
   z-index: 3;
@@ -37,9 +34,9 @@
 }
 
 .play-button.control-btn .glyphicon {
-  color: #ff7400;
+  color: $color-orange;
 }
 
 .control-btn .glyphicon {
-  color: #F9A120;
+  color: $color-orange-bright;
 }
