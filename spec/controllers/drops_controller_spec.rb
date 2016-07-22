@@ -17,32 +17,41 @@ describe DropsController, :vcr => {:cassette_name => "place" } do
      expect(@response.status).to eq(200)
   end
 
-  it "creates a drop at a place" do
-    url = "http://soundcloud.com/eric/oberholz5"
-    stub_request(:get, "http://api.soundcloud.com/resolve").
-      with(:query => {
-        "client_id" => "69e93cf2209402f6f3137a6452cf498f",
-        "format" => "json",
-        "url" => url,
-      }).
-      to_return(:body => File.read('spec/fixtures/oberholz5.json'), :headers => {"Content-Type" => "application/json; charset=utf-8"})
+  describe 'creates a drop at a place' do
+    let(:current_user) { JSON.parse(File.read('spec/fixtures/eric.json')) }
+    before { expect(controller).to receive(:current_user).and_return SoundCloud::HashResponseWrapper.new(current_user) }
 
-    get :create, {
-      'sc_url' => url,
-      'drop' => {
-        'place' => {
-          'name' => "himmel",
-          'latitude' => 12.0,
-          'longitude' => 12.0,
-          'location' => 'soundcloud'
+    specify do
+      # stub the track
+      url = "http://soundcloud.com/eric/oberholz5"
+      stub_request(:get, "http://api.soundcloud.com/resolve").
+        with(:query => {
+          "client_id" => "69e93cf2209402f6f3137a6452cf498f",
+          "format" => "json",
+          "url" => url,
+        }).
+        to_return(:body => File.read('spec/fixtures/oberholz5.json'), :headers => {"Content-Type" => "application/json; charset=utf-8"}
+      )
+
+      get :create, {
+        'sc_url' => url,
+        'drop' => {
+          'place' => {
+            'name' => "himmel",
+            'latitude' => 12.0,
+            'longitude' => 12.0,
+            'location' => 'soundcloud'
+          },
+        'user' => SoundCloud::HashResponseWrapper.new(current_user).id
         }
       }
-    }
-    expect(@response.status).to eq(302)
-    place = Drop.last.place
-    expect(place.name).to eq("himmel")
-    expect(place.latitude).to eq(12.0)
-    expect(place.longitude).to eq(12.0)
+
+      expect(@response.status).to eq(302)
+      place = Drop.last.place
+      expect(place.name).to eq("himmel")
+      expect(place.latitude).to eq(12.0)
+      expect(place.longitude).to eq(12.0)
+    end
   end
 
   it "returns 404 if the drop doesn't exist" do
