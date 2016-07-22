@@ -1,0 +1,61 @@
+.drop-container{
+  position: absolute;
+  left: 50%;
+  margin-left: -570px;
+  top: 50%;
+  margin-top: -380px;
+  width: 1140px;
+}
+
+@media (max-height: 870px) {
+ .drop-container{
+    position: relative;
+    left: 0;
+    margin-left: 0;
+    top: 0;
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 1140px) {
+ .drop-container{
+    position: relative;
+    left: 0;
+    margin-left: 0;
+    top: 0;
+    margin-top: 0;
+    width: 100%;
+  }
+}
+
+.container-play-button {
+  margin-right: auto;
+  margin-left: auto;
+  padding-bottom: 0;
+  width:100%;
+  position: relative; left:0; top:0;
+  z-index:0;
+}
+.container-image {
+  margin-right: auto;
+  margin-left: auto;
+  padding-bottom: 0;
+  width:50%;
+  height: 470px;
+  position: relative; left:0; top:0;
+  z-index:0;
+}
+
+.container-like-button{
+  overflow: hidden;
+  position: relative;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.container-fluid {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
