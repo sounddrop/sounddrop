@@ -1,0 +1,42 @@
+.play-button{
+  z-index: 2;
+  width: 140px;
+  position: absolute;
+  margin-top: -72px;
+  top: 50%;
+  left: 25%;
+  margin-left: -70px;
+}
+
+
+.rewind{
+  z-index: 3;
+  width: 10%;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  margin-top: -30px;
+  text-align: left;
+}
+.forward{
+  z-index: 3;
+  width: 80px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -30px;
+  margin-left: -80px;
+  text-align: left;
+}
+
+.control-btn {
+  cursor: pointer;
+}
+
+.play-button.control-btn .glyphicon {
+  color: $color-orange;
+}
+
+.control-btn .glyphicon {
+  color: $color-orange-bright;
+}
