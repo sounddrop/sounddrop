@@ -83,16 +83,22 @@ class DropsController < ApplicationController
       params.require(:drop).require(:place).permit(:name, :longitude, :latitude, :location)
     end
 
-    def link_with_track(drop)
-      url = params["sc_url"]
-      sc_url_regex = /^https?:\/\/(www\.)?soundcloud\.com\/.+\/.+$/i
+    def sc_url
+      params["sc_url"]
+    end
 
-      if params[:drop][:sc_track].blank? && url =~ sc_url_regex
-        client = SoundCloud.new(:client_id => ENV['SOUNDCLOUD_CLIENT_ID'])
-        track = client.get("/resolve?url=#{url}")
-        drop.assign_attributes({ sc_track: track.id, title: track.title })
-        drop
+    def sc_url_regex
+      /^https?:\/\/(www\.)?soundcloud\.com\/.+\/.+$/i
+    end
+
+    def link_with_track(drop)
+      if params[:drop][:sc_track].blank? && sc_url =~ sc_url_regex
+        track = SoundCloud.new(:client_id => ENV['SOUNDCLOUD_CLIENT_ID']).get("/resolve?url=#{sc_url}")
+        drop.assign_attributes(sc_track: track.id, title: track.title)
+      else
+        drop.assign_attributes(sc_track: params[:drop][:sc_track], title: place_params[:name])
       end
+      drop
     end
 
 end
