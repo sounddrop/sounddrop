@@ -6,20 +6,35 @@ RSpec.describe Api::DropsController, :vcr => {:cassette_name => "place" }, type:
   let!(:drops) { FactoryGirl.create_list(:drop, 3) }
 
     describe "GET /drops" do
+              
         it "displays list of  drops in database" do
 
           get api_drops_path(format: :json)
           expect(response.status).to eq(200)
         end
 
-        it "renders JSON by default" do
+        it "defines JSON as format in headers" do
           get "/api/drops"
-          expected = ActiveSupport::JSON.decode(drops.to_json)
+          expect(response.headers["Content-Type"]).to include 'application/json'
+        end
+
+        it "delivers valid JSON" do
+          get "/api/drops"
+          parsed_response = ActiveSupport::JSON.decode(response.body) 
+          expect(parsed_response).to be_a Enumerable
+        end
+
+        it "contains a place sub-structure" do
+          get "/api/drops"
+         
           parsed_response = ActiveSupport::JSON.decode(response.body)
-          expect(parsed_response).to eql expected
+          puts parsed_response
+          expect(parsed_response[0]["place"]).to include(place: {id: "#{@drops.place.id}", name: "#{@drops.place.name}", latitude: "#{@drops.place.latitude}", longitude: "#{@drops.place.longitude}" })
         end
     end
 
 
   end
 end
+
+
