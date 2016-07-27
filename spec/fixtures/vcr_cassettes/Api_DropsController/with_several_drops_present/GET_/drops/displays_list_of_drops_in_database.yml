@@ -1,0 +1,460 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://maps.googleapis.com/maps/api/geocode/json?address=SoundCloud,%20Berlin&language=en&sensor=false
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Wed, 27 Jul 2016 10:46:38 GMT
+      Expires:
+      - Thu, 28 Jul 2016 10:46:38 GMT
+      Cache-Control:
+      - public, max-age=86400
+      Access-Control-Allow-Origin:
+      - "*"
+      Server:
+      - mafe
+      Content-Length:
+      - '587'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+           "results" : [
+              {
+                 "address_components" : [
+                    {
+                       "long_name" : "Berlin",
+                       "short_name" : "Berlin",
+                       "types" : [ "locality", "political" ]
+                    },
+                    {
+                       "long_name" : "Berlin",
+                       "short_name" : "Berlin",
+                       "types" : [ "administrative_area_level_1", "political" ]
+                    },
+                    {
+                       "long_name" : "Germany",
+                       "short_name" : "DE",
+                       "types" : [ "country", "political" ]
+                    }
+                 ],
+                 "formatted_address" : "Berlin, Germany",
+                 "geometry" : {
+                    "bounds" : {
+                       "northeast" : {
+                          "lat" : 52.6754542,
+                          "lng" : 13.7611175
+                       },
+                       "southwest" : {
+                          "lat" : 52.33962959999999,
+                          "lng" : 13.0891554
+                       }
+                    },
+                    "location" : {
+                       "lat" : 52.52000659999999,
+                       "lng" : 13.404954
+                    },
+                    "location_type" : "APPROXIMATE",
+                    "viewport" : {
+                       "northeast" : {
+                          "lat" : 52.6754542,
+                          "lng" : 13.7611175
+                       },
+                       "southwest" : {
+                          "lat" : 52.33962959999999,
+                          "lng" : 13.0891554
+                       }
+                    }
+                 },
+                 "partial_match" : true,
+                 "place_id" : "ChIJAVkDPzdOqEcRcDteW0YgIQQ",
+                 "types" : [ "locality", "political" ]
+              },
+              {
+                 "address_components" : [
+                    {
+                       "long_name" : "Berlin",
+                       "short_name" : "Berlin",
+                       "types" : [ "locality", "political" ]
+                    },
+                    {
+                       "long_name" : "Hartford County",
+                       "short_name" : "Hartford County",
+                       "types" : [ "administrative_area_level_2", "political" ]
+                    },
+                    {
+                       "long_name" : "Connecticut",
+                       "short_name" : "CT",
+                       "types" : [ "administrative_area_level_1", "political" ]
+                    },
+                    {
+                       "long_name" : "United States",
+                       "short_name" : "US",
+                       "types" : [ "country", "political" ]
+                    }
+                 ],
+                 "formatted_address" : "Berlin, CT, USA",
+                 "geometry" : {
+                    "bounds" : {
+                       "northeast" : {
+                          "lat" : 41.652699,
+                          "lng" : -72.711213
+                       },
+                       "southwest" : {
+                          "lat" : 41.5541969,
+                          "lng" : -72.84024409999999
+                       }
+                    },
+                    "location" : {
+                       "lat" : 41.621488,
+                       "lng" : -72.7456519
+                    },
+                    "location_type" : "APPROXIMATE",
+                    "viewport" : {
+                       "northeast" : {
+                          "lat" : 41.652699,
+                          "lng" : -72.711213
+                       },
+                       "southwest" : {
+                          "lat" : 41.5541969,
+                          "lng" : -72.84024409999999
+                       }
+                    }
+                 },
+                 "partial_match" : true,
+                 "place_id" : "ChIJTzAUu0i054kRAznGlquL7Zw",
+                 "types" : [ "locality", "political" ]
+              }
+           ],
+           "status" : "OK"
+        }
+    http_version: 
+  recorded_at: Wed, 27 Jul 2016 10:46:39 GMT
+- request:
+    method: get
+    uri: http://maps.googleapis.com/maps/api/geocode/json?address=SoundCloud,%20Berlin&language=en&sensor=false
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Wed, 27 Jul 2016 10:46:38 GMT
+      Expires:
+      - Thu, 28 Jul 2016 10:46:38 GMT
+      Access-Control-Allow-Origin:
+      - "*"
+      Server:
+      - mafe
+      Content-Length:
+      - '587'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      Cache-Control:
+      - public, max-age=86400
+      Age:
+      - '0'
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+           "results" : [
+              {
+                 "address_components" : [
+                    {
+                       "long_name" : "Berlin",
+                       "short_name" : "Berlin",
+                       "types" : [ "locality", "political" ]
+                    },
+                    {
+                       "long_name" : "Berlin",
+                       "short_name" : "Berlin",
+                       "types" : [ "administrative_area_level_1", "political" ]
+                    },
+                    {
+                       "long_name" : "Germany",
+                       "short_name" : "DE",
+                       "types" : [ "country", "political" ]
+                    }
+                 ],
+                 "formatted_address" : "Berlin, Germany",
+                 "geometry" : {
+                    "bounds" : {
+                       "northeast" : {
+                          "lat" : 52.6754542,
+                          "lng" : 13.7611175
+                       },
+                       "southwest" : {
+                          "lat" : 52.33962959999999,
+                          "lng" : 13.0891554
+                       }
+                    },
+                    "location" : {
+                       "lat" : 52.52000659999999,
+                       "lng" : 13.404954
+                    },
+                    "location_type" : "APPROXIMATE",
+                    "viewport" : {
+                       "northeast" : {
+                          "lat" : 52.6754542,
+                          "lng" : 13.7611175
+                       },
+                       "southwest" : {
+                          "lat" : 52.33962959999999,
+                          "lng" : 13.0891554
+                       }
+                    }
+                 },
+                 "partial_match" : true,
+                 "place_id" : "ChIJAVkDPzdOqEcRcDteW0YgIQQ",
+                 "types" : [ "locality", "political" ]
+              },
+              {
+                 "address_components" : [
+                    {
+                       "long_name" : "Berlin",
+                       "short_name" : "Berlin",
+                       "types" : [ "locality", "political" ]
+                    },
+                    {
+                       "long_name" : "Hartford County",
+                       "short_name" : "Hartford County",
+                       "types" : [ "administrative_area_level_2", "political" ]
+                    },
+                    {
+                       "long_name" : "Connecticut",
+                       "short_name" : "CT",
+                       "types" : [ "administrative_area_level_1", "political" ]
+                    },
+                    {
+                       "long_name" : "United States",
+                       "short_name" : "US",
+                       "types" : [ "country", "political" ]
+                    }
+                 ],
+                 "formatted_address" : "Berlin, CT, USA",
+                 "geometry" : {
+                    "bounds" : {
+                       "northeast" : {
+                          "lat" : 41.652699,
+                          "lng" : -72.711213
+                       },
+                       "southwest" : {
+                          "lat" : 41.5541969,
+                          "lng" : -72.84024409999999
+                       }
+                    },
+                    "location" : {
+                       "lat" : 41.621488,
+                       "lng" : -72.7456519
+                    },
+                    "location_type" : "APPROXIMATE",
+                    "viewport" : {
+                       "northeast" : {
+                          "lat" : 41.652699,
+                          "lng" : -72.711213
+                       },
+                       "southwest" : {
+                          "lat" : 41.5541969,
+                          "lng" : -72.84024409999999
+                       }
+                    }
+                 },
+                 "partial_match" : true,
+                 "place_id" : "ChIJTzAUu0i054kRAznGlquL7Zw",
+                 "types" : [ "locality", "political" ]
+              }
+           ],
+           "status" : "OK"
+        }
+    http_version: 
+  recorded_at: Wed, 27 Jul 2016 10:46:39 GMT
+- request:
+    method: get
+    uri: http://maps.googleapis.com/maps/api/geocode/json?address=SoundCloud,%20Berlin&language=en&sensor=false
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Wed, 27 Jul 2016 10:46:38 GMT
+      Expires:
+      - Thu, 28 Jul 2016 10:46:38 GMT
+      Access-Control-Allow-Origin:
+      - "*"
+      Server:
+      - mafe
+      Content-Length:
+      - '587'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - SAMEORIGIN
+      Cache-Control:
+      - public, max-age=86400
+      Age:
+      - '0'
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        {
+           "results" : [
+              {
+                 "address_components" : [
+                    {
+                       "long_name" : "Berlin",
+                       "short_name" : "Berlin",
+                       "types" : [ "locality", "political" ]
+                    },
+                    {
+                       "long_name" : "Berlin",
+                       "short_name" : "Berlin",
+                       "types" : [ "administrative_area_level_1", "political" ]
+                    },
+                    {
+                       "long_name" : "Germany",
+                       "short_name" : "DE",
+                       "types" : [ "country", "political" ]
+                    }
+                 ],
+                 "formatted_address" : "Berlin, Germany",
+                 "geometry" : {
+                    "bounds" : {
+                       "northeast" : {
+                          "lat" : 52.6754542,
+                          "lng" : 13.7611175
+                       },
+                       "southwest" : {
+                          "lat" : 52.33962959999999,
+                          "lng" : 13.0891554
+                       }
+                    },
+                    "location" : {
+                       "lat" : 52.52000659999999,
+                       "lng" : 13.404954
+                    },
+                    "location_type" : "APPROXIMATE",
+                    "viewport" : {
+                       "northeast" : {
+                          "lat" : 52.6754542,
+                          "lng" : 13.7611175
+                       },
+                       "southwest" : {
+                          "lat" : 52.33962959999999,
+                          "lng" : 13.0891554
+                       }
+                    }
+                 },
+                 "partial_match" : true,
+                 "place_id" : "ChIJAVkDPzdOqEcRcDteW0YgIQQ",
+                 "types" : [ "locality", "political" ]
+              },
+              {
+                 "address_components" : [
+                    {
+                       "long_name" : "Berlin",
+                       "short_name" : "Berlin",
+                       "types" : [ "locality", "political" ]
+                    },
+                    {
+                       "long_name" : "Hartford County",
+                       "short_name" : "Hartford County",
+                       "types" : [ "administrative_area_level_2", "political" ]
+                    },
+                    {
+                       "long_name" : "Connecticut",
+                       "short_name" : "CT",
+                       "types" : [ "administrative_area_level_1", "political" ]
+                    },
+                    {
+                       "long_name" : "United States",
+                       "short_name" : "US",
+                       "types" : [ "country", "political" ]
+                    }
+                 ],
+                 "formatted_address" : "Berlin, CT, USA",
+                 "geometry" : {
+                    "bounds" : {
+                       "northeast" : {
+                          "lat" : 41.652699,
+                          "lng" : -72.711213
+                       },
+                       "southwest" : {
+                          "lat" : 41.5541969,
+                          "lng" : -72.84024409999999
+                       }
+                    },
+                    "location" : {
+                       "lat" : 41.621488,
+                       "lng" : -72.7456519
+                    },
+                    "location_type" : "APPROXIMATE",
+                    "viewport" : {
+                       "northeast" : {
+                          "lat" : 41.652699,
+                          "lng" : -72.711213
+                       },
+                       "southwest" : {
+                          "lat" : 41.5541969,
+                          "lng" : -72.84024409999999
+                       }
+                    }
+                 },
+                 "partial_match" : true,
+                 "place_id" : "ChIJTzAUu0i054kRAznGlquL7Zw",
+                 "types" : [ "locality", "political" ]
+              }
+           ],
+           "status" : "OK"
+        }
+    http_version: 
+  recorded_at: Wed, 27 Jul 2016 10:46:39 GMT
+recorded_with: VCR 2.9.3
