@@ -1,5 +1,4 @@
 json.array! @drops do |drop|
-  
   json.id drop.id
   json.title drop.title
   json.sc_track drop.sc_track
@@ -10,4 +9,3 @@ json.array! @drops do |drop|
     json.longitude drop.place.longitude
   end
 end
-

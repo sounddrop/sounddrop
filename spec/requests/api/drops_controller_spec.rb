@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-
 RSpec.describe Api::DropsController, :vcr, type: :request do
   context 'with several drops present' do
   let!(:drops) { FactoryGirl.create_list(:drop, 3) }
@@ -8,7 +7,6 @@ RSpec.describe Api::DropsController, :vcr, type: :request do
     describe "GET /drops" do
 
       it "displays list of  drops in database" do
-
         get api_drops_path(format: :json)
         expect(response.status).to eq(200)
       end
@@ -26,7 +24,6 @@ RSpec.describe Api::DropsController, :vcr, type: :request do
 
       it "contains a place sub-structure" do
         get "/api/drops"
-
         parsed_response = ActiveSupport::JSON.decode(response.body)
         expect(parsed_response[0]["place"].keys).to eq(["id", "name", "latitude", "longitude"])
       end
@@ -34,5 +31,5 @@ RSpec.describe Api::DropsController, :vcr, type: :request do
     end
 
   end
-  
+
 end
