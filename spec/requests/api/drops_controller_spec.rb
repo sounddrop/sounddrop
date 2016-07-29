@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'net/http'
 
 RSpec.describe Api::DropsController, :vcr, type: :request do
   context 'with several drops present' do
@@ -27,10 +26,6 @@ RSpec.describe Api::DropsController, :vcr, type: :request do
         get "/api/drops"
         parsed_response = ActiveSupport::JSON.decode(response.body)
         expect(parsed_response[0]["place"].keys).to eq(["id", "name", "latitude", "longitude"])
-      end
-
-      it "blablabla" do
-        Net::HTTP.get_response(URI.parse("http://google.com"))     
       end
 
     end
