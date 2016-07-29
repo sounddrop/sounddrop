@@ -16,6 +16,10 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :api do
+    resources :drops, defaults: { format: 'json' }, only: [:index]
+  end
+
   get '/stats' => 'charts#stats', :as => 'stats'
   get '/charts' => 'charts#charts', :as => 'charts_json'
   get '/login' => 'connect#login'
