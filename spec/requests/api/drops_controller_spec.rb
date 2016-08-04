@@ -38,7 +38,7 @@ RSpec.describe Api::DropsController, :vcr, type: :request do
         let!(:drop) { FactoryGirl.create :drop, :drop_at_Bernauer }
 
         it "returns the drops that are within a radius of 1 Km" do
-          get "/api/drops?lat=52.537016&long=13.394861"
+          get "/api/drops?latitude=52.537016&longitude=13.394861"
           parsed_response = ActiveSupport::JSON.decode(response.body)
           expect(parsed_response[0].keys).to include("id")
         end
