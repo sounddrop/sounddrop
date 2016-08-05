@@ -5,14 +5,13 @@ class Api::DropsController < ApplicationController
     #if params[:longitude]  && params[:latitude]
     #  @drops = Drop.all
       #raise params[:longitude].inspect
-      puts "Im Controller: #{params.inspect}"
-      
-      
+      #puts "Im Controller: #{params.inspect}"
+   
 
-      places_within_radius = Place.near([params[:longitude].to_f, params[:latitude].to_f],  10, units:  :km)
+      places_within_radius = Place.near([params[:latitude], params[:longitude]],  10, units:  :km)
       
-      puts places_within_radius.inspect
-      puts "----"
+      #puts places_within_radius.inspect
+      #puts "----"
       @drops = Drop.where(place_id: places_within_radius.map(&:id))
 
     #end
