@@ -10,7 +10,9 @@ module ApplicationHelper
   end
 
   def client
-    @client ||= SoundCloud.new(:access_token => session[:access_token_hash]["access_token"])
+    if session[:access_token_hash]
+      @client ||= SoundCloud.new(:access_token => session[:access_token_hash]["access_token"])
+    end
   end
 
   def current_user

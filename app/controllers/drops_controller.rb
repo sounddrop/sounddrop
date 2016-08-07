@@ -3,6 +3,9 @@ require 'soundcloud'
 class DropsController < ApplicationController
   include ApplicationHelper
 
+  before_action :set_drop, only: [:show, :edit, :update, :destroy]
+  before_action :require_creator_of_drop, except: [:index, :show, :new, :create]
+
   def index
     @drops = Drop.all
   end
@@ -16,7 +19,6 @@ class DropsController < ApplicationController
   end
 
   def edit
-    @drop = Drop.find_by_id(params[:id])
   end
 
   def create
@@ -32,16 +34,12 @@ class DropsController < ApplicationController
   end
 
   def show
-    @drop = Drop.find_by_id(params[:id])
     if @drop.present?
       @place = @drop.place
-    else
-      page_not_found
     end
   end
 
   def update
-    @drop = Drop.find_by_id(params[:id])
     @place = Place.find_or_create_by(place_params)
     link_with_track(@drop)
 
@@ -52,14 +50,14 @@ class DropsController < ApplicationController
       @drop.update_attributes(drop_params.merge({place_id: @place.id}))
       redirect_to drop_path(@drop), notice: 'Drop successfully updated'
     else
-      render :edit
+      render :edit, notice: "Oops! That didn't work, please try again."
     end
   end
 
   def destroy
-    @drop = Drop.find_by_id(params[:id])
-    @drop.destroy
-    redirect_to root_path, notice: 'Drop successfully deleted'
+    if @drop.destroy
+      redirect_to root_path, notice: 'Drop successfully deleted'
+    end
   end
 
   def upvote
@@ -75,12 +73,21 @@ class DropsController < ApplicationController
   end
 
   private
+
+    def set_drop
+      @drop = Drop.find(params[:id].to_i)
+    end
+
     def drop_params
       params.require(:drop).permit(:sc_track, :title)
     end
 
     def place_params
       params.require(:drop).require(:place).permit(:name, :longitude, :latitude, :location)
+    end
+
+    def require_creator_of_drop
+      page_not_found unless current_user && (@drop.sc_user_id == current_user.id)
     end
 
     def sc_url
