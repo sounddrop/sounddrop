@@ -1,5 +1,5 @@
-class Distance
-  include Geocoder::Calculations
-
-  
-end
+# class Distance
+#   include Geocoder::Calculations
+#
+#
+# end
