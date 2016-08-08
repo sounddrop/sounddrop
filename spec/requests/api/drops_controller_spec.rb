@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Api::DropsController, :vcr, type: :request do
   context 'with several drops present' do
-  
+
 
     describe "GET /drops" do
 
@@ -45,13 +45,12 @@ RSpec.describe Api::DropsController, :vcr, type: :request do
           expect(parsed_response[0]["place"].values[2]).to eql drop_in_berlin.place.latitude.to_s
         end
 
-
-
-        it "" do
-
+        it "returns an empty array if no drop within radius" do
+          get "/api/drops?latitude=4.701647&longitude=-74.041916" # Somewhere in Bogotá
+          parsed_response = ActiveSupport::JSON.decode(response.body)
+          expect(parsed_response.length).to eq(0)
         end
       end
     end
   end
-
 end
