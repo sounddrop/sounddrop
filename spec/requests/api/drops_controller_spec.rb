@@ -2,9 +2,11 @@ require 'rails_helper'
 
 RSpec.describe Api::DropsController, :vcr, type: :request do
   context 'with several drops present' do
-  let!(:drops) { FactoryGirl.create_list(:drop, 3) }
+  
 
     describe "GET /drops" do
+
+      let!(:drops) { FactoryGirl.create_list(:drop, 3) }
 
       it "displays list of  drops in database" do
         get api_drops_path(format: :json)
@@ -19,7 +21,6 @@ RSpec.describe Api::DropsController, :vcr, type: :request do
       it "delivers valid JSON" do
         get "/api/drops"
         parsed_response = ActiveSupport::JSON.decode(response.body)
-        puts parsed_response
         expect(parsed_response).to be_a Enumerable
       end
 
@@ -30,51 +31,23 @@ RSpec.describe Api::DropsController, :vcr, type: :request do
       end
     end
 
-  #let!(:drops) { FactoryGirl.create_list(:drop, 3) }
 
     describe "GET /api/drops" do
 
       context 'with latitude and longitude given' do
-        let!(:place_near_soundcloud) { FactoryGirl.create :place, :place_near_soundcloud}
-        let!(:place_australia) { FactoryGirl.create :place, :place_australia }
-        let!(:drop_at_Bernauer) { FactoryGirl.create :drop, :drop_at_Bernauer}
+        let!(:drop_in_berlin) { FactoryGirl.create :drop, :drop_at_Bernauer}
         let!(:drop_in_sydney) { FactoryGirl.create :drop, :drop_in_sydney}
 
-
-        it "does not return drops outside of radius" do
-          expect(place_near_soundcloud).to be_geocoded
-          puts "Near soundcloud:"
-          puts place_near_soundcloud.to_coordinates
-
-          puts "Australia"
-          expect(place_australia).to be_geocoded
-          puts place_australia.to_coordinates
-
-          puts "Drop bernauer"
-          expect(drop_at_Bernauer.place).to be_geocoded
-          puts drop_at_Bernauer.place.to_coordinates
-#
-          puts "Drop syndey"
-          expect(drop_in_sydney.place).to be_geocoded
-          puts drop_in_sydney.place.to_coordinates
-
-          puts "Distance"
-          class ANiceClass
-            include Geocoder::Calculations
-          end
-          distance = ANiceClass.new.distance_between(drop_at_Bernauer.place.to_coordinates, place_near_soundcloud.to_coordinates)
-          puts distance.to_s
-
-
-          get "/api/drops?latitude=52.537016&longitude=13.394861"
+        it "returns drop in Berlin" do
+          get "/api/drops?latitude=52.537016&longitude=13.394861" # Somewhere in the middle of Berlin
           parsed_response = ActiveSupport::JSON.decode(response.body)
-          #puts parsed_response
-          expect(parsed_response[0].keys).to include("id")
+          expect(parsed_response.length).to eq(1)
+          expect(parsed_response[0]["place"].values[2]).to eql drop_in_berlin.place.latitude.to_s
         end
 
 
 
-        it "returns empty array if there are no drops within the radius" do
+        it "" do
 
         end
       end
