@@ -16,3 +16,6 @@
 /log/*
 !/log/.keep
 /tmp
+
+# Ignore all VCR cassettes.
+/spec/fixtures/vcr_cassettes/*
