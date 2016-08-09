@@ -59,7 +59,7 @@ describe DropsController, :vcr => {:cassette_name => "place" } do
 
   describe '#update' do
     let(:current_user) { JSON.parse(File.read('spec/fixtures/eric.json')) }
-    let(:drop)         { create :drop, id: 1, sc_user_id: SoundCloud::HashResponseWrapper.new(current_user).id }
+    let(:drop)         { create :drop, id: 1, title: "Such drop, much wow", sc_track: 345, sc_user_id: SoundCloud::HashResponseWrapper.new(current_user).id }
 
     context 'successfully updating a drop' do
       before do
@@ -69,29 +69,30 @@ describe DropsController, :vcr => {:cassette_name => "place" } do
 
       describe 'it updates the drop when a track id is passed in' do
         let(:new_place)    { create :place, id: 5, name: 'A new place', location: 'Here, Berlin' }
-        let(:params) {{ id: 1, "drop" => {"sc_track" => "123456", "place" => { "name" => new_place.name, "location" => new_place.location }}}}
+        let(:params) {{ id: 1, "drop" => {"place" => { "name" => new_place.name, "location" => new_place.location }}}}
 
         specify do
           put :update, params
           expect(drop.place_id).to eql 5
           expect(drop.place.name).to eql 'A new place'
           expect(drop.place.location).to eql 'Here, Berlin'
-          expect(drop.sc_track).to eql 123456
+          expect(drop.sc_track).to eql 345
+          expect(drop.title).to eql 'A new place'
           expect(response).to redirect_to drop_path(drop)
         end
       end
 
       describe 'it updates the drop when a url is passed in' do
-        # we are making a real api call here
         let(:new_place) { create :place, id: 6, name: 'Russian Graveyard in Tegel', location: 'Tegel, Berlin'}
-        let(:params) {{ id: 1, "sc_url" => "https://soundcloud.com/maedelswithamicrophone/sounds-russian-orthodox", "drop" => {"sc_track" => "", "place" => { "name" => new_place.name, "location" => new_place.location }}}}
+        let(:params) {{ id: 1, "drop" => {"place" => { "name" => new_place.name, "location" => new_place.location }}}}
 
         specify do
           put :update, params
           expect(drop.place_id).to eql 6
           expect(drop.place.name).to eql 'Russian Graveyard in Tegel'
           expect(drop.place.location).to eql 'Tegel, Berlin'
-          expect(drop.sc_track).to eql 82069535
+          expect(drop.sc_track).to eql 345
+          expect(drop.title).to eql 'Russian Graveyard in Tegel'
           expect(response).to redirect_to drop_path(drop)
         end
       end

@@ -41,13 +41,7 @@ class DropsController < ApplicationController
 
   def update
     @place = Place.find_or_create_by(place_params)
-    link_with_track(@drop)
-
-    if @drop.sc_track.present?
-      @drop.update_attributes(place_id: @place.id)
-      redirect_to drop_path(@drop), notice: 'Drop successfully updated'
-    elsif drop_params["sc_track"].present?
-      @drop.update_attributes(drop_params.merge({place_id: @place.id}))
+    if @drop.update_attributes(title: @place.name, place_id: @place.id)
       redirect_to drop_path(@drop), notice: 'Drop successfully updated'
     else
       render :edit, notice: "Oops! That didn't work, please try again."

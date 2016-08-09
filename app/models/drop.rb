@@ -18,4 +18,12 @@ class Drop < ActiveRecord::Base
     client = SoundCloud.new(:client_id => ENV['SOUNDCLOUD_CLIENT_ID'])
     client.get("/tracks/#{self.sc_track}")
   end
+
+  def place_name
+    place.try(:name)
+  end
+
+  def place_location
+    place.try(:location)
+  end
 end

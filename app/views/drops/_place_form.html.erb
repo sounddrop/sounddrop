@@ -1,0 +1,10 @@
+<div class='col-md-6 col-sm-12'>
+  <%= ff.label(:name, "name:") %>
+  <div class='glyphicon glyphicon-star '></div>
+  <%= ff.text_field(:name, value: @drop.place_name) %>
+</div>
+<div class='col-md-6 col-sm-12'>
+  <%= ff.label(:location, "location:")%>
+  <div class='glyphicon glyphicon-star'></div>
+  <%= ff.text_field(:location, value: @drop.place_location) %>
+</div>
