@@ -2,11 +2,9 @@ require 'spec_helper'
 require 'rails_helper'
 
 describe "Drop page", type: :feature, :vcr => {:cassette_name => "place" } do
+  let!(:drop) { create :drop, sc_track:"187471639", title: "Coffee Machine" }
 
   before do
-    place = create :place, name: "@SoundCloud HQ"
-    drop_1 = create :drop, id: 5, sc_track:"187471639", title:"Coffee Machine", place: place
-
     stub_request(:get, "http://api.soundcloud.com/tracks/187471639").
       with(:query => {
         "client_id" => "69e93cf2209402f6f3137a6452cf498f",
@@ -16,7 +14,8 @@ describe "Drop page", type: :feature, :vcr => {:cassette_name => "place" } do
   end
 
   it "displays SoundDrop info" do
-    visit "/drops/5"
+    pending
+    visit "/drops/#{drop.id}"
     expect(page).to have_content("@SoundCloud HQ")
     expect(page).to have_content("Ben Kochie shares the history of the coffee machine.")
   end

@@ -56,7 +56,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'rspec'
   gem 'rspec-rails'
-  gem 'selenium-webdriver'
+  gem 'capybara-webkit'
   gem 'factory_girl_rails'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
