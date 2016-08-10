@@ -12,6 +12,18 @@ FactoryGirl.define do
         latitude 52.538255
         longitude 13.396255
       end
+      trait :place_in_charlottenburg do
+        location "Passauer Straße 1, Berlin"
+        latitude 52.501623
+        longitude 13.340120
+      end
   end
 end
 
+
+#drop coordinates actually used when running tests
+
+# "latitude"=>"52.5676612", "longitude"=>"13.2578827"}}
+# "latitude"=>"52.5017465", "longitude"=>"13.3399831"
+
+#geolocated coordinates of the adresses

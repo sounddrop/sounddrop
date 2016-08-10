@@ -10,5 +10,8 @@ FactoryGirl.define do
       trait :drop_in_sydney do
         association :place, factory: [:place, :place_australia]
       end
+      trait :drop_in_charlottenburg do
+        association :place, factory: [:place, :place_in_charlottenburg]
+      end
   end
 end

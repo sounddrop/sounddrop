@@ -34,7 +34,7 @@ RSpec.describe Api::DropsController, :vcr, type: :request do
 
     describe "GET /api/drops" do
 
-      context 'with latitude and longitude given' do
+      context 'with latitude and longitude given' do # will always set the radio to 10km
         let!(:drop_in_berlin) { FactoryGirl.create :drop, :drop_at_Bernauer}
         let!(:drop_in_sydney) { FactoryGirl.create :drop, :drop_in_sydney}
 
@@ -52,5 +52,23 @@ RSpec.describe Api::DropsController, :vcr, type: :request do
         end
       end
     end
+
+    context 'with latitude,longitude and radius given' do #
+      let!(:drop_in_berlin) { FactoryGirl.create :drop, :drop_at_Bernauer}
+      let!(:drop_in_charlottenburg) { FactoryGirl.create :drop, :drop_in_charlottenburg}
+
+      it "" do
+        get "/api/drops?latitude=52.537016&longitude=13.394861&radius:1" # 1 Km away from SoundCloud
+        parsed_response = ActiveSupport::JSON.decode(response.body)
+        binding.pry
+        expect(parsed_response.length).to eq(1)
+      end
+
+  #     it "" do
+  #       get "/api/drops?latitude=4.701647&longitude=-74.041916" # Somewhere in Bogotá
+  #       parsed_response = ActiveSupport::JSON.decode(response.body)
+  #       expect(parsed_response.length).to eq(0)
+ #         end
+   end
   end
 end
