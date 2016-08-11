@@ -6,15 +6,6 @@ class Place < ActiveRecord::Base
   validates :location, presence: true
 
   geocoded_by :location
-  after_validation :geocode # eigene Methode schreiben, die daf`r sorgt lat and long gegeben werden, wenn es sie noch nicht gibt, oder wenn es neue
-  # koordinaten . Damit lat und llong , wenn sie gegebn werden nicht ueberschrieben werden.
 
-#   before_save :my_method_name, if: :method_name
-#
-#   private
-#
-#   def my_method_name
-#     # fv,v,,vv
-#   end
-#
+  after_validation :geocode, unless: :geocoded?
 end
