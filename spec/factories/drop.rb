@@ -4,9 +4,9 @@ FactoryGirl.define do
     sequence(:sc_track) { |n|  n }
     sequence(:user_id) { |n|  n }
     place # association :place, factory: :place
-    trait :drop_at_Bernauer do
-      association :place, factory: [:place, :place_near_soundcloud]
-    end
+      trait :drop_in_rheinsberger do
+        association :place, factory: [:place, :place_1km_from_soundcloud]
+      end
       trait :drop_in_sydney do
         association :place, factory: [:place, :place_australia]
       end
