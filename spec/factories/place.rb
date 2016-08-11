@@ -7,23 +7,30 @@ FactoryGirl.define do
       latitude -33.869717
       longitude 151.205068
     end
-      trait :place_near_soundcloud do
-        location "U Bernauer Str., Berlin"
-        latitude 52.538255
-        longitude 13.396255
+      trait :place_1km_from_soundcloud do
+        location "Rheinsbergerstr. 4, Berlin"
       end
       trait :place_in_charlottenburg do
         location "Passauer Straße 1, Berlin"
-        latitude 52.501623
-        longitude 13.340120
       end
   end
 end
 
 
-#drop coordinates actually used when running tests
+#drop coordinates in tests
 
-# "latitude"=>"52.5676612", "longitude"=>"13.2578827"}}
-# "latitude"=>"52.5017465", "longitude"=>"13.3399831"
+# "latitude"=>"52.57542", "longitude"=>"13.28185"}}, => place near soundcloud (Bernauer Str. 81) in test
+# "latitude"=>"52.5017465", "longitude"=>"13.3399831" => place in Charlottenburg (same as geocoded)
+#"latitude"=>"52.5366012", "longitude"=>"13.3955806" => rheinsberger
 
-#geolocated coordinates of the adresses
+
+# geocoded coordinates:
+
+#geocoded Bernauer Str. 81
+# [52.53877, 13.39679]
+
+#geocoded Passauer Str. 1, Berlin
+# [52.5017465, 13.3399831] 
+
+#geocoded Rheinsbergerstr. 4
+# [52.5366012, 13.3955806] 
