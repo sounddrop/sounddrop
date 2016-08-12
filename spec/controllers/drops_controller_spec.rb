@@ -20,7 +20,7 @@ describe DropsController, :vcr => {:cassette_name => "place" } do
 
   describe '#create' do
     let(:current_user) { JSON.parse(File.read('spec/fixtures/eric.json')) }
-    before { expect(controller).to receive(:current_user).and_return SoundCloud::HashResponseWrapper.new(current_user) }
+    before { allow(controller).to receive(:current_user).and_return SoundCloud::HashResponseWrapper.new(current_user) }
 
     it 'creates a drop at a place' do
       # stub the track
@@ -63,13 +63,13 @@ describe DropsController, :vcr => {:cassette_name => "place" } do
 
     context 'successfully updating a drop' do
       before do
-        expect(controller).to receive(:current_user).twice.and_return SoundCloud::HashResponseWrapper.new(current_user)
+        allow(controller).to receive(:current_user).and_return SoundCloud::HashResponseWrapper.new(current_user)
         expect(Drop).to receive(:find).with(drop.id).and_return drop
       end
 
-      describe 'it updates the drop when a track id is passed in' do
-        let(:new_place)    { create :place, id: 5, name: 'A new place', location: 'Here, Berlin' }
-        let(:params) {{ id: 1, "drop" => {"place" => { "name" => new_place.name, "location" => new_place.location }}}}
+      describe 'it updates the drop' do
+        let(:new_place) { create :place, id: 5, name: 'A new place', location: 'Here, Berlin' }
+        let(:params)    {{ id: 1, "drop" => {"place" => { "name" => new_place.name, "location" => new_place.location }}}}
 
         specify do
           put :update, params
@@ -78,21 +78,6 @@ describe DropsController, :vcr => {:cassette_name => "place" } do
           expect(drop.place.location).to eql 'Here, Berlin'
           expect(drop.sc_track).to eql 345
           expect(drop.title).to eql 'A new place'
-          expect(response).to redirect_to drop_path(drop)
-        end
-      end
-
-      describe 'it updates the drop when a url is passed in' do
-        let(:new_place) { create :place, id: 6, name: 'Russian Graveyard in Tegel', location: 'Tegel, Berlin'}
-        let(:params) {{ id: 1, "drop" => {"place" => { "name" => new_place.name, "location" => new_place.location }}}}
-
-        specify do
-          put :update, params
-          expect(drop.place_id).to eql 6
-          expect(drop.place.name).to eql 'Russian Graveyard in Tegel'
-          expect(drop.place.location).to eql 'Tegel, Berlin'
-          expect(drop.sc_track).to eql 345
-          expect(drop.title).to eql 'Russian Graveyard in Tegel'
           expect(response).to redirect_to drop_path(drop)
         end
       end
@@ -121,7 +106,7 @@ describe DropsController, :vcr => {:cassette_name => "place" } do
       let(:drop)  { create :drop, id: 2, sc_user_id: SoundCloud::HashResponseWrapper.new(current_user).id }
 
       before do
-        expect(controller).to receive(:current_user).twice.and_return SoundCloud::HashResponseWrapper.new(current_user)
+        allow(controller).to receive(:current_user).and_return SoundCloud::HashResponseWrapper.new(current_user)
         expect(Drop).to receive(:find).with(drop.id).and_return drop
       end
 
