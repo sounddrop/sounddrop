@@ -9,7 +9,8 @@ cd /home/rails
 git pull
 bundle install --deployment
 chown -R rails:www-data .
+service unicorn stop
+bundle exec rake assets:precompile
 bundle exec rake db:migrate
-service unicorn restart
-
+service unicorn start
 END

@@ -2,9 +2,11 @@ require 'rails_helper'
 
 RSpec.describe Api::DropsController, :vcr, type: :request do
   context 'with several drops present' do
-  let!(:drops) { FactoryGirl.create_list(:drop, 3) }
+
 
     describe "GET /drops" do
+
+      let!(:drops) { create_list(:drop, 3) }
 
       it "displays list of  drops in database" do
         get api_drops_path(format: :json)
@@ -27,9 +29,46 @@ RSpec.describe Api::DropsController, :vcr, type: :request do
         parsed_response = ActiveSupport::JSON.decode(response.body)
         expect(parsed_response[0]["place"].keys).to eq(["id", "name", "latitude", "longitude"])
       end
-
     end
 
-  end
 
+    describe "GET /api/drops" do
+
+      context 'with latitude and longitude given' do # will always set the radio to 10km
+        let!(:drop_in_berlin) { create :drop, :drop_in_rheinsberger}
+        let!(:drop_in_sydney) { create :drop, :drop_in_sydney}
+
+        it "returns drop in Berlin" do
+          get "/api/drops?latitude=52.537016&longitude=13.394861" # Somewhere in the middle of Berlin
+          parsed_response = ActiveSupport::JSON.decode(response.body)
+          expect(parsed_response.length).to eq(1)
+          expect(parsed_response[0]["place"].values[2]).to eql drop_in_berlin.place.latitude.to_s
+        end
+
+        it "returns an empty array if no drop within radius" do
+          get "/api/drops?latitude=4.701647&longitude=-74.041916" # Somewhere in Bogotá
+          parsed_response = ActiveSupport::JSON.decode(response.body)
+          expect(parsed_response.length).to eq(0)
+        end
+      end
+    end
+
+    context 'with latitude,longitude and radius given' do #
+      let!(:drop_in_charlottenburg) { create :drop, :drop_in_charlottenburg}
+      let!(:drop_in_rheinsberger) { create :drop, :drop_in_rheinsberger}
+
+
+      it "returns only drops within given radius" do
+        get "/api/drops?latitude=52.537016&longitude=13.394861&radius=0.5" # 1 Km away from SoundCloud
+        parsed_response = ActiveSupport::JSON.decode(response.body)
+        expect(parsed_response.length).to eq(1)
+      end
+
+      it "returns empty array as no drops within radius" do
+        get "/api/drops?latitude=4.701647&longitude=-74.041916" # Somewhere in Bogotá
+        parsed_response = ActiveSupport::JSON.decode(response.body)
+        expect(parsed_response.length).to eq(0)
+      end
+    end
+  end
 end

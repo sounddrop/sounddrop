@@ -55,21 +55,21 @@ $(document).on("ready page:load", function() {
 
   $('.rewind').on('click', function(event) {
     //pause();
-    var rewind = dropAtPlay.position - 5000;
-    if (rewind > 0 && rewind < dropAtPlay.duration) {
-      dropAtPlay.setPosition(rewind);
+    var rewind = dropAtPlay.currentTime() - 5000;
+    if (rewind > 0 && rewind < dropAtPlay.streamInfo.duration) {
+      dropAtPlay.seek(rewind);
     } else {
-      dropAtPlay.setPosition(0);
+      dropAtPlay.seek(0);
     }
   });
 
   $('.forward').on('click', function(event) {
     //pause();
-    var forward = dropAtPlay.position + 5000;
-    if (forward < dropAtPlay.duration) {
-      dropAtPlay.setPosition(forward);
+    var forward = dropAtPlay.currentTime() + 5000;
+    if (forward < dropAtPlay.streamInfo.duration) {
+      dropAtPlay.seek(forward);
     } else {
-      dropAtPlay.setPosition(dropAtPlay.duration);
+      dropAtPlay.seek(dropAtPlay.streamInfo.duration);
     }
   });
 
@@ -87,10 +87,12 @@ $(document).on("ready page:load", function() {
 
   //Fetch stream
   setTimeout(function() {
-    if (typeof(dropAtSC) != "undefined") {
-      SC.stream(dropAtSC.id, options, function(sound) {
+    if (typeof(dropAtSC) !== "undefined") {
+      SC.stream('/tracks/' + dropAtSC.id).then(function(sound) {
         console.log("Streaming");
-        //if we comment this line we can test the else ( if drop is not true)
+        if (sound.options.protocols[0] === 'rtmp') {
+            sound.options.protocols.splice(0, 1);
+        }
         dropAtPlay = sound;
         console.log("drop ready");
         if (state.isBuffering) {
@@ -99,7 +101,6 @@ $(document).on("ready page:load", function() {
           playPauseButton.html('<span class="glyphicon glyphicon-pause"></span>');
           state.isPlaying = true;
           state.isBuffering = false;
-
         }
       });
     }

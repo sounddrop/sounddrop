@@ -6,5 +6,6 @@ class Place < ActiveRecord::Base
   validates :location, presence: true
 
   geocoded_by :location
-  after_validation :geocode
+
+  after_validation :geocode, unless: :geocoded?
 end
