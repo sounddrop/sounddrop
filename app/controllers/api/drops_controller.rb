@@ -1,3 +1,5 @@
+# We use .map instead of .pluck, as .pluck modifies the SELECT clause and produces strange results.
+
 class Api::DropsController < ApplicationController
   respond_to :json
 
