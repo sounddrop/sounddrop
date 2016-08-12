@@ -64,11 +64,11 @@ RSpec.describe Api::DropsController, :vcr, type: :request do
         expect(parsed_response.length).to eq(1)
       end
 
-  #     it "" do
-  #       get "/api/drops?latitude=4.701647&longitude=-74.041916" # Somewhere in Bogotá
-  #       parsed_response = ActiveSupport::JSON.decode(response.body)
-  #       expect(parsed_response.length).to eq(0)
- #         end
-   end
+      it "returns empty array as no drops within radius" do
+        get "/api/drops?latitude=4.701647&longitude=-74.041916" # Somewhere in Bogotá
+        parsed_response = ActiveSupport::JSON.decode(response.body)
+        expect(parsed_response.length).to eq(0)
+      end
+    end
   end
 end
