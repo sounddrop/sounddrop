@@ -84,22 +84,26 @@ class DropsController < ApplicationController
       page_not_found unless current_user && (@drop.sc_user_id == current_user.id)
     end
 
-    def sc_url
-      params["sc_url"]
+    def link_with_track(drop)
+      sc_track_id_from_dropdown = params[:drop][:sc_track]
+      sc_url_provided = params["sc_url"]
+
+      if sc_track_id_from_dropdown.blank? && sc_url_provided =~ sc_url_regex
+        track = resolve_sc_track_id(sc_url_provided)
+        drop.assign_attributes(sc_track: track.id, title: track.title)
+      else
+        drop.assign_attributes(sc_track: sc_track_id_from_dropdown, title: place_params[:name])
+      end
+      drop
     end
+
+    private 
 
     def sc_url_regex
       /^https?:\/\/(www\.)?soundcloud\.com\/.+\/.+$/i
     end
 
-    def link_with_track(drop)
-      if params[:drop][:sc_track].blank? && sc_url =~ sc_url_regex
-        track = SoundCloud.new(:client_id => ENV['SOUNDCLOUD_CLIENT_ID']).get("/resolve?url=#{sc_url}")
-        drop.assign_attributes(sc_track: track.id, title: track.title)
-      else
-        drop.assign_attributes(sc_track: params[:drop][:sc_track], title: place_params[:name])
-      end
-      drop
+    def resolve_sc_track_id(sc_url)
+       SoundCloud.new(:client_id => ENV['SOUNDCLOUD_CLIENT_ID']).get("/resolve?url=#{sc_url}")
     end
-
 end
