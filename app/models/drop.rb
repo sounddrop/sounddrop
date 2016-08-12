@@ -3,8 +3,8 @@ class Drop < ActiveRecord::Base
   has_many :votes, dependent: :destroy
   belongs_to :place
 
-  validates :sc_track, presence: true, numericality: { only_integer: true, message: "Sorry, this isn't a valid SoundCloud link. Try again!"}
-  validates :place_id, presence: { message: "Please pick a place for your drop."}
+  validates :sc_track, presence: true,  numericality: { only_integer: true }
+  validates :place_id, presence: true
 
   def image_from_track
     if soundcloud_track.artwork_url.nil?
@@ -17,5 +17,13 @@ class Drop < ActiveRecord::Base
   def soundcloud_track
     client = SoundCloud.new(:client_id => ENV['SOUNDCLOUD_CLIENT_ID'])
     client.get("/tracks/#{self.sc_track}")
+  end
+
+  def place_name
+    place.try(:name)
+  end
+
+  def place_location
+    place.try(:location)
   end
 end

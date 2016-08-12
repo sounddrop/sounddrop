@@ -1,0 +1,13 @@
+<div class='container'>
+  <%= form_for @drop do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <div class='edit-place'>
+      <%= f.fields_for :place do |ff| %>
+        <%= render 'place_form', ff: ff %>
+      <% end %>
+    </div>
+    <div class='row'>
+      <%= submit_tag("Save", class: 'submit-button') %>
+    </div>
+  <% end %>
+</div>

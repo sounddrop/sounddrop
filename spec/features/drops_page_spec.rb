@@ -1,11 +1,12 @@
 require 'spec_helper'
 require 'rails_helper'
 
-describe "Drop page", type: :feature, :vcr => {:cassette_name => "place" } do
+describe DropsController, type: :feature, :vcr => {:cassette_name => "place" } do
+  let(:place)   { create :place, name: "@SoundCloud HQ" }
+  let!(:drop_1) { create :drop, id: 5, sc_track:"187471639", title:"Coffee Machine", place: place }
 
   before do
-    place = create :place, name: "@SoundCloud HQ"
-    drop_1 = create :drop, id: 5, sc_track:"187471639", title:"Coffee Machine", place: place
+    expect_any_instance_of(ApplicationHelper).to receive(:current_user_made_drop?).with(drop_1).and_return false
 
     stub_request(:get, "http://api.soundcloud.com/tracks/187471639").
       with(:query => {

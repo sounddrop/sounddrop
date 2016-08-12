@@ -1,7 +1,5 @@
 require 'spec_helper'
 require 'rails_helper'
-require 'pry'
-
 
 describe 'Home page', type: :feature, :vcr => {:cassette_name => "place" }  do
   it 'says welcome' do

@@ -7,11 +7,17 @@
     <p><%= @drop.soundcloud_track.description %></p>
   </div>
 
-
   <div class="artwork">
     <img class="container-image" src="<%=@drop.image_from_track%>">
     <%= render partial: "load_playbuttons" %>
     <div id='map'></div>
+  </div>
+
+  <div class='pull-right'>
+    <% if current_user_made_drop?(@drop) %>
+      <%= link_to 'Edit', edit_drop_path(@drop) %> |
+      <%= link_to 'Delete', @drop, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
   </div>
 
   <div class="container-like-button">
