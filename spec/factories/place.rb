@@ -15,22 +15,3 @@ FactoryGirl.define do
       end
   end
 end
-
-
-#drop coordinates in tests
-
-# "latitude"=>"52.57542", "longitude"=>"13.28185"}}, => place near soundcloud (Bernauer Str. 81) in test
-# "latitude"=>"52.5017465", "longitude"=>"13.3399831" => place in Charlottenburg (same as geocoded)
-#"latitude"=>"52.5366012", "longitude"=>"13.3955806" => rheinsberger
-
-
-# geocoded coordinates:
-
-#geocoded Bernauer Str. 81
-# [52.53877, 13.39679]
-
-#geocoded Passauer Str. 1, Berlin
-# [52.5017465, 13.3399831] 
-
-#geocoded Rheinsbergerstr. 4
-# [52.5366012, 13.3955806] 
