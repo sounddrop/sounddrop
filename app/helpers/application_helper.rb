@@ -20,10 +20,10 @@ module ApplicationHelper
   end
 
   def current_user_tracks
-    @current_user_tracks = client.get('/me/tracks') if client.present?
+    @current_user_tracks = client.get('/me/tracks') if current_user
   end
 
   def current_user_made_drop?(drop)
-    client.present? && (drop.sc_user_id == current_user.id)
+    !!current_user && (drop.sc_user_id == current_user.id)
   end
 end

@@ -17,7 +17,7 @@ RSpec.describe Drop, :vcr => {:cassette_name => "place" } do
     expect(drop_test).not_to be_valid
   end
 
-  describe '#image_from' do
+  describe '#image_from_track' do
     #http://www.rubydoc.info/github/soundcloud/soundcloud-ruby/SoundCloud/HashResponseWrapper#initialize-instance_method
     let(:with_url) { SoundCloud::HashResponseWrapper.new(artwork_url: "https://www.artwork-large.jpg") }
     let(:without_url) { SoundCloud::HashResponseWrapper.new(artwork_url: nil, user: user )}
