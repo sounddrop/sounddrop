@@ -6,7 +6,7 @@ RSpec.describe Api::DropsController, :vcr, type: :request do
 
     describe "GET /drops" do
 
-      let!(:drops) { FactoryGirl.create_list(:drop, 3) }
+      let!(:drops) { create_list(:drop, 3) }
 
       it "displays list of  drops in database" do
         get api_drops_path(format: :json)
@@ -35,8 +35,8 @@ RSpec.describe Api::DropsController, :vcr, type: :request do
     describe "GET /api/drops" do
 
       context 'with latitude and longitude given' do # will always set the radio to 10km
-        let!(:drop_in_berlin) { FactoryGirl.create :drop, :drop_in_rheinsberger}
-        let!(:drop_in_sydney) { FactoryGirl.create :drop, :drop_in_sydney}
+        let!(:drop_in_berlin) { create :drop, :drop_in_rheinsberger}
+        let!(:drop_in_sydney) { create :drop, :drop_in_sydney}
 
         it "returns drop in Berlin" do
           get "/api/drops?latitude=52.537016&longitude=13.394861" # Somewhere in the middle of Berlin
@@ -54,8 +54,8 @@ RSpec.describe Api::DropsController, :vcr, type: :request do
     end
 
     context 'with latitude,longitude and radius given' do #
-      let!(:drop_in_charlottenburg) { FactoryGirl.create :drop, :drop_in_charlottenburg}
-      let!(:drop_in_rheinsberger) { FactoryGirl.create :drop, :drop_in_rheinsberger}
+      let!(:drop_in_charlottenburg) { create :drop, :drop_in_charlottenburg}
+      let!(:drop_in_rheinsberger) { create :drop, :drop_in_rheinsberger}
 
 
       it "returns only drops within given radius" do
