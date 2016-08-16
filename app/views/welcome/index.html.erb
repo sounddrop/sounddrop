@@ -5,36 +5,23 @@
     <p>SoundDrop lets you record stories or create playlists of your favourite songs and connect them to any place you wish via geolocation.</p>
 
     <p>With SoundDrop you can leave an audible mark anywhere and share it with friends. Wish to leave a playlist along your favourite bike route through town? Or create a guided tour for a museum exhibition? Want to tell a personal story about a famous landmark, or guide your friends to your favourite spots in a foreign city? SoundDrop let's you share the sound.</p>
-
-    <h1>SoundDrop -The History behind the App</h1>
-
-    <p>SoundDrop was first created in 2014 by Brigitte, Caroline and Michelle, then interns at SoundCloud, with Duana Stanley as product manager. Initially, SoundDrop was based on QR codes. 'Drops' were located throughout the SoundCloud office in Berlin, where employees created personal stories attached to interesting objects and places.</p>
-
-    <p>Over the summer 2015, the project was followed up by Rails Girls Summer of Code fellows Franzi and Nynne with coaching from Erik Michaels-Ober and mentoring from Duana Stanley and Tam Eastley. SoundDrop is maintained by a small core group of diehard SoundDroppers :)</p>
-
-    <p>Main Contributors:</p>
-
-    <div>Duana Stanley, Erik Michaels-Ober, Tam Eastley</div>
-
-    <div>Brigitte, Caroline, Franzi, Michelle, Nynne.</div>
-
-    <p>
-      <div>A huge thanks goes out to everyone who has helped to make this project possible:</div>
-      <ul>
-        <li>Brian Egan</li>
-        <li>Chris Berghout</li>
-        <li>Dennis Cahillane</li>
-        <li>Ellen König</li>
-        <li>Hannes Tyden</li>
-        <li>Jan Kischkel</li>
-        <li>Jano González</li>
-        <li>JP Bochi</li>
-        <li>Matthias Georgi</li>
-        <li>Sergio Gil</li>
-        <li>Tobi Biehlolawek</li>
-        <li>Tom Stuart</li>
-        <li>Willam Boxhall</li>
-      </ul>
-    </p>
   </div>
+
+
+    <div id="map"></div>
+    <script type="text/javascript">
+
+    var map;
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 52.520, lng: 13.409},
+        zoom: 12
+      });
+    }
+
+    </script>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkImnni-kZABntvWwgNhfxXFpUC0lc8lY&callback=initMap">
+    </script>
+
 </body>
