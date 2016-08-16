@@ -3,6 +3,7 @@ class WelcomeController < ApplicationController
   def index
   end
 
-  def scan
+  def about
+    
   end
 end
