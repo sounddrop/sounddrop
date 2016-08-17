@@ -87,7 +87,7 @@ $(document).on("ready page:load", function() {
 
   //Fetch stream
     var dropNode = document.querySelector("[data-drop-track]");
-    if (typeof(dropNode) !== null) {
+    if (dropNode !== null) {
       SC.stream('/tracks/' + dropNode.dataset.dropTrack).then(function(sound) {
         console.log("Streaming");
         if (sound.options.protocols[0] === 'rtmp') {
