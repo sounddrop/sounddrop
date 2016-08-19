@@ -1,4 +1,4 @@
-<div class="drop-container">
+<div class="drop-container" data-drop-track="<%= @drop.soundcloud_track.id %>">
   <div class ="drop-title">
     <h1><%= @drop.title %></h1>
   </div>
@@ -38,13 +38,11 @@
   <script>
     var drop = {
       id: <%= @drop.id %>
-    }
-    var dropAtSC = {
-       id: <%= @drop.soundcloud_track.id %>
-    }
-    var dropLat = <%= @drop.place.latitude %>
-    var dropLong = <%= @drop.place.longitude %>
-    var image = "<%= asset_path('sounddrop-logo.png') %>"
+    };
+
+    var dropLat = <%= @drop.place.latitude %>;
+    var dropLong = <%= @drop.place.longitude %>;
+    var image = "<%= asset_path('sounddrop-logo.png') %>";
   </script>
 
   <script async defer

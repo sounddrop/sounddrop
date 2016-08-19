@@ -86,9 +86,9 @@ $(document).on("ready page:load", function() {
 
 
   //Fetch stream
-  setTimeout(function() {
-    if (typeof(dropAtSC) !== "undefined") {
-      SC.stream('/tracks/' + dropAtSC.id).then(function(sound) {
+    var dropNode = document.querySelector("[data-drop-track]");
+    if (dropNode !== null) {
+      SC.stream('/tracks/' + dropNode.dataset.dropTrack).then(function(sound) {
         console.log("Streaming");
         if (sound.options.protocols[0] === 'rtmp') {
             sound.options.protocols.splice(0, 1);
@@ -104,5 +104,5 @@ $(document).on("ready page:load", function() {
         }
       });
     }
-  }, 3000);
+
 });
