@@ -1,10 +1,10 @@
 class WelcomeController < ApplicationController
 
   def index
-    @drop = Drop.first
+    @drops = Drop.all
   end
 
   def about
-    
+
   end
 end

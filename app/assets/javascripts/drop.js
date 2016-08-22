@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+  
   var form = $('form#new_drop');
   form.on('submit', function(e) {
     if($('input#sc_url').val() == '' && $('select#drop_sc_track').val() == '') {
@@ -32,4 +32,3 @@ function initMap() {
     map: map
   });
 }
-

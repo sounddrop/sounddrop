@@ -6,16 +6,18 @@
 
     <p>With SoundDrop you can leave an audible mark anywhere and share it with friends. Wish to leave a playlist along your favourite bike route through town? Or create a guided tour for a museum exhibition? Want to tell a personal story about a famous landmark, or guide your friends to your favourite spots in a foreign city? SoundDrop let's you share the sound.</p>
 
-    <div id="map-index"></div>
+    <div id="map-index" data-map="true"></div>
     <script type="text/javascript">
     var map;
 
-    var coordinateList = <%= @drops.map{ |drop| { lat: drop.place.latitude, lng: drop.place.longitude} } %>
-    var dropLatLong = { lat: <%= @drop.place.latitude %>, lng: <%= @drop.place.longitude %> }
+    var coordinateList = JSON.parse('<%= @drops.map{ |drop| { lat: drop.place.latitude, lng: drop.place.longitude} }.to_json.html_safe %>');
     var image = "<%= asset_path('sounddrop-logo.png') %>";
+    // var image = "/assets/sounddrop-logo-b5108acf2765b79c2843291703931e5bda66ebc4b4eac1860533257041422649.pnglocalhost:3000:68:5";
+
+
     var icon = {
       url: image,
-      //scaledSize: new google.maps.Size(50, 50)
+      scaledSize: new google.maps.Size(50, 50)
     }
 
     function initMap() {
@@ -29,12 +31,13 @@
       });
     }
 
-
-    var marker = new google.maps.Marker({
-      position: dropLatLong,
-      icon: icon,
-      map: map,
-    });
+    function createMarker() {
+      var marker = new google.maps.Marker({
+        position: coordinateList,
+        icon: icon,
+        map: map
+      });
+    }
 
     // $(".find-drops").on("click", function(event) {
     //   event.preventDefault();
@@ -46,7 +49,7 @@
 
     </script>
     <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkImnni-kZABntvWwgNhfxXFpUC0lc8lY&callback=initMap">
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkImnni-kZABntvWwgNhfxXFpUC0lc8lY&callback=Map.init">
     </script>
 
 
