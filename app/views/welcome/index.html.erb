@@ -10,6 +10,14 @@
     <script type="text/javascript">
     var map;
 
+    var coordinateList = <%= @drops.map{ |drop| { lat: drop.place.latitude, lng: drop.place.longitude} } %>
+    var dropLatLong = { lat: <%= @drop.place.latitude %>, lng: <%= @drop.place.longitude %> }
+    var image = "<%= asset_path('sounddrop-logo.png') %>";
+    var icon = {
+      url: image,
+      //scaledSize: new google.maps.Size(50, 50)
+    }
+
     function initMap() {
       changeMap(52.520, 13.409);
     }
@@ -21,6 +29,13 @@
       });
     }
 
+
+    var marker = new google.maps.Marker({
+      position: dropLatLong,
+      icon: icon,
+      map: map,
+    });
+
     // $(".find-drops").on("click", function(event) {
     //   event.preventDefault();
     //   // read city input field
@@ -28,7 +43,6 @@
     //   // change map with new lng, lat
     //   changeMap(4.6482837, -74.2478959);
     // });
-
 
     </script>
     <script async defer
