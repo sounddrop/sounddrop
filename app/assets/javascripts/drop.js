@@ -26,6 +26,7 @@ function initMap() {
   }
 
   var marker = new google.maps.Marker({
+    // maps API position, what is map.getCenter return
     position: map.getCenter(),
     icon: icon,
     map: map
