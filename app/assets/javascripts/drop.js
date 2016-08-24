@@ -14,21 +14,3 @@ $(document).ready(function() {
   });
 });
 
-function initMap() {
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 15,
-    center: { lat: dropLat, lng: dropLong }
-  });
-
-  var icon = {
-    url: soundDropMarker,
-    scaledSize: new google.maps.Size(50, 50)
-  }
-
-  var marker = new google.maps.Marker({
-    // maps API position, what is map.getCenter return
-    position: map.getCenter(),
-    icon: icon,
-    map: map
-  });
-}
