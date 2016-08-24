@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  
+
   var form = $('form#new_drop');
   form.on('submit', function(e) {
     if($('input#sc_url').val() == '' && $('select#drop_sc_track').val() == '') {
@@ -21,7 +21,7 @@ function initMap() {
   });
 
   var icon = {
-    url: image,
+    url: soundDropMarker,
     scaledSize: new google.maps.Size(50, 50)
   }
 

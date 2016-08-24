@@ -6,17 +6,17 @@
 
     <p>With SoundDrop you can leave an audible mark anywhere and share it with friends. Wish to leave a playlist along your favourite bike route through town? Or create a guided tour for a museum exhibition? Want to tell a personal story about a famous landmark, or guide your friends to your favourite spots in a foreign city? SoundDrop let's you share the sound.</p>
 
-    <div id="map-index" data-map="true"></div>
+    <div id="map" class="map-index"></div>
     <script type="text/javascript">
     var map;
 
     var coordinateList = JSON.parse('<%= @drops.map{ |drop| { lat: drop.place.latitude, lng: drop.place.longitude} }.to_json.html_safe %>');
-    var image = "<%= asset_path('sounddrop-logo.png') %>";
-    // var image = "/assets/sounddrop-logo-b5108acf2765b79c2843291703931e5bda66ebc4b4eac1860533257041422649.pnglocalhost:3000:68:5";
+
+
 
 
     var icon = {
-      url: image,
+      url: soundDropMarker,
       scaledSize: new google.maps.Size(50, 50)
     }
 
@@ -25,7 +25,7 @@
     }
 
     function changeMap(lat, lng) {
-      map = new google.maps.Map(document.getElementById('map-index'), {
+      map = new google.maps.Map(document.getElementByClass('map-index'), {
         center: {lat: lat, lng: lng},
         zoom: 12
       });

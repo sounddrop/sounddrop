@@ -10,7 +10,7 @@
   <div class="artwork">
     <img class="container-image" src="<%=@drop.image_from_track%>">
     <%= render partial: "load_playbuttons" %>
-    <div id='map'></div>
+    <div id='map' class='map' data-drop-lat="<%= @drop.place.latitude %>" data-drop-long="<%= @drop.place.longitude %>"></div>
   </div>
 
   <div class='pull-right'>
@@ -35,14 +35,6 @@
     <%= show_place_location(@place) %>
   </div>
 
-  <script>
-    var drop = {
-      id: <%= @drop.id %>,
-      dropLat: <%= @drop.place.latitude %>,
-      dropLong: <%= @drop.place.longitude %>,
-    };
-    var image = "<%= asset_path('sounddrop-logo.png') %>";
-  </script>
 
   <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkImnni-kZABntvWwgNhfxXFpUC0lc8lY&callback=initMap">
