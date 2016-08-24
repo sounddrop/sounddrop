@@ -37,11 +37,10 @@
 
   <script>
     var drop = {
-      id: <%= @drop.id %>
+      id: <%= @drop.id %>,
+      dropLat: <%= @drop.place.latitude %>,
+      dropLong: <%= @drop.place.longitude %>,
     };
-
-    var dropLat = <%= @drop.place.latitude %>;
-    var dropLong = <%= @drop.place.longitude %>;
     var image = "<%= asset_path('sounddrop-logo.png') %>";
   </script>
 
