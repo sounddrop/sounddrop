@@ -19,10 +19,11 @@ var Map = {
   }
 };
 
-Map.setMarker();
-Map.init();
-Map.changeMap();
-Map.createMarker();
+
+
+
 var markers = [ ];
-var icon;
+
 var image;
+setMarkers: function() {}
+createMarkers: function() {}
