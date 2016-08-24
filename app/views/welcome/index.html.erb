@@ -11,26 +11,7 @@
     var map;
 
     var coordinateList = JSON.parse('<%= @drops.map{ |drop| { lat: drop.place.latitude, lng: drop.place.longitude} }.to_json.html_safe %>');
-
-
-
-
-    var icon = {
-      url: soundDropMarker,
-      scaledSize: new google.maps.Size(50, 50)
-    }
-
-    function initMap() {
-      changeMap(52.520, 13.409);
-    }
-
-    function changeMap(lat, lng) {
-      map = new google.maps.Map(document.getElementByClass('map-index'), {
-        center: {lat: lat, lng: lng},
-        zoom: 12
-      });
-    }
-
+    
     function createMarker() {
       var marker = new google.maps.Marker({
         position: coordinateList,
@@ -39,16 +20,8 @@
       });
     }
 
-    // $(".find-drops").on("click", function(event) {
-    //   event.preventDefault();
-    //   // read city input field
-    //   // search lng, lat via geocode/google
-    //   // change map with new lng, lat
-    //   changeMap(4.6482837, -74.2478959);
-    // });
-
     </script>
-    <script async defer
+    <script async defer 
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkImnni-kZABntvWwgNhfxXFpUC0lc8lY&callback=Map.init">
     </script>
 
