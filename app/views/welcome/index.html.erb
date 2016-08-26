@@ -7,21 +7,15 @@
     <p>With SoundDrop you can leave an audible mark anywhere and share it with friends. Wish to leave a playlist along your favourite bike route through town? Or create a guided tour for a museum exhibition? Want to tell a personal story about a famous landmark, or guide your friends to your favourite spots in a foreign city? SoundDrop let's you share the sound.</p>
 
     <div id="map" class="map-index"></div>
+
     <script type="text/javascript">
-
     var coordinateList = JSON.parse('<%= @drops.map{ |drop| { lat: drop.place.latitude.to_f, lng: drop.place.longitude.to_f} }.to_json.html_safe %>');
-    
-   
-
     </script>
+
     <script async defer 
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkImnni-kZABntvWwgNhfxXFpUC0lc8lY&callback=Map.init">
     </script>
 
 
   </div>
-
-
-
-
 </body>
