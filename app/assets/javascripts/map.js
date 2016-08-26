@@ -15,6 +15,14 @@ var Map = {
       zoom: 15,
       center: { lat: dropLat, lng: dropLong }
     });
+    for (var i = 0; i < coordinateList.length; i++ ){
+       var marker = new google.maps.Marker({
+        position: coordinateList[i],
+       // icon: icon,
+        map: Map.map
+      });
+    }
+   
   },
 
   createMarker: function(){
