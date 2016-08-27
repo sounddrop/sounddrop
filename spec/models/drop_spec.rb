@@ -9,7 +9,6 @@ RSpec.describe Drop, :vcr => {:cassette_name => "place" } do
   context 'with validations' do
     it { is_expected.to validate_presence_of(:sc_track) }
     it { is_expected.to validate_numericality_of(:sc_track).only_integer }
-    it { is_expected.to validate_presence_of(:place_id) }
   end
 
   describe '#image_from_track' do
