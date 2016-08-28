@@ -73,11 +73,11 @@ class DropsController < ApplicationController
     end
 
     def drop_params
-      params.require(:drop).permit(:sc_track, :title)
+      params.require(:drop).permit(:sc_track, :title, :latitude, :longitude)
     end
 
     def place_params
-      params.require(:drop).require(:place).permit(:name, :longitude, :latitude, :location)
+      params.require(:drop).permit(place: [:name, :longitude, :latitude, :location]).fetch(:place, {})
     end
 
     def require_creator_of_drop
@@ -97,7 +97,7 @@ class DropsController < ApplicationController
       drop
     end
 
-    private 
+    private
 
     def sc_url_regex
       /^https?:\/\/(www\.)?soundcloud\.com\/.+\/.+$/i

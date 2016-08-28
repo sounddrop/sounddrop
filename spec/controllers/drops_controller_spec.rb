@@ -19,12 +19,12 @@ describe DropsController, :vcr => {:cassette_name => "place" } do
   end
 
   describe '#create' do
+    let(:url) { "http://soundcloud.com/eric/oberholz5" }
     let(:current_user) { JSON.parse(File.read('spec/fixtures/eric.json')) }
     before { allow(controller).to receive(:current_user).and_return SoundCloud::HashResponseWrapper.new(current_user) }
 
-    it 'creates a drop at a place' do
+    before do
       # stub the track
-      url = "http://soundcloud.com/eric/oberholz5"
       stub_request(:get, "http://api.soundcloud.com/resolve").
         with(:query => {
           "client_id" => "69e93cf2209402f6f3137a6452cf498f",
@@ -33,7 +33,9 @@ describe DropsController, :vcr => {:cassette_name => "place" } do
         }).
         to_return(:body => File.read('spec/fixtures/oberholz5.json'), :headers => {"Content-Type" => "application/json; charset=utf-8"}
       )
+    end
 
+    it 'creates a drop at a place' do
       get :create, {
         'sc_url' => url,
         'drop' => {
@@ -54,6 +56,19 @@ describe DropsController, :vcr => {:cassette_name => "place" } do
       expect(place.longitude).to eq(12.0)
       expect(place.location).to eq('soundcloud')
       expect(Drop.last.sc_user_id).to eq(123)
+    end
+
+    it 'creates a drop without a place' do
+      expect {
+        get :create, { sc_url: url, drop: { longitude: 52.0, latitude: 13.0 } }
+      }.to change { Drop.count }
+
+      drop = Drop.last
+
+      expect(response).to redirect_to drop_path(drop)
+      expect(drop.longitude).to eq(52.0)
+      expect(drop.latitude).to eq(13.0)
+      expect(drop.place).to be_nil
     end
   end
 
