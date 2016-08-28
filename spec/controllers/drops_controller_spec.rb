@@ -99,7 +99,7 @@ describe DropsController, :vcr => {:cassette_name => "place" } do
     end
 
     context 'unsuccessfully updating a drop' do
-      let(:drop)   { build_stubbed :drop, id: 2, sc_user_id: 654 }
+      let(:drop)   { build_stubbed :drop, :with_place, id: 2, sc_user_id: 654 }
       let(:params) {{ id: 2, "place" => { "name" => "a sneaky hacker place", "location" => "sneaky hacker location" }}}
 
       before do

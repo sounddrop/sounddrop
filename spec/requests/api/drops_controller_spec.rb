@@ -6,7 +6,7 @@ RSpec.describe Api::DropsController, :vcr, type: :request do
 
     describe "GET /drops" do
 
-      let!(:drops) { create_list(:drop, 3) }
+      let!(:drops) { create_list(:drop, 3, :with_place) }
 
       it "displays list of  drops in database" do
         get api_drops_path(format: :json)
