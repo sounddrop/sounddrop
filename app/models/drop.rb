@@ -4,7 +4,6 @@ class Drop < ActiveRecord::Base
   belongs_to :place
 
   validates :sc_track, presence: true,  numericality: { only_integer: true }
-  validates :place_id, presence: true
 
   def image_from_track
     if soundcloud_track.artwork_url.nil?
