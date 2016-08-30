@@ -9,10 +9,10 @@
     <div id="map" class="map-index"></div>
 
     <script type="text/javascript">
-    var coordinateList = JSON.parse('<%= @drops.map{ |drop| { lat: drop.place.latitude.to_f, lng: drop.place.longitude.to_f} }.to_json.html_safe %>');
+    var coordinateList = JSON.parse('<%= @drops.map{ |drop| { lat: drop.latitude.to_f, lng: drop.longitude.to_f} }.to_json.html_safe %>');
     </script>
 
-    <script async defer 
+    <script async defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkImnni-kZABntvWwgNhfxXFpUC0lc8lY&callback=Map.init">
     </script>
 
