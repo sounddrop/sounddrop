@@ -3,6 +3,9 @@ FactoryGirl.define do
     sequence(:title) { |n| "Title #{n}"}
     sequence(:sc_track) { |n|  n }
     sequence(:sc_user_id) { |n|  n }
+    latitude 53.5
+    longitude 13.7
+
 
     trait :with_place do
       place # association :place, factory: :place
