@@ -35,6 +35,9 @@
     <%= show_place_location(@place) %>
   </div>
 
+  <script type="text/javascript">
+    var coordinateList = JSON.parse('<%= [ { lat: @drop.latitude.to_f, lng: @drop.longitude.to_f}].to_json.html_safe %>');
+  </script>
 
   <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkImnni-kZABntvWwgNhfxXFpUC0lc8lY&callback=Map.init">

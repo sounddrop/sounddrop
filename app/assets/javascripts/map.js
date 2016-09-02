@@ -11,28 +11,26 @@ var Map = {
        dropLat = 52.536;
        dropLong = 13.392;
     }
-    Map.map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 15,
-      center: { lat: dropLat, lng: dropLong }
-    });
-    for (var i = 0; i < coordinateList.length; i++ ){
-       var marker = new google.maps.Marker({
-        position: coordinateList[i],
-       // icon: icon,
-        map: Map.map
-      });
-    }
-   
-  },
 
-  createMarker: function(){
     var icon = {
       url: soundDropMarker,
       scaledSize: new google.maps.Size(50, 50)
     };
 
-  }
+    Map.map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 15,
+      center: { lat: dropLat, lng: dropLong }
+    });
 
+    for (var i = 0; i < coordinateList.length; i++ ){
+       var marker = new google.maps.Marker({
+        position: coordinateList[i],
+         icon: icon,
+        map: Map.map
+      });
+    }
+   
+  }
 };
 
 
