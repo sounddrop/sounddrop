@@ -1,8 +1,10 @@
 class WelcomeController < ApplicationController
 
   def index
+    @drops = Drop.all
   end
 
-  def scan
+  def about
+
   end
 end

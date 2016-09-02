@@ -18,3 +18,4 @@
 //= require upvote
 //= require play
 //= require drop
+//= require map

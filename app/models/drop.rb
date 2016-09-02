@@ -4,6 +4,17 @@ class Drop < ActiveRecord::Base
   belongs_to :place
 
   validates :sc_track, presence: true,  numericality: { only_integer: true }
+  validates :latitude, :longitude, presence: true
+
+  before_validation :copy_lat_and_long_from_place
+
+    def copy_lat_and_long_from_place
+      if place
+        self.latitude = place.latitude
+        self.longitude = place.longitude
+      end
+    end
+
 
   def image_from_track
     if soundcloud_track.artwork_url.nil?

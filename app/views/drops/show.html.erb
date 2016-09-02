@@ -1,4 +1,4 @@
-<div class="drop-container" data-drop-track="<%= @drop.soundcloud_track.id %>">
+<div class="drop-container" data-drop-track="<%= @drop.soundcloud_track.id %>" data-drop-lat="<%= @drop.place.latitude %>" data-drop-long="<%= @drop.place.longitude %>">
   <div class ="drop-title">
     <h1><%= @drop.title %></h1>
   </div>
@@ -10,7 +10,7 @@
   <div class="artwork">
     <img class="container-image" src="<%=@drop.image_from_track%>">
     <%= render partial: "load_playbuttons" %>
-    <div id='map'></div>
+    <div id='map' class='map'></div>
   </div>
 
   <div class='pull-right'>
@@ -35,17 +35,11 @@
     <%= show_place_location(@place) %>
   </div>
 
-  <script>
-    var drop = {
-      id: <%= @drop.id %>
-    };
-
-    var dropLat = <%= @drop.place.latitude %>;
-    var dropLong = <%= @drop.place.longitude %>;
-    var image = "<%= asset_path('sounddrop-logo.png') %>";
+  <script type="text/javascript">
+    var coordinateList = JSON.parse('<%= [ { lat: @drop.latitude.to_f, lng: @drop.longitude.to_f}].to_json.html_safe %>');
   </script>
 
   <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkImnni-kZABntvWwgNhfxXFpUC0lc8lY&callback=initMap">
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkImnni-kZABntvWwgNhfxXFpUC0lc8lY&callback=Map.init">
   </script>
 </div>
