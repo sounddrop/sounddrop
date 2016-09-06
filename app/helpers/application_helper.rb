@@ -19,8 +19,8 @@ module ApplicationHelper
     @current_user ||= client.get('/me') if client.present?
   end
 
-  def current_user_tracks
-    @current_user_tracks = client.get('/me/tracks') if current_user
+  def current_user_public_tracks
+    @current_user_public_tracks = client.get('/me/tracks').select{|t| t.sharing=='public'} if current_user
   end
 
   def current_user_made_drop?(drop)

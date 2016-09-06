@@ -48,24 +48,29 @@ RSpec.describe ApplicationHelper do
     end
   end
 
-  describe '#current_user_tracks' do
+  describe '#current_user_public_tracks' do
     context 'current_user is not present' do
-      specify { expect(helper.current_user_tracks).to be_nil }
+      specify { expect(helper.current_user_public_tracks).to be_nil }
     end
 
     context 'current_user is present' do
       let(:client) { double 'soundcloud client'}
       let(:current_user) { JSON.parse(File.read('spec/fixtures/eric.json')) }
-      let(:track)  { JSON.parse(File.read('spec/fixtures/coffee-machine-1.json')) }
+      let(:track)  { SoundCloud::HashResponseWrapper.new( JSON.parse(File.read('spec/fixtures/coffee-machine-1.json'))) }
+      let(:private_track) { SoundCloud::HashResponseWrapper.new( JSON.parse(File.read('spec/fixtures/coffee-machine-private.json'))) }
 
       before do
         allow(helper).to receive(:current_user).and_return current_user
         allow(helper).to receive(:client).and_return client
-        allow(client).to receive(:get).with('/me/tracks').and_return track
+        allow(client).to receive(:get).with('/me/tracks').and_return [track, private_track]
       end
 
-      specify 'returns the track' do
-        expect(helper.current_user_tracks).to eql track
+      specify 'returns the public track' do
+        expect(helper.current_user_public_tracks).to eql [track]
+      end
+
+      specify 'does not returns the private track' do
+        expect(helper.current_user_public_tracks).to_not eql [private_track]
       end
     end
   end
