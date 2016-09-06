@@ -3,6 +3,9 @@ class Drop < ActiveRecord::Base
   has_many :votes, dependent: :destroy
   belongs_to :place
 
+  has_many :taggings
+  has_many :tags, through: :taggings
+
   validates :sc_track, presence: true,  numericality: { only_integer: true }
   validates :latitude, :longitude, presence: true
 
