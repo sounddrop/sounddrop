@@ -36,6 +36,19 @@
           <%= render 'place_form', ff: ff%>
         <% end %>
       </div>
+
+    <div class='row'>
+      <div class='row'>
+        <div class='title'>
+          <h2>Third, tag your drop:</h2>
+        </div>
+      </div>
+      <div class='row'>
+      <%= label_tag(:tag, "Please select one or more tags") %></br>
+      <%=select("drop", "tag_ids", Tag.all.collect {|tag| [ tag.name, tag.id ] }) %>
+      </div>
+    </div>
+
       <div class='row'>
         <%= submit_tag("Save", class: 'submit-button')%>
       </div>
