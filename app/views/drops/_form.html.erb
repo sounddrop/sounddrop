@@ -45,7 +45,7 @@
       </div>
       <div class='row'>
       <%= label_tag(:tag, "Please select one or more tags") %></br>
-      <%=select("drop", "tag_ids", Tag.all.collect {|tag| [ tag.name, tag.id ] }) %>
+      <%=select("drop", "tag_id", Tag.all.collect {|tag| [ tag.name, tag.id ] }) %>
       </div>
     </div>
 
