@@ -40,12 +40,10 @@ class Drop < ActiveRecord::Base
   end
 
   def all_tags=(names)
-    self.tags = names.split(",").map do |name|
-      Tag.where(name: name.strip).first_or_create!
-    end
+    self.tags = Tag.where(name: names.reject{|name| name.blank?})
   end
 
   def all_tags
-    self.tags.map(&:name).join(", ")
+    tags.pluck(:name)
   end
 end
