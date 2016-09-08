@@ -45,7 +45,7 @@
       </div>
       <div class='row'>
       <%= label_tag(:tag, "Please select one or more tags") %></br>
-      <%=f.select(:all_tags, options_for_select(Tag.all.map{ |tag| tag.name } )) %>
+      <%=f.select(:all_tags, options_for_select(Tag.all.map{ |tag| tag.name } ), multiple: true) %>
       </div>
     </div>
 
