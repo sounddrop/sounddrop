@@ -45,7 +45,12 @@
       </div>
       <div class='row'>
       <%= label_tag(:tag, "Please select one or more tags") %></br>
-      <%=f.select(:all_tags, Tag.all.map{ |tag| tag.name }, {}, { multiple: true } ) %>
+      <% Tag.all.each do |tag| -%>
+        <div>
+          <%= check_box_tag :all_tags, tag.name, @drop.tags.include?(tag), :name => 'drop[all_tags][]' %>
+          <%= label_tag :all_tags, tag.name %>
+        </div>
+      <% end -%>
       </div>
     </div>
 
