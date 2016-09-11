@@ -23,25 +23,16 @@ var Map = {
     });
 
     for (var i = 0; i < coordinateList.length; i++ ){
-       var marker = new google.maps.Marker({
-        position: coordinateList[i],
-         icon: icon,
-        map: Map.map
+      var marker = new google.maps.Marker({
+        position: {'lat': coordinateList[i]['lat'], 'lng': coordinateList[i]['lng']},
+        icon: icon,
+        map: Map.map,
+        dropUrl: location.protocol + '//' + location.host + '/drops/' + coordinateList[i]['drop']
+      });
+
+      google.maps.event.addListener(marker, 'click', function() {
+        window.location.href = this.dropUrl;
       });
     }
-   
   }
 };
-
-
-
-//var markers = [ ];
-// setMarkers: function() {}
-// createMarkers: function() {}
-
- // var marker = new google.maps.Marker({
-  //   // maps API position, what is map.getCenter return
-  //   position: map.getCenter(),
-  //   icon: icon,
-  //   map: map
-  // });

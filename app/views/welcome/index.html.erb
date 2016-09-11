@@ -10,7 +10,7 @@
       <div id="map" class="map-index"></div>
 
       <script type="text/javascript">
-      var coordinateList = JSON.parse('<%= @drops.map{ |drop| { lat: drop.latitude.to_f, lng: drop.longitude.to_f} }.to_json.html_safe %>');
+      var coordinateList = JSON.parse('<%= @drops.map{ |drop| { lat: drop.latitude.to_f, lng: drop.longitude.to_f, drop: drop.id } }.to_json.html_safe %>');
       </script>
 
       <script async defer
