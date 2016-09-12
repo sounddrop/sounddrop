@@ -55,3 +55,31 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
 
 end
+
+Geocoder.configure(lookup: :test)
+
+Geocoder::Lookup::Test.add_stub("SoundCloud, Berlin",
+  [
+    {
+      'latitude'     => 52.5366012,
+      'longitude'    => 13.3933919,
+      'address'      => 'Rheinsbergerstr. 4, Berlin, Germany',
+      'country'      => 'Germany',
+      'country_code' => 'DE'
+    }
+  ]
+)
+
+Geocoder::Lookup::Test.set_default_stub(
+  [
+    {
+      'latitude'     => 40.7143528,
+      'longitude'    => -74.0059731,
+      'address'      => 'New York, NY, USA',
+      'state'        => 'New York',
+      'state_code'   => 'NY',
+      'country'      => 'United States',
+      'country_code' => 'US'
+    }
+  ]
+)
