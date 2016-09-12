@@ -79,7 +79,7 @@ describe DropsController, :vcr => {:cassette_name => "place" } do
     context 'successfully updating a drop' do
       before do
         allow(controller).to receive(:current_user).and_return SoundCloud::HashResponseWrapper.new(current_user)
-        expect(Drop).to receive(:find).with(drop.id).and_return drop
+        expect(Drop).to receive(:find_by).with({ id: drop.id }).and_return drop
       end
 
       describe 'it updates the drop' do
@@ -104,7 +104,7 @@ describe DropsController, :vcr => {:cassette_name => "place" } do
 
       before do
         expect(controller).to receive(:current_user).and_return nil
-        expect(Drop).to receive(:find).with(drop.id).and_return drop
+        expect(Drop).to receive(:find_by).with({ id: drop.id }).and_return drop
       end
 
       specify do
@@ -122,7 +122,7 @@ describe DropsController, :vcr => {:cassette_name => "place" } do
 
       before do
         allow(controller).to receive(:current_user).and_return SoundCloud::HashResponseWrapper.new(current_user)
-        expect(Drop).to receive(:find).with(drop.id).and_return drop
+        expect(Drop).to receive(:find_by).with({ id: drop.id }).and_return drop
       end
 
       it 'redirects to the homepage' do
@@ -141,7 +141,7 @@ describe DropsController, :vcr => {:cassette_name => "place" } do
 
       before do
         expect(controller).to receive(:current_user).and_return nil
-        expect(Drop).to receive(:find).with(drop.id).and_return drop
+        expect(Drop).to receive(:find_by).with( {id: drop.id }).and_return drop
       end
 
       it 'does not decreate the number of drops' do
