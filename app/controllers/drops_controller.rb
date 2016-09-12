@@ -69,8 +69,8 @@ class DropsController < ApplicationController
   private
 
     def set_drop
-      @drop = Drop.find(params[:id].to_i)
-    end
+      page_not_found unless @drop = Drop.find_by(id: params[:id].to_i)
+    end 
 
     def drop_params
       params.require(:drop).permit(:sc_track, :title, :latitude, :longitude, all_tags:[])
