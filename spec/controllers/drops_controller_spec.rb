@@ -114,11 +114,11 @@ describe DropsController, :vcr => {:cassette_name => "place" } do
   end
 
   describe '#destroy' do
+    let!(:drop) { create :drop, sc_user_id: sc_user_id }
+
     context 'successfully deleting a drop' do
       let(:current_user) { JSON.parse(File.read('spec/fixtures/eric.json')) }
       let(:sc_user_id) {SoundCloud::HashResponseWrapper.new(current_user).id}
-
-      let!(:drop)  { create :drop, sc_user_id: sc_user_id }
 
       before do
         allow(controller).to receive(:current_user).and_return SoundCloud::HashResponseWrapper.new(current_user)
@@ -137,7 +137,6 @@ describe DropsController, :vcr => {:cassette_name => "place" } do
 
     context 'unsuccessfully deleting a drop' do
       let(:sc_user_id) { rand(1000) } # a random user
-      let!(:drop) { create :drop, sc_user_id: sc_user_id }
 
       before do
         expect(controller).to receive(:current_user).and_return nil
