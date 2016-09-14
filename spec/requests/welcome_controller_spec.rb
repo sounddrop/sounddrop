@@ -3,7 +3,7 @@ require 'rails_helper'
 
 describe WelcomeController do 
   
-  context 'with several drops present and tag "sound" selected' do
+  context 'with two drops present and tag "sound" selected' do
 
     describe "GET /" do
 
@@ -12,11 +12,8 @@ describe WelcomeController do
       let!(:drop_with_tag) {create :drop, all_tags: [tag.name]}
 
       it "displays only drops with selected tag" do
-        p drop_with_tag.tags
         get "/?tag=sound"
-        p @response.body
-        @response = @response.to_a
-        expect(@response.length).to eq(1)
+        expect(assigns(:drops).count).to eq(1)
       end
     end
 
