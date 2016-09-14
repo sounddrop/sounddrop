@@ -17,15 +17,13 @@ describe UserDropsController, type: :request do
     describe "GET  users/:id/drops" do
 
       it "displays list of  drops the user has created" do
-        get "/users/10/drops"
-
+        get "/users/12345/drops"
         expect(response.status).to eq(200)
       end
 
     end
 
   end
-
 
   context 'with non-logged in user' do
 
