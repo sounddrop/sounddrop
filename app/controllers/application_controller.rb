@@ -20,4 +20,8 @@ class ApplicationController < ActionController::Base
   def current_user
     @current_user ||= client.get('/me') if client.present?
   end
+
+  def require_current_user
+    redirect_to login_path unless current_user
+  end
 end
