@@ -22,5 +22,13 @@ FactoryGirl.define do
     trait :drop_in_charlottenburg do
       association :place, factory: [:place, :place_in_charlottenburg]
     end
+
+    trait :drop_with_tag_sound do
+      tags { build_list :tag, 1, :tag_sound}
+    end
+
+    trait :drop_with_tag_story do
+      tags { build_list :tag, 1, :tag_story}
+    end
   end
 end
