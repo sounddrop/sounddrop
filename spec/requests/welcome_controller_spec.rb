@@ -7,11 +7,9 @@ describe WelcomeController do
 
     describe "GET /" do
 
-      let!(:tag_sound) {create :tag, name: "sound"}
-      let!(:tag_story) {create :tag, name: "story"}
       let!(:drop_without_tag) {create :drop}
-      let!(:drop_with_tag_sound) {create :drop, all_tags: ["sound"]}
-      let!(:drop_with_tag_story) {create :drop, all_tags: ["story"]}
+      let!(:drop_with_tag_sound) {create :drop, :drop_with_tag_sound}
+      let!(:drop_with_tag_story) {create :drop, :drop_with_tag_story}
 
       it "displays only drops with the tag sound" do
         get "/?tag=sound"
