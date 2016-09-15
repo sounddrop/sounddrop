@@ -1,7 +1,9 @@
 <div class="drop-container" data-drop-track="<%= @drop.soundcloud_track.id %>" data-drop-lat="<%= @drop.place.latitude %>" data-drop-long="<%= @drop.place.longitude %>">
   <div class ="drop-title">
     <h1><%= @drop.title %></h1>
-    <h3>Tags:</h3>
+  </div>
+
+
     <% @drop.tags.each do |tag| %>
     <span class="tag" style="background: <%= tag.color %>"><%=tag.name%></span>
     <% end %>
