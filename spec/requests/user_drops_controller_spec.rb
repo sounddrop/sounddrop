@@ -1,7 +1,11 @@
 require 'rails_helper'
 
 describe UserDropsController, type: :request do
-  context 'with logged in user' do
+
+  context 'with logged in user that has created some drops' do
+
+    let(:drop) { build(:drop) }
+    
     let(:dummy_user_class) do
       Struct.new(:id)
     end
@@ -11,13 +15,13 @@ describe UserDropsController, type: :request do
     end
 
     before do
-      allow(controller).to receive(:current_user).and_return(dummy_soundcloud_user)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(dummy_soundcloud_user)
     end
 
     describe "GET  users/:id/drops" do
 
       it "displays list of  drops the user has created" do
-        get "/users/12345/drops"
+        get "/users/#{dummy_soundcloud_user.id}/drops"
         expect(response.status).to eq(200)
       end
 
@@ -27,10 +31,13 @@ describe UserDropsController, type: :request do
 
   context 'with non-logged in user' do
 
+    non_existing_user_id = 12
+
     describe "GET  users/:id/drops" do
 
       it "redirects user to Login page" do
-        expect(response.status).to eq(301)
+        get "/users/#{non_existing_user_id}/drops"
+        expect(response.status).to eq(302)
       end
 
     end
