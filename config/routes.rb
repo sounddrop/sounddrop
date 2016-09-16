@@ -3,8 +3,6 @@ Rails.application.routes.draw do
   get "/404", to: "errors#error_404"
   get "/500", to: "errors#error_500"
 
-  #get 'welcome/index'
-
   root 'welcome#index'
 
   get 'welcome/index'
