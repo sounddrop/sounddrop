@@ -6,13 +6,7 @@
 
     <p>With SoundDrop you can leave an audible mark anywhere and share it with friends. Wish to leave a playlist along your favourite bike route through town? Or create a guided tour for a museum exhibition? Want to tell a personal story about a famous landmark, or guide your friends to your favourite spots in a foreign city? SoundDrop let's you share the sound.</p>
 
-    <%= form_tag( welcome_index_path, method: "get") do %>
-      <%= check_box_tag :tag, "sound" %>
-      <%= check_box_tag :tag, "story" %>
-      <%= check_box_tag :tag, "song" %>
-      <%= check_box_tag :tag, "tour" %>
-      <%= submit_tag 'Submit' %>
-    <% end %>
+   <%= render 'shared/select_tag_form', locals: {drops: @drops} %>
 
     <div class='container-map-index'>
       <div id="map" class="map-index"></div>
