@@ -22,6 +22,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_current_user
+    cookies[:original_url] = request.original_url
     redirect_to login_path unless current_user
   end
 end
