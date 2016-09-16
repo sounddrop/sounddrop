@@ -22,6 +22,8 @@ var Map = {
       center: { lat: dropLat, lng: dropLong }
     });
 
+    var coordinateList = map.dataset.drops ? JSON.parse(map.dataset.drops) : [];
+
     for (var i = 0; i < coordinateList.length; i++ ){
       var marker = new google.maps.Marker({
         position: {'lat': coordinateList[i]['lat'], 'lng': coordinateList[i]['lng']},
