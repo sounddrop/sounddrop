@@ -3,6 +3,12 @@
     <h1><%= @drop.title %></h1>
   </div>
 
+
+    <% @drop.tags.each do |tag| %>
+    <span class="tag" style="background: <%= tag.color %>"><%=tag.name%></span>
+    <% end %>
+  </div>
+
   <div class ="drop-description">
     <p><%= @drop.soundcloud_track.description %></p>
   </div>
