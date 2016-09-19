@@ -1,10 +1,8 @@
 
   <div class="container-fluid">
-    <h1>Welcome USer !</h1>
+    <h1> Hello, <%= current_user.username %>! Here you can see the drops that you have added: </h1>
+    <p> You have added  <%= @drops.count %> drops</p>
 
-    <p>SoundDrop lets you record stories or create playlists of your favourite songs and connect them to any place you wish via geolocation.</p>
-
-    <p>With SoundDrop you can leave an audible mark anywhere and share it with friends. Wish to leave a playlist along your favourite bike route through town? Or create a guided tour for a museum exhibition? Want to tell a personal story about a famous landmark, or guide your friends to your favourite spots in a foreign city? SoundDrop let's you share the sound.</p>
 
     <div id="map" class="map-index"></div>
 
