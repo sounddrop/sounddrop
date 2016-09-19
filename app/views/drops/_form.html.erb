@@ -23,9 +23,9 @@
         </div>
       </div>
     </div>
+
     <hr>
 
-    <div class='row'>
       <div class='row'>
         <div class='title'>
           <h2>Second, drop your sound on a place:</h2>
@@ -37,7 +37,8 @@
         <% end %>
       </div>
 
-    <div class='row'>
+    <hr>
+   
       <div class='row'>
         <div class='title'>
           <h2>Third, tag your drop:</h2>
@@ -48,11 +49,11 @@
       <% Tag.all.each do |tag| %>
         <div>
           <%= check_box_tag :all_tags, tag.name, @drop.tags.include?(tag), :name => 'drop[all_tags][]' %>
-          <%= label_tag :all_tags, tag.name %>
+          <%= label_tag :all_tags, tag.name, class: 'tag-label' %>
         </div>
       <% end -%>
       </div>
-    </div>
+    
 
       <div class='row'>
         <%= submit_tag("Save", class: 'submit-button')%>
