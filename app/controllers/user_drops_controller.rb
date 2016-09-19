@@ -1,5 +1,5 @@
 class UserDropsController < ApplicationController
-  helper :application
+  include ApplicationHelper
 
   before_action :require_current_user
 

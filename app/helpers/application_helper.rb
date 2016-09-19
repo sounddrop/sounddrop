@@ -9,6 +9,21 @@ module ApplicationHelper
     end
   end
 
+  def client
+    if session[:access_token_hash]
+      @client ||= SoundCloud.new(:access_token => session[:access_token_hash]["access_token"])
+    end
+  end
+
+  def current_user
+    @current_user ||= client.get('/me') if client.present?
+  end
+
+  def require_current_user
+    cookies[:original_url] = request.original_url
+    redirect_to login_path unless current_user
+  end
+
   def current_user_public_tracks
     @current_user_public_tracks = client.get('/me/tracks').select{|t| t.sharing=='public'} if current_user
   end
