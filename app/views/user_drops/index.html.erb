@@ -4,11 +4,7 @@
     <p> You have added  <%= @drops.count %> drops</p>
 
 
-    <div id="map" class="map-index"></div>
-
-    <script type="text/javascript">
-    var coordinateList = JSON.parse('<%= @drops.map{ |drop| { lat: drop.latitude.to_f, lng: drop.longitude.to_f} }.to_json.html_safe %>');
-    </script>
+    <div id="map" class="map-index" data-drops=<%= @drops.map{ |drop| { lat: drop.latitude.to_f, lng: drop.longitude.to_f, id: drop.id} }.to_json.html_safe %>></div>
 
     <script async defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkImnni-kZABntvWwgNhfxXFpUC0lc8lY&callback=Map.init">
