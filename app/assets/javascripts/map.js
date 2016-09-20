@@ -29,7 +29,7 @@ var Map = {
         position: {'lat': coordinateList[i]['lat'], 'lng': coordinateList[i]['lng']},
         icon: icon,
         map: Map.map,
-        dropUrl: location.protocol + '//' + location.host + '/drops/' + coordinateList[i]['drop']
+        dropUrl: location.protocol + '//' + location.host + '/drops/' + coordinateList[i]['id']
       });
 
       google.maps.event.addListener(marker, 'click', function() {
