@@ -6,6 +6,9 @@ class WelcomeController < ApplicationController
               else
                 Drop.all
               end
+    
+    @tag = params[:tag]
+
   end
 
   def about

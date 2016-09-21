@@ -1,12 +1,12 @@
  <%= form_tag( welcome_index_path, method: "get") do %>
  
-      <%= check_box_tag :tag, "sound" %>
+      <%= check_box_tag(:tag, "sound", @tag == "sound") %>
       <%= label_tag(:tag, "sound", class: 'tag-label') %>
-      <%= check_box_tag(:tag, "story") %>
+      <%= check_box_tag(:tag, "story", @tag == "story") %>
       <%= label_tag(:tag, "story", class: 'tag-label') %>
-      <%= check_box_tag :tag, "song" %>
+      <%= check_box_tag :tag, "song", @tag == "song" %>
       <%= label_tag(:tag, "song", class: 'tag-label') %>
-      <%= check_box_tag :tag, "tour" %>
+      <%= check_box_tag :tag, "tour", @tag == "tour" %>
       <%= label_tag(:tag, "tour", class: 'tag-label') %>
     
       <%= submit_tag("Search", class: 'tag-search-button')  %>
