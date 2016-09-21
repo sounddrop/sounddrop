@@ -44,7 +44,7 @@
         </div>
       </div>
       <div class='row'>
-      <%= label_tag(:tag, "Please select one or more tags") %></br>
+      <%= label_tag(:tag, "If you want you can select one or more tags for your drop.") %></br>
       <% Tag.all.each do |tag| %>
         <div>
           <%= check_box_tag :all_tags, tag.name, @drop.tags.include?(tag), :name => 'drop[all_tags][]' %>
