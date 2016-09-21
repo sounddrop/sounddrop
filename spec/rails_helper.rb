@@ -56,7 +56,7 @@ RSpec.configure do |config|
 
 end
 
-Geocoder.configure(lookup: :test)
+Geocoder.configure(lookup: :test) #stub data to prevent tests form making actual requests
 
 Geocoder::Lookup::Test.add_stub("SoundCloud, Berlin",
   [
