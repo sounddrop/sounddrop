@@ -3,6 +3,9 @@ class Drop < ActiveRecord::Base
   has_many :votes, dependent: :destroy
   belongs_to :place
 
+  has_many :taggings
+  has_many :tags, through: :taggings
+
   validates :sc_track, presence: true,  numericality: { only_integer: true }
   validates :latitude, :longitude, presence: true
 
@@ -14,7 +17,6 @@ class Drop < ActiveRecord::Base
         self.longitude = place.longitude
       end
     end
-
 
   def image_from_track
     if soundcloud_track.artwork_url.nil?
@@ -35,5 +37,13 @@ class Drop < ActiveRecord::Base
 
   def place_location
     place.try(:location)
+  end
+
+  def all_tags=(names)
+    self.tags = Tag.where(name: names.reject{|name| name.blank?})
+  end
+
+  def all_tags
+    tags.pluck(:name)
   end
 end

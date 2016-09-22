@@ -36,6 +36,24 @@
           <%= render 'place_form', ff: ff%>
         <% end %>
       </div>
+
+    <div class='row'>
+      <div class='row'>
+        <div class='title'>
+          <h2>Third, tag your drop:</h2>
+        </div>
+      </div>
+      <div class='row'>
+      <%= label_tag(:tag, "If you want you can select one or more tags for your drop.") %></br>
+      <% Tag.all.each do |tag| %>
+        <div>
+          <%= check_box_tag :all_tags, tag.name, @drop.tags.include?(tag), :name => 'drop[all_tags][]' %>
+          <%= label_tag :all_tags, tag.name %>
+        </div>
+      <% end -%>
+      </div>
+    </div>
+
       <div class='row'>
         <%= submit_tag("Save", class: 'submit-button')%>
       </div>

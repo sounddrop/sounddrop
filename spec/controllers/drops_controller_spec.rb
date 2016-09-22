@@ -74,21 +74,20 @@ describe DropsController, :vcr => {:cassette_name => "place" } do
 
   describe '#update' do
     let(:current_user) { JSON.parse(File.read('spec/fixtures/eric.json')) }
-    let(:drop)         { create :drop, id: 1, title: "Such drop, much wow", sc_track: 345, sc_user_id: SoundCloud::HashResponseWrapper.new(current_user).id }
+    let(:drop)         { create :drop, title: "Such drop, much wow", sc_track: 345, sc_user_id: SoundCloud::HashResponseWrapper.new(current_user).id }
 
     context 'successfully updating a drop' do
       before do
         allow(controller).to receive(:current_user).and_return SoundCloud::HashResponseWrapper.new(current_user)
-        expect(Drop).to receive(:find).with(drop.id).and_return drop
       end
 
       describe 'it updates the drop' do
         let(:new_place) { create :place, id: 5, name: 'A new place', location: 'Here, Berlin' }
-        let(:params)    {{ id: 1, "drop" => {"place" => { "name" => new_place.name, "location" => new_place.location }}}}
+        let(:params)    {{ id: drop.id, "drop" => {"place" => { "name" => new_place.name, "location" => new_place.location }}}}
 
         specify do
           put :update, params
-          expect(drop.place_id).to eql 5
+          expect(drop.reload.place_id).to eql 5
           expect(drop.place.name).to eql 'A new place'
           expect(drop.place.location).to eql 'Here, Berlin'
           expect(drop.sc_track).to eql 345
@@ -99,12 +98,11 @@ describe DropsController, :vcr => {:cassette_name => "place" } do
     end
 
     context 'unsuccessfully updating a drop' do
-      let(:drop)   { build_stubbed :drop, :with_place, id: 2, sc_user_id: 654 }
-      let(:params) {{ id: 2, "place" => { "name" => "a sneaky hacker place", "location" => "sneaky hacker location" }}}
+      let(:drop)   { create :drop, :with_place, sc_user_id: 654 }
+      let(:params) {{ id: drop.id, "place" => { "name" => "a sneaky hacker place", "location" => "sneaky hacker location" }}}
 
       before do
         expect(controller).to receive(:current_user).and_return nil
-        expect(Drop).to receive(:find).with(drop.id).and_return drop
       end
 
       specify do
@@ -116,13 +114,14 @@ describe DropsController, :vcr => {:cassette_name => "place" } do
   end
 
   describe '#destroy' do
+    let!(:drop) { create :drop, sc_user_id: sc_user_id }
+
     context 'successfully deleting a drop' do
       let(:current_user) { JSON.parse(File.read('spec/fixtures/eric.json')) }
-      let(:drop)  { create :drop, id: 2, sc_user_id: SoundCloud::HashResponseWrapper.new(current_user).id }
+      let(:sc_user_id) {SoundCloud::HashResponseWrapper.new(current_user).id}
 
       before do
         allow(controller).to receive(:current_user).and_return SoundCloud::HashResponseWrapper.new(current_user)
-        expect(Drop).to receive(:find).with(drop.id).and_return drop
       end
 
       it 'redirects to the homepage' do
@@ -137,11 +136,10 @@ describe DropsController, :vcr => {:cassette_name => "place" } do
     end
 
     context 'unsuccessfully deleting a drop' do
-      let(:drop) { create :drop, id: 2, sc_user_id: 654 }
+      let(:sc_user_id) { rand(1000) } # a random user
 
       before do
         expect(controller).to receive(:current_user).and_return nil
-        expect(Drop).to receive(:find).with(drop.id).and_return drop
       end
 
       it 'does not decreate the number of drops' do

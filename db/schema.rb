@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160827111345) do
+ActiveRecord::Schema.define(version: 20160915144154) do
 
   create_table "drops", force: :cascade do |t|
     t.string   "title"
@@ -34,6 +34,23 @@ ActiveRecord::Schema.define(version: 20160827111345) do
   end
 
   add_index "places", ["name"], name: "index_places_on_name", unique: true
+
+  create_table "taggings", force: :cascade do |t|
+    t.integer  "drop_id"
+    t.integer  "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "taggings", ["drop_id"], name: "index_taggings_on_drop_id"
+  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id"
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.string   "color",      default: "#f50"
+  end
 
   create_table "votes", force: :cascade do |t|
     t.integer  "drop_id"
