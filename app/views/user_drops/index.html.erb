@@ -1,0 +1,14 @@
+
+  <div class="container-fluid">
+    <h1> Hello, <%= current_user.username %>! Here are your drops: </h1>
+    <p> You have added  <%= @drops.count %> drops</p>
+
+
+    <div id="map" class="map-index" data-drops=<%= @drops.map{ |drop| { lat: drop.latitude.to_f, lng: drop.longitude.to_f, id: drop.id} }.to_json.html_safe %>></div>
+
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkImnni-kZABntvWwgNhfxXFpUC0lc8lY&callback=Map.init">
+    </script>
+
+
+  </div>

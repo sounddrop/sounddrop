@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   get 'welcome/index'
   get 'welcome/about'
+  get 'my_drops', to: 'user_drops#index', as: :my_drops_user
 
   resources :drops do
     member do
