@@ -19,3 +19,4 @@
 //= require play
 //= require drop
 //= require map
+//= require explorer
