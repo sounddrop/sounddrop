@@ -1,3 +1,9 @@
-  <input type="text" name="request" id="request">
-  <pre id="explorer-response">
-  </pre>
+<div class="container-fluid">
+  <h1>API Explorer</h1>
+  <p>This is a tool for developers to discover the SoundDrop API. Input your request inside the form and explore the responses, which will appear in the white container.</p>
+  <%= content_for :api_explorer do %>
+    <input type="text" name="request" id="request" placeholder="Insert API Endpoint">
+  <% end %>
+    <pre id="explorer-response">
+    </pre>
+</div>

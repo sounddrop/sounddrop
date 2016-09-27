@@ -22,6 +22,7 @@
       <div class="container-fluid">
         <div class="navbar-header">
           <a href= / ><%= image_tag "sounddrop-logo-name.png", class: "sounddrop-image", alt: "SoundDrop Logo"%></a>
+            <%= yield(:api_explorer)%>
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
