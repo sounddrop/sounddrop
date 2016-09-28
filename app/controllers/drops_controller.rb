@@ -5,17 +5,14 @@ class DropsController < ApplicationController
 
   before_action :set_drop, only: [:show, :edit, :update, :destroy]
   before_action :require_creator_of_drop, except: [:index, :show, :new, :create]
+  before_action :require_current_user, only: [:new]
 
   def index
     @drops = Drop.all
   end
 
   def new
-    if session[:access_token_hash].nil?
-      render :login_redirect
-    else
-      @drop = Drop.new
-    end
+    @drop = Drop.new
   end
 
   def edit

@@ -34,6 +34,8 @@ gem 'geocoder'
 # The controller-level `respond_to' feature has been extracted to the `responders` gem.
 gem 'responders', '~> 2.0'
 
+gem 'rack-cors', :require => 'rack/cors'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
