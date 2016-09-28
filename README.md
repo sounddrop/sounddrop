@@ -92,5 +92,5 @@ Restart server `service unicorn restart`
 ## Developer Tool: API Explorer
 
 To discover the SoundDrop API, follow this link that will allow you to enter different endpoints to see which response you will get:
- 
+
 [API Explorer]: http://Sounddrop.audio/explorer
