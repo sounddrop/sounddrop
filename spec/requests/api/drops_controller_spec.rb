@@ -35,7 +35,7 @@ RSpec.describe Api::DropsController, :vcr, type: :request do
 
     describe "GET /api/drops" do
 
-      context 'with latitude and longitude given' do # will always set the radio to 10km
+      context 'with latitude and longitude given' do # will always set the radius to 10km
         let!(:drop_in_berlin) { create :drop, :drop_in_rheinsberger}
         let!(:drop_in_sydney) { create :drop, :drop_in_sydney}
 
