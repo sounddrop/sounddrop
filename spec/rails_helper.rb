@@ -4,6 +4,7 @@ require 'spec_helper'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'shoulda/matchers'
+require 'capybara/poltergeist'
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
@@ -24,6 +25,7 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 #
 # Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
+Capybara.javascript_driver = :poltergeist
 # Checks for pending migrations before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
