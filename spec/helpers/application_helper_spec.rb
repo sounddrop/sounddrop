@@ -37,7 +37,6 @@ RSpec.describe ApplicationHelper do
       let(:current_user) { JSON.parse(File.read('spec/fixtures/eric.json')) }
 
       before do
-        allow(helper.client).to receive(:present?).and_return true
         allow(helper).to receive(:client).and_return client
         allow(client).to receive(:get).with('/me').and_return current_user
       end
