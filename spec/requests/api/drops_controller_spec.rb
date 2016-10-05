@@ -25,6 +25,12 @@ RSpec.describe Api::DropsController, :vcr, type: :request do
         expect(parsed_response).to be_a Enumerable
       end
 
+      it "contains a drop info" do
+        get "/api/drops"
+        parsed_response = ActiveSupport::JSON.decode(response.body)
+        expect(parsed_response[0].keys).to match_array ["id", "title", "place", "sc_track"]
+      end
+
       it "contains a place sub-structure" do
         get "/api/drops"
         parsed_response = ActiveSupport::JSON.decode(response.body)
