@@ -36,9 +36,6 @@ gem 'responders', '~> 2.0'
 
 gem 'rack-cors', :require => 'rack/cors'
 
-# Access an IRB console on exception pages or by using <%= console %> in views
-gem 'web-console', '~> 2.0', group: :development
-
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -47,6 +44,9 @@ gem 'web-console', '~> 2.0', group: :development
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+# Access an IRB console on exception pages or by using <%= console %> in views
+gem 'web-console', '~> 2.0', group: :development
 
 group :production do
   gem 'mysql'

@@ -119,7 +119,7 @@ GEM
     mysql (2.9.1)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
-    poltergeist (1.10.0)
+    poltergeist (1.11.0)
       capybara (~> 2.1)
       cliver (~> 0.3.1)
       websocket-driver (>= 0.2.0)

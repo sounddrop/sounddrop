@@ -58,6 +58,15 @@ RSpec.configure do |config|
 
 end
 
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    # Choose a test framework:
+    with.test_framework :rspec
+    # Or, choose the following (which implies all of the above):
+    with.library :rails
+  end
+end
+
 Geocoder.configure(lookup: :test) #stub data to prevent tests form making actual requests
 
 Geocoder::Lookup::Test.add_stub("SoundCloud, Berlin",
