@@ -80,7 +80,7 @@ Restart server `service unicorn restart`
 
 ##
 
-* Follow these instruction only for [creating the Droplet][droplet]
+* Follow these instructions only for [creating the Droplet][droplet]
 
 [droplet]: https://www.digitalocean.com/community/tutorials/how-to-use-the-1-click-ruby-on-rails-on-ubuntu-14-04-image
 
@@ -89,3 +89,10 @@ Restart server `service unicorn restart`
 * Remove the sample app `rm -Rf /home/rails`
 * Clone `cd /home; git clone git@github.com:sounddrop/sounddrop.git rails`
 * `chown -R rails:www-data .`
+
+
+## Developer Tool: API Explorer
+
+To discover the SoundDrop API, follow this link that will allow you to enter different endpoints to see which response you will get:
+
+[API Explorer]: http://Sounddrop.audio/explorer

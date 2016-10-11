@@ -1,0 +1,17 @@
+<div class="container-fluid">
+  <h1>API Explorer</h1>
+  <p>This is a tool for developers to discover the SoundDrop API.</p>
+  <p><strong>Instructions:</strong> Input your request path inside the form or click on one of the links at the left and explore the JSON response, which will appear in the white container.</p>
+    <input type="text" name="request" id="request" placeholder="Insert API Endpoint ex: /api/drops?latitude=52.537016&longitude=13.394861 ">
+    <div id="label-endpoints"><label>Endpoint Examples</label></div>
+    <div id="links">
+      <ul id="link-list">
+      <li class="endpoints"><a href="/api/drops" class="explorer-link">sounddrop.audio/api/drops</a></li>
+      <li class="endpoints"><a href="/api/drops?latitude=52.537016&longitude=13.394861" class="explorer-link">sounddrop.audio/api/drops?latitude=52.537016&longitude=13.394861</a></li>
+      <li class="endpoints"><a href="/api/drops?latitude=4.701647&longitude=-74.041916" class="explorer-link">sounddrop.audio/api/drops?latitude=4.701647&longitude=-74.041916</a></li>
+    </ul>
+     </div>
+    <div id="label-response"><label>Response</label></div>
+    <pre id="explorer-response">
+    </pre>
+</div>
