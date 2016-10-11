@@ -53,6 +53,8 @@ Please
 * ensure master build is always passing (run your tests locally before pushing to master)
 * ensure master is always what is deployed (deploy your change to master)
 
+By contributing, you agree to adhere to our [Code of Conduct](https://github.com/sounddrop/sounddrop/blob/master/CODE_OF_CONDUCT.md).
+
 ## Deployment
 
 * `git push`

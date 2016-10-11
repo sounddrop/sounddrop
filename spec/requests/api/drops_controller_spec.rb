@@ -25,6 +25,13 @@ RSpec.describe Api::DropsController, :vcr, type: :request do
         expect(parsed_response).to be_a Enumerable
       end
 
+      it "contains a drop info" do
+        get "/api/drops"
+        parsed_response = ActiveSupport::JSON.decode(response.body)
+        expect(parsed_response[0].keys).to match_array \
+          ["id", "title", "place", "sc_track", "latitude", "longitude", "sounddrop_url"]
+      end
+
       it "contains a place sub-structure" do
         get "/api/drops"
         parsed_response = ActiveSupport::JSON.decode(response.body)
@@ -35,7 +42,7 @@ RSpec.describe Api::DropsController, :vcr, type: :request do
 
     describe "GET /api/drops" do
 
-      context 'with latitude and longitude given' do # will always set the radio to 10km
+      context 'with latitude and longitude given' do # will always set the radius to 10km
         let!(:drop_in_berlin) { create :drop, :drop_in_rheinsberger}
         let!(:drop_in_sydney) { create :drop, :drop_in_sydney}
 
