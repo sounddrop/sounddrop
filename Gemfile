@@ -34,6 +34,7 @@ gem 'geocoder'
 # The controller-level `respond_to' feature has been extracted to the `responders` gem.
 gem 'responders', '~> 2.0'
 
+gem 'rack-cors', :require => 'rack/cors'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -56,7 +57,8 @@ group :development, :test do
   gem 'pry'
   gem 'pry-byebug'
   gem 'rspec'
-  gem 'rspec-rails', '~> 3.5.2'
+  gem 'rspec-rails'
+  gem 'selenium-webdriver'
   gem 'factory_girl_rails'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -73,7 +75,6 @@ end
 
 group :test do
   gem 'capybara'
-  gem 'poltergeist'
   gem 'database_cleaner'
   gem 'webmock'
   gem 'vcr'
