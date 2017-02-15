@@ -13,7 +13,7 @@ describe DropsController, :vcr => {:cassette_name => "place" } do
         to_return(:body => File.read('spec/fixtures/oberholz5.json'), :headers => {"Content-Type" => "application/json; charset=utf-8"})
 
        drop = create(:drop)
-       get :show , {'id' => drop.id}
+       get :show, params: {'id' => drop.id}
        expect(@response.status).to eq(200)
     end
   end
@@ -36,7 +36,7 @@ describe DropsController, :vcr => {:cassette_name => "place" } do
     end
 
     it 'creates a drop at a place' do
-      get :create, {
+      get :create, params: {
         'sc_url' => url,
         'drop' => {
           'place' => {
@@ -60,7 +60,7 @@ describe DropsController, :vcr => {:cassette_name => "place" } do
 
     it 'creates a drop without a place' do
       expect {
-        get :create, { sc_url: url, drop: { longitude: 52.0, latitude: 13.0 } }
+        get :create, params: { sc_url: url, drop: { longitude: 52.0, latitude: 13.0 } }
       }.to change { Drop.count }
 
       drop = Drop.last
@@ -86,7 +86,7 @@ describe DropsController, :vcr => {:cassette_name => "place" } do
         let(:params)    {{ id: drop.id, "drop" => {"place" => { "name" => new_place.name, "location" => new_place.location }}}}
 
         specify do
-          put :update, params
+          put :update, params: params
           expect(drop.reload.place_id).to eql 5
           expect(drop.place.name).to eql 'A new place'
           expect(drop.place.location).to eql 'Here, Berlin'
@@ -106,7 +106,7 @@ describe DropsController, :vcr => {:cassette_name => "place" } do
       end
 
       specify do
-        put :update, params
+        put :update, params: params
         expect(response.status).to eql 404
         expect(drop.place.name).to_not eql 'a sneaky hacker place'
       end
@@ -118,20 +118,20 @@ describe DropsController, :vcr => {:cassette_name => "place" } do
 
     context 'successfully deleting a drop' do
       let(:current_user) { JSON.parse(File.read('spec/fixtures/eric.json')) }
-      let(:sc_user_id) {SoundCloud::HashResponseWrapper.new(current_user).id}
+      let(:sc_user_id)   { SoundCloud::HashResponseWrapper.new(current_user).id}
 
       before do
         allow(controller).to receive(:current_user).and_return SoundCloud::HashResponseWrapper.new(current_user)
       end
 
       it 'redirects to the homepage' do
-        delete :destroy, id: drop.id
+        delete :destroy, params: { id: drop.id }
         expect(response).to redirect_to root_path
         expect(flash[:notice]).to match /success/
       end
 
       it 'decreases the number of drops' do
-        expect { delete :destroy, id: drop.id }.to change{ Drop.count }.by(-1)
+        expect { delete :destroy, params: { id: drop.id } }.to change{ Drop.count }.by(-1)
       end
     end
 
@@ -143,7 +143,7 @@ describe DropsController, :vcr => {:cassette_name => "place" } do
       end
 
       it 'does not decreate the number of drops' do
-        expect { delete :destroy, id: drop.id }.not_to change{ Drop.count }
+        expect { delete :destroy, params: { id: drop.id } }.not_to change{ Drop.count }
       end
     end
   end
