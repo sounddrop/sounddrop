@@ -20,7 +20,4 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  activerecord:
-    attributes:
-      drop:
-        sc_track: "SoundCloud track"
+  hello: "Hello world"

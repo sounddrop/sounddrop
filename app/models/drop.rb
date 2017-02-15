@@ -11,12 +11,12 @@ class Drop < ActiveRecord::Base
 
   before_validation :copy_lat_and_long_from_place
 
-    def copy_lat_and_long_from_place
-      if place
-        self.latitude = place.latitude
-        self.longitude = place.longitude
-      end
+  def copy_lat_and_long_from_place
+    if place
+      self.latitude = place.latitude
+      self.longitude = place.longitude
     end
+  end
 
   def image_from_track
     if soundcloud_track.artwork_url.nil?
