@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -31,19 +30,17 @@ ActiveRecord::Schema.define(version: 20160915144154) do
     t.decimal  "longitude"
     t.decimal  "latitude"
     t.string   "location"
+    t.index ["name"], name: "index_places_on_name", unique: true
   end
-
-  add_index "places", ["name"], name: "index_places_on_name", unique: true
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "drop_id"
     t.integer  "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["drop_id"], name: "index_taggings_on_drop_id"
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
   end
-
-  add_index "taggings", ["drop_id"], name: "index_taggings_on_drop_id"
-  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id"
 
   create_table "tags", force: :cascade do |t|
     t.string   "name"

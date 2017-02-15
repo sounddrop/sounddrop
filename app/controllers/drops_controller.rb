@@ -67,7 +67,7 @@ class DropsController < ApplicationController
 
     def set_drop
       page_not_found unless @drop = Drop.find_by(id: params[:id].to_i)
-    end 
+    end
 
     def drop_params
       params.require(:drop).permit(:sc_track, :title, :latitude, :longitude, all_tags:[])
@@ -101,6 +101,6 @@ class DropsController < ApplicationController
     end
 
     def resolve_sc_track_id(sc_url)
-       SoundCloud.new(:client_id => ENV['SOUNDCLOUD_CLIENT_ID']).get("/resolve?url=#{sc_url}")
+      SoundCloud.new(:client_id => ENV['SOUNDCLOUD_CLIENT_ID']).get("/resolve?url=#{sc_url}")
     end
 end
